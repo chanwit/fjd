@@ -1,0 +1,15 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+    mavenRepo urls: "http://groovypp.artifactoryonline.com/groovypp/libs-releases-local/"
+}
+
+dependencies {
+    def gppVersion = '0.2.4'
+    groovy group: 'org.codehaus.groovy', name: 'groovy',   version: "1.8.0-beta-1-SNAPSHOT-gpp-${gppVersion}"
+    groovy group: 'org.mbte.groovypp',   name: 'groovypp', version: "${gppVersion}"
+
+    testCompile group: 'junit', name: 'junit', version: '4.8.1'
+}
