@@ -18,10 +18,11 @@ public class G7ASTTransform implements ASTTransformation, Opcodes {
     public void visit(ASTNode[] nodes, final SourceUnit source) {
         ModuleNode module = (ModuleNode)nodes[0];
         List<ClassNode> toProcess = new LinkedList<ClassNode>();
-        final boolean forceTyped = source.getName().endsWith(".fjd") || source.getName().endsWith(".g7");
-        
+        final String  fileName    = source.getName();
+        final boolean forceTyped  = fileName.endsWith(".fjd") || fileName.endsWith(".g7");
+
         if(forceTyped) {
-        	System.out.println("OK");
+            System.out.println("OK");
         }
     }
 
