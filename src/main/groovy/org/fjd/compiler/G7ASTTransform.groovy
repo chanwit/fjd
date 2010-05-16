@@ -22,11 +22,12 @@ class G7ASTTransform implements ASTTransformation, Opcodes {
         ModuleNode module = nodes[0]
         def toProcess     = new LinkedList<ClassNode>()
         final fileName    = source.name
-        final forceTyped  = fileName.endsWith(".fjd") || fileName.endsWith(".g7")
+        final forceTyped  = fileName.endsWith('.fjd') || fileName.endsWith('.g7')
 
         if(forceTyped) {
             for(c in module.classes) {
-                c.addAnnotation(new AnnotationNode(TypeUtil.TYPED))
+                c.addAnnotation new AnnotationNode(TypeUtil.TYPED)
+                toProcess.add c
             }
         }
     }
