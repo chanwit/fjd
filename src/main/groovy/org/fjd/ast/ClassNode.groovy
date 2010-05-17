@@ -4,8 +4,8 @@ package org.fjd.ast
 
     String name
     ClassNode superClass
-    List<FieldNode> fields = []
+    FieldsNode fields = []
     ConstructorNode ctor
-    List<MethodNode> methods = []
+    MethodsNode methods = []
 
 }

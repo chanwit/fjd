@@ -7,9 +7,4 @@ import groovy.util.*
     void testSomething() {
         assert 1 == 1
     }
-    
-    void testStructuralType() {
-        // {def call()} c = new TestCall()
-        // assert c.call() == "yes"
-    }
 }

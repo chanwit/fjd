@@ -16,9 +16,10 @@ import static org.fjd.FJDParser.*
     
     Object visit(Tree node) {
         switch(node.type) {
-            case PROGRAM: return visitProgram(node);
-            case CLASS:   return visitClass(node);
-            case EXPR :   return visitExpr(node);
+            case PROGRAM: return visitProgram(node)
+            case CLASS:   return visitClass(node)
+            case EXPR :   return visitExpr(node)
+            case FIELDS:  return visitFields(node)
         }
     }
     
@@ -29,8 +30,8 @@ import static org.fjd.FJDParser.*
         for(i in 0..node.childCount-1) {
             Object result = visit(node.getChild(i))
             switch(result) {
-                case ClassNode: ast.addClass(result as ClassNode)
-                case ExprNode : ast.expr = result as ExprNode
+                case ClassNode: ast.addClass(result as ClassNode); break
+                case ExprNode : ast.expr = result as ExprNode; break
             }
         }
 
@@ -42,10 +43,39 @@ import static org.fjd.FJDParser.*
     }
 
     String visitID(Tree node) {
-        assert node.type == 'ID'
+        assert node.type == ID
         return node.text
     }
     
+    FieldsNode visitFields(Tree node) {
+        FieldsNode result = []
+        for(i in 0..node.getChildCount()-1) {
+            result << visitField(node.getChild(i))
+        }
+        return result
+    }
+    
+    FieldNode visitField(Tree node) {
+        assert node.text == 'FIELD'
+        ClassNode type = visitType(node.getChild(0))
+        String name = visitID(node.getChild(1))
+
+        return new FieldNode(type: type, name: name)
+    }
+    
+    ClassNode visitType(Tree node) {
+        assert node.text == 'TYPE'
+        String name = visitID(node.getChild(0))
+    
+        if(CT.containsKey(name)) {
+            return CT[name]
+        }
+
+        return new ClassNode(
+            name: name // information is not known until everything resolved
+        )
+    }
+
     ClassNode visitClass(Tree node) {
         assert node.text == "CLASS"
         String name = visitID(node.getChild(0))
@@ -56,10 +86,22 @@ import static org.fjd.FJDParser.*
         }
 
         ClassNode superClassNode = visitSuperClass(node.getChild(1))
+
         def c = new ClassNode(
             name: name,
             superClass: superClassNode
         )
+
+        for(i in 2..node.getChildCount()-1) {
+
+            Object result = visit(node.getChild(i))
+            switch(result) {
+                case FieldsNode: c.fields = result as FieldsNode; break
+                case ConstructorNode: c.ctor = result as ConstructorNode; break                 case MethodsNode: c.methods = result as MethodsNode; break
+            }
+
+        }
+        
         CT[name] = c
         return c
     }

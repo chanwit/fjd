@@ -17,5 +17,20 @@
             <key>includeFiles</key>
             <array />
         </dict>
+        <key>fileTriggers</key>
+        <dict>
+            <key>classnode</key>
+            <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
+            <key>field</key>
+            <string>src\main\groovy\org\fjd\ast\FieldNode.groovy</string>
+            <key>gene</key>
+            <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
+            <key>progra</key>
+            <string>src\test\groovy\org\fjd\Program1.fjd</string>
+            <key>program</key>
+            <string>src\main\groovy\org\fjd\ast\ProgramNode.groovy</string>
+            <key>test</key>
+            <string>src\test\groovy\org\fjd\TestCompiler.groovy</string>
+        </dict>
     </dict>
 </plist>
