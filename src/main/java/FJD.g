@@ -16,7 +16,7 @@ ctorDecl
 	: ID '(' argList? ')' '{' ctorBody '}'
 	;
 
-argList	: type ID (',' type ID)+
+argList	: type ID (',' type ID)*
 	;
 	
 type	: ID	

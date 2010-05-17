@@ -6,8 +6,15 @@ repositories {
     mavenRepo urls: "http://groovypp.artifactoryonline.com/groovypp/libs-releases-local/"
 }
 
+configurations {
+    grammarCompile
+}
+
 dependencies {
-    def gppVersion = '0.2.5'
+    grammarCompile 'org.antlr:antlr:3.2'
+    compile group: 'org.antlr', name: 'antlr-runtime', version: '3.2'
+
+	def gppVersion = '0.2.5'
     groovy group: 'org.codehaus.groovy', name: 'groovy',   version: "1.8.0-beta-1-SNAPSHOT-gpp-${gppVersion}"
     groovy group: 'org.mbte.groovypp',   name: 'groovypp', version: "${gppVersion}"
     groovy group: 'asm',   name: 'asm-all',  version: "3.2"
@@ -15,3 +22,25 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: '4.8.1'
 }
+
+task generateGrammarSources (description: 'Invokes the antlr3-task from ant to generate grammar sources') << {
+    // generatedDir = new File(project.buildDir.toString() + '/generated-src/')
+    // generatedDir.mkdirs()
+
+    ant {
+        taskdef(name: 'antlr3', classname: 'org.apache.tools.ant.antlr.ANTLR3'){
+            classpath {
+                fileset(dir: 'lib', includes: 'antlr3-ant.jar')
+            }
+        }
+
+        antlr3( target: 'src/main/java/FJD.g',
+                outputdirectory: 'src/main/java'){
+            classpath {
+                pathelement(path: configurations.grammarCompile.asPath)
+            }
+        }
+    }
+}
+
+compileJava.dependsOn generateGrammarSources 

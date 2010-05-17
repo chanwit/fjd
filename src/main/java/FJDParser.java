@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 14:05:07 D:\\projects\\fjd\\src\\main\\java\\FJD.g 2010-05-17 10:52:46
+// $ANTLR 3.2 Sep 23, 2009 14:05:07 D:\\projects\\fjd\\src\\main\\java\\FJD.g 2010-05-17 11:48:09
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -269,11 +269,11 @@ public class FJDParser extends Parser {
 
 
     // $ANTLR start "argList"
-    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:19:1: argList : type ID ( ',' type ID )+ ;
+    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:19:1: argList : type ID ( ',' type ID )* ;
     public final void argList() throws RecognitionException {
         try {
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:19:9: ( type ID ( ',' type ID )+ )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:19:11: type ID ( ',' type ID )+
+            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:19:9: ( type ID ( ',' type ID )* )
+            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:19:11: type ID ( ',' type ID )*
             {
             pushFollow(FOLLOW_type_in_argList96);
             type();
@@ -281,8 +281,7 @@ public class FJDParser extends Parser {
             state._fsp--;
 
             match(input,ID,FOLLOW_ID_in_argList98); 
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:19:19: ( ',' type ID )+
-            int cnt4=0;
+            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:19:19: ( ',' type ID )*
             loop4:
             do {
                 int alt4=2;
@@ -309,12 +308,8 @@ public class FJDParser extends Parser {
             	    break;
 
             	default :
-            	    if ( cnt4 >= 1 ) break loop4;
-                        EarlyExitException eee =
-                            new EarlyExitException(4, input);
-                        throw eee;
+            	    break loop4;
                 }
-                cnt4++;
             } while (true);
 
 
@@ -776,7 +771,7 @@ public class FJDParser extends Parser {
     public static final BitSet FOLLOW_ctorBody_in_ctorDecl84 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15_in_ctorDecl86 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_type_in_argList96 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ID_in_argList98 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_ID_in_argList98 = new BitSet(new long[]{0x0000000000080002L});
     public static final BitSet FOLLOW_19_in_argList101 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_type_in_argList103 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ID_in_argList105 = new BitSet(new long[]{0x0000000000080002L});
