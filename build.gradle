@@ -31,8 +31,8 @@ task generateGrammarSources (description: 'Invokes the antlr3-task from ant to g
             }
         }
 
-        antlr3( target: 'src/main/java/FJD.g',
-                outputdirectory: 'src/main/java'){
+        antlr3( target: 'src/main/java/org/fjd/FJD.g',
+                outputdirectory: 'src/main/java/org/fjd'){
             classpath {
                 pathelement(path: configurations.grammarCompile.asPath)
             }

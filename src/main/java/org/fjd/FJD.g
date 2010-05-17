@@ -1,6 +1,10 @@
 grammar FJD;
 
-program	: classDecl+
+@parser::header { package org.fjd; }
+@lexer::header  { package org.fjd; }
+
+program	
+  : classDecl+
 	  expr
 	;
 
@@ -16,10 +20,12 @@ ctorDecl
 	: ID '(' argList? ')' '{' ctorBody '}'
 	;
 
-argList	: type ID (',' type ID)*
+argList
+  : type ID (',' type ID)*
 	;
 	
-type	: ID	
+type
+  : ID	
 	;
 
 ctorBody
@@ -52,7 +58,7 @@ exprList
   ;
 
 expr
-  : (ID | 'new' ID '(' exprList? ')'  | '(' ID ')' expr ) fieldAccessOrMethCall*
+  : ('this' | ID | 'new' ID '(' exprList? ')'  | '(' ID ')' expr ) fieldAccessOrMethCall*
 	;	
 	
 fieldAccessOrMethCall

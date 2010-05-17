@@ -1,4 +1,5 @@
-// $ANTLR 3.2 Sep 23, 2009 14:05:07 D:\\projects\\fjd\\src\\main\\java\\FJD.g 2010-05-17 12:49:34
+// $ANTLR 3.2 Sep 23, 2009 14:05:07 D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g 2010-05-17 13:53:19
+ package org.fjd; 
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -41,15 +42,15 @@ public class FJDLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "D:\\projects\\fjd\\src\\main\\java\\FJD.g"; }
+    public String getGrammarFileName() { return "D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g"; }
 
     // $ANTLR start "T__12"
     public final void mT__12() throws RecognitionException {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:3:7: ( 'class' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:3:9: 'class'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:5:7: ( 'class' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:5:9: 'class'
             {
             match("class"); 
 
@@ -69,8 +70,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:4:7: ( 'extends' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:4:9: 'extends'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:6:7: ( 'extends' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:6:9: 'extends'
             {
             match("extends"); 
 
@@ -90,8 +91,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:5:7: ( '{' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:5:9: '{'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:7:7: ( '{' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:7:9: '{'
             {
             match('{'); 
 
@@ -110,8 +111,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:6:7: ( '}' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:6:9: '}'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:8:7: ( '}' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:8:9: '}'
             {
             match('}'); 
 
@@ -130,8 +131,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:7:7: ( ';' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:7:9: ';'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:9:7: ( ';' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:9:9: ';'
             {
             match(';'); 
 
@@ -150,8 +151,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:8:7: ( '(' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:8:9: '('
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:10:7: ( '(' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:10:9: '('
             {
             match('('); 
 
@@ -170,8 +171,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:9:7: ( ')' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:9:9: ')'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:11:7: ( ')' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:11:9: ')'
             {
             match(')'); 
 
@@ -190,8 +191,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:10:7: ( ',' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:10:9: ','
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:12:7: ( ',' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:12:9: ','
             {
             match(','); 
 
@@ -210,8 +211,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:11:7: ( 'super' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:11:9: 'super'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:13:7: ( 'super' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:13:9: 'super'
             {
             match("super"); 
 
@@ -231,8 +232,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:12:7: ( 'this' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:12:9: 'this'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:14:7: ( 'this' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:14:9: 'this'
             {
             match("this"); 
 
@@ -252,8 +253,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:13:7: ( '.' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:13:9: '.'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:15:7: ( '.' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:15:9: '.'
             {
             match('.'); 
 
@@ -272,8 +273,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:14:7: ( '=' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:14:9: '='
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:16:7: ( '=' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:16:9: '='
             {
             match('='); 
 
@@ -292,8 +293,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:15:7: ( 'return' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:15:9: 'return'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:17:7: ( 'return' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:17:9: 'return'
             {
             match("return"); 
 
@@ -313,8 +314,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:16:7: ( 'new' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:16:9: 'new'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:18:7: ( 'new' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:18:9: 'new'
             {
             match("new"); 
 
@@ -334,8 +335,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:63:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:63:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:69:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:69:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -346,7 +347,7 @@ public class FJDLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:63:31: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:69:31: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop1:
             do {
                 int alt1=2;
@@ -359,7 +360,7 @@ public class FJDLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:
+            	    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -395,8 +396,8 @@ public class FJDLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:66:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:66:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:72:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:72:9: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -424,11 +425,11 @@ public class FJDLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:74:5: ( '\"' ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )* '\"' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:74:8: '\"' ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )* '\"'
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:80:5: ( '\"' ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )* '\"' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:80:8: '\"' ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )* '\"'
             {
             match('\"'); 
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:74:12: ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )*
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:80:12: ( ESC_SEQ | ~ ( '\\\\' | '\"' ) )*
             loop2:
             do {
                 int alt2=3;
@@ -444,14 +445,14 @@ public class FJDLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:74:14: ESC_SEQ
+            	    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:80:14: ESC_SEQ
             	    {
             	    mESC_SEQ(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:74:24: ~ ( '\\\\' | '\"' )
+            	    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:80:24: ~ ( '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -488,11 +489,11 @@ public class FJDLexer extends Lexer {
         try {
             int _type = CHAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:77:5: ( '\\'' ( ESC_SEQ | ~ ( '\\'' | '\\\\' ) ) '\\'' )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:77:8: '\\'' ( ESC_SEQ | ~ ( '\\'' | '\\\\' ) ) '\\''
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:83:5: ( '\\'' ( ESC_SEQ | ~ ( '\\'' | '\\\\' ) ) '\\'' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:83:8: '\\'' ( ESC_SEQ | ~ ( '\\'' | '\\\\' ) ) '\\''
             {
             match('\''); 
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:77:13: ( ESC_SEQ | ~ ( '\\'' | '\\\\' ) )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:83:13: ( ESC_SEQ | ~ ( '\\'' | '\\\\' ) )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -510,14 +511,14 @@ public class FJDLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:77:15: ESC_SEQ
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:83:15: ESC_SEQ
                     {
                     mESC_SEQ(); 
 
                     }
                     break;
                 case 2 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:77:25: ~ ( '\\'' | '\\\\' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:83:25: ~ ( '\\'' | '\\\\' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -549,8 +550,8 @@ public class FJDLexer extends Lexer {
     // $ANTLR start "HEX_DIGIT"
     public final void mHEX_DIGIT() throws RecognitionException {
         try {
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:81:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:81:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:87:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:87:13: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
             {
             if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
                 input.consume();
@@ -573,7 +574,7 @@ public class FJDLexer extends Lexer {
     // $ANTLR start "ESC_SEQ"
     public final void mESC_SEQ() throws RecognitionException {
         try {
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:85:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:91:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
             int alt4=3;
             int LA4_0 = input.LA(1);
 
@@ -624,7 +625,7 @@ public class FJDLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:85:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:91:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     {
                     match('\\'); 
                     if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -640,14 +641,14 @@ public class FJDLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:86:9: UNICODE_ESC
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:92:9: UNICODE_ESC
                     {
                     mUNICODE_ESC(); 
 
                     }
                     break;
                 case 3 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:87:9: OCTAL_ESC
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:93:9: OCTAL_ESC
                     {
                     mOCTAL_ESC(); 
 
@@ -664,7 +665,7 @@ public class FJDLexer extends Lexer {
     // $ANTLR start "OCTAL_ESC"
     public final void mOCTAL_ESC() throws RecognitionException {
         try {
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:92:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:98:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
             int alt5=3;
             int LA5_0 = input.LA(1);
 
@@ -710,25 +711,25 @@ public class FJDLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:92:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:98:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:92:14: ( '0' .. '3' )
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:92:15: '0' .. '3'
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:98:14: ( '0' .. '3' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:98:15: '0' .. '3'
                     {
                     matchRange('0','3'); 
 
                     }
 
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:92:25: ( '0' .. '7' )
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:92:26: '0' .. '7'
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:98:25: ( '0' .. '7' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:98:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:92:36: ( '0' .. '7' )
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:92:37: '0' .. '7'
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:98:36: ( '0' .. '7' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:98:37: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -738,18 +739,18 @@ public class FJDLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:93:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:99:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:93:14: ( '0' .. '7' )
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:93:15: '0' .. '7'
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:99:14: ( '0' .. '7' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:99:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
                     }
 
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:93:25: ( '0' .. '7' )
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:93:26: '0' .. '7'
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:99:25: ( '0' .. '7' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:99:26: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -759,11 +760,11 @@ public class FJDLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:94:9: '\\\\' ( '0' .. '7' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:100:9: '\\\\' ( '0' .. '7' )
                     {
                     match('\\'); 
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:94:14: ( '0' .. '7' )
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:94:15: '0' .. '7'
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:100:14: ( '0' .. '7' )
+                    // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:100:15: '0' .. '7'
                     {
                     matchRange('0','7'); 
 
@@ -783,8 +784,8 @@ public class FJDLexer extends Lexer {
     // $ANTLR start "UNICODE_ESC"
     public final void mUNICODE_ESC() throws RecognitionException {
         try {
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:99:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:99:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:105:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+            // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:105:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
             {
             match('\\'); 
             match('u'); 
@@ -802,131 +803,131 @@ public class FJDLexer extends Lexer {
     // $ANTLR end "UNICODE_ESC"
 
     public void mTokens() throws RecognitionException {
-        // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | ID | WS | STRING | CHAR )
+        // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | ID | WS | STRING | CHAR )
         int alt6=18;
         alt6 = dfa6.predict(input);
         switch (alt6) {
             case 1 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:10: T__12
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:10: T__12
                 {
                 mT__12(); 
 
                 }
                 break;
             case 2 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:16: T__13
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:16: T__13
                 {
                 mT__13(); 
 
                 }
                 break;
             case 3 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:22: T__14
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:22: T__14
                 {
                 mT__14(); 
 
                 }
                 break;
             case 4 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:28: T__15
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:28: T__15
                 {
                 mT__15(); 
 
                 }
                 break;
             case 5 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:34: T__16
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:34: T__16
                 {
                 mT__16(); 
 
                 }
                 break;
             case 6 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:40: T__17
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:40: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
             case 7 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:46: T__18
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:46: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
             case 8 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:52: T__19
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:52: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
             case 9 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:58: T__20
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:58: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
             case 10 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:64: T__21
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:64: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
             case 11 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:70: T__22
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:70: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
             case 12 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:76: T__23
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:76: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
             case 13 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:82: T__24
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:82: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
             case 14 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:88: T__25
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:88: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
             case 15 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:94: ID
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:94: ID
                 {
                 mID(); 
 
                 }
                 break;
             case 16 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:97: WS
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:97: WS
                 {
                 mWS(); 
 
                 }
                 break;
             case 17 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:100: STRING
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:100: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
             case 18 :
-                // D:\\projects\\fjd\\src\\main\\java\\FJD.g:1:107: CHAR
+                // D:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:1:107: CHAR
                 {
                 mCHAR(); 
 
