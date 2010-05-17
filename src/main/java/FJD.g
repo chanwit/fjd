@@ -1,35 +1,38 @@
-grammar fjd;
+grammar FJD;
 
 program	: classDecl+
-	  expr	
+	  expr
 	;
 
 classDecl
-	: 'class' ID 'extends' ID '{' fieldDecls constructor methodDecls '}'
+	: 'class' ID 'extends' ID '{' fieldDecls ctorDecl methodDecls '}'
 	;
 
 fieldDecls	
-	: (ID ID ';')*
+	: (type ID ';')*
 	;
 
-constructor
-	: ID '(' argList ')' '{' ctorBody '}'
+ctorDecl
+	: ID '(' argList? ')' '{' ctorBody '}'
 	;
 
-argList	:	
+argList	: type ID (',' type ID)+
+	;
+	
+type	: ID	
 	;
 
 ctorBody
 	: superStmt
-	  fieldInits
+	  fieldInits?
 	;
 	
 superStmt
-	: 'super' '(' argList ')' ';'	
+	: 'super' '(' argList? ')' ';'	
 	;
 
 fieldInits
-	:	
+	: 'this' '.' ID '=' ID ';'
 	;
 	
 methodDecls
@@ -37,14 +40,20 @@ methodDecls
 	;
 	
 methodDecl
-	: ID ID '(' argList ')' '{' methBody '}'
+	: type ID '(' argList? ')' '{' methBody '}'
 	;	
 	
 methBody
 	: 'return' expr ';'
 	;	
 
-expr	:
+exprList
+  : expr (',' expr)*
+  ;
+
+expr
+  : ID
+  | 'new' ID '(' exprList? ')'
 	;	
 
 ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
