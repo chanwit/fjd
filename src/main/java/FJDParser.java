@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 14:05:07 D:\\projects\\fjd\\src\\main\\java\\FJD.g 2010-05-17 11:49:59
+// $ANTLR 3.2 Sep 23, 2009 14:05:07 D:\\projects\\fjd\\src\\main\\java\\FJD.g 2010-05-17 12:49:34
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -672,51 +672,63 @@ public class FJDParser extends Parser {
 
 
     // $ANTLR start "expr"
-    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:54:1: expr : ( ID | 'new' ID '(' ( exprList )? ')' );
+    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:54:1: expr : ( ID | 'new' ID '(' ( exprList )? ')' | '(' ID ')' expr ) ( fieldAccessOrMethCall )* ;
     public final void expr() throws RecognitionException {
         try {
-            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:3: ( ID | 'new' ID '(' ( exprList )? ')' )
-            int alt11=2;
-            int LA11_0 = input.LA(1);
-
-            if ( (LA11_0==ID) ) {
+            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:3: ( ( ID | 'new' ID '(' ( exprList )? ')' | '(' ID ')' expr ) ( fieldAccessOrMethCall )* )
+            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:5: ( ID | 'new' ID '(' ( exprList )? ')' | '(' ID ')' expr ) ( fieldAccessOrMethCall )*
+            {
+            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:5: ( ID | 'new' ID '(' ( exprList )? ')' | '(' ID ')' expr )
+            int alt11=3;
+            switch ( input.LA(1) ) {
+            case ID:
+                {
                 alt11=1;
-            }
-            else if ( (LA11_0==25) ) {
+                }
+                break;
+            case 25:
+                {
                 alt11=2;
-            }
-            else {
+                }
+                break;
+            case 17:
+                {
+                alt11=3;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
+
             switch (alt11) {
                 case 1 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:5: ID
+                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:6: ID
                     {
-                    match(input,ID,FOLLOW_ID_in_expr269); 
+                    match(input,ID,FOLLOW_ID_in_expr270); 
 
                     }
                     break;
                 case 2 :
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:56:5: 'new' ID '(' ( exprList )? ')'
+                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:11: 'new' ID '(' ( exprList )? ')'
                     {
-                    match(input,25,FOLLOW_25_in_expr275); 
-                    match(input,ID,FOLLOW_ID_in_expr277); 
-                    match(input,17,FOLLOW_17_in_expr279); 
-                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:56:18: ( exprList )?
+                    match(input,25,FOLLOW_25_in_expr274); 
+                    match(input,ID,FOLLOW_ID_in_expr276); 
+                    match(input,17,FOLLOW_17_in_expr278); 
+                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:24: ( exprList )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
-                    if ( (LA10_0==ID||LA10_0==25) ) {
+                    if ( (LA10_0==ID||LA10_0==17||LA10_0==25) ) {
                         alt10=1;
                     }
                     switch (alt10) {
                         case 1 :
-                            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:56:18: exprList
+                            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:24: exprList
                             {
-                            pushFollow(FOLLOW_exprList_in_expr281);
+                            pushFollow(FOLLOW_exprList_in_expr280);
                             exprList();
 
                             state._fsp--;
@@ -727,7 +739,149 @@ public class FJDParser extends Parser {
 
                     }
 
-                    match(input,18,FOLLOW_18_in_expr284); 
+                    match(input,18,FOLLOW_18_in_expr283); 
+
+                    }
+                    break;
+                case 3 :
+                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:41: '(' ID ')' expr
+                    {
+                    match(input,17,FOLLOW_17_in_expr288); 
+                    match(input,ID,FOLLOW_ID_in_expr290); 
+                    match(input,18,FOLLOW_18_in_expr292); 
+                    pushFollow(FOLLOW_expr_in_expr294);
+                    expr();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:59: ( fieldAccessOrMethCall )*
+            loop12:
+            do {
+                int alt12=2;
+                int LA12_0 = input.LA(1);
+
+                if ( (LA12_0==22) ) {
+                    alt12=1;
+                }
+
+
+                switch (alt12) {
+            	case 1 :
+            	    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:55:59: fieldAccessOrMethCall
+            	    {
+            	    pushFollow(FOLLOW_fieldAccessOrMethCall_in_expr298);
+            	    fieldAccessOrMethCall();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop12;
+                }
+            } while (true);
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "expr"
+
+
+    // $ANTLR start "fieldAccessOrMethCall"
+    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:58:1: fieldAccessOrMethCall : ( '.' ID | '.' ID '(' ( exprList )? ')' );
+    public final void fieldAccessOrMethCall() throws RecognitionException {
+        try {
+            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:59:3: ( '.' ID | '.' ID '(' ( exprList )? ')' )
+            int alt14=2;
+            int LA14_0 = input.LA(1);
+
+            if ( (LA14_0==22) ) {
+                int LA14_1 = input.LA(2);
+
+                if ( (LA14_1==ID) ) {
+                    int LA14_2 = input.LA(3);
+
+                    if ( (LA14_2==17) ) {
+                        alt14=2;
+                    }
+                    else if ( (LA14_2==EOF||LA14_2==16||(LA14_2>=18 && LA14_2<=19)||LA14_2==22) ) {
+                        alt14=1;
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 14, 2, input);
+
+                        throw nvae;
+                    }
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 14, 1, input);
+
+                    throw nvae;
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 14, 0, input);
+
+                throw nvae;
+            }
+            switch (alt14) {
+                case 1 :
+                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:59:5: '.' ID
+                    {
+                    match(input,22,FOLLOW_22_in_fieldAccessOrMethCall313); 
+                    match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall315); 
+
+                    }
+                    break;
+                case 2 :
+                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:60:5: '.' ID '(' ( exprList )? ')'
+                    {
+                    match(input,22,FOLLOW_22_in_fieldAccessOrMethCall321); 
+                    match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall323); 
+                    match(input,17,FOLLOW_17_in_fieldAccessOrMethCall325); 
+                    // D:\\projects\\fjd\\src\\main\\java\\FJD.g:60:16: ( exprList )?
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
+
+                    if ( (LA13_0==ID||LA13_0==17||LA13_0==25) ) {
+                        alt13=1;
+                    }
+                    switch (alt13) {
+                        case 1 :
+                            // D:\\projects\\fjd\\src\\main\\java\\FJD.g:60:16: exprList
+                            {
+                            pushFollow(FOLLOW_exprList_in_fieldAccessOrMethCall327);
+                            exprList();
+
+                            state._fsp--;
+
+
+                            }
+                            break;
+
+                    }
+
+                    match(input,18,FOLLOW_18_in_fieldAccessOrMethCall330); 
 
                     }
                     break;
@@ -742,14 +896,14 @@ public class FJDParser extends Parser {
         }
         return ;
     }
-    // $ANTLR end "expr"
+    // $ANTLR end "fieldAccessOrMethCall"
 
     // Delegated rules
 
 
  
 
-    public static final BitSet FOLLOW_classDecl_in_program10 = new BitSet(new long[]{0x0000000002001010L});
+    public static final BitSet FOLLOW_classDecl_in_program10 = new BitSet(new long[]{0x0000000002021010L});
     public static final BitSet FOLLOW_expr_in_program16 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_12_in_classDecl27 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ID_in_classDecl29 = new BitSet(new long[]{0x0000000000002000L});
@@ -798,17 +952,29 @@ public class FJDParser extends Parser {
     public static final BitSet FOLLOW_14_in_methodDecl215 = new BitSet(new long[]{0x0000000001000000L});
     public static final BitSet FOLLOW_methBody_in_methodDecl217 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15_in_methodDecl219 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_methBody232 = new BitSet(new long[]{0x0000000002000010L});
+    public static final BitSet FOLLOW_24_in_methBody232 = new BitSet(new long[]{0x0000000002020010L});
     public static final BitSet FOLLOW_expr_in_methBody234 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_16_in_methBody236 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_expr_in_exprList249 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_19_in_exprList252 = new BitSet(new long[]{0x0000000002000010L});
+    public static final BitSet FOLLOW_19_in_exprList252 = new BitSet(new long[]{0x0000000002020010L});
     public static final BitSet FOLLOW_expr_in_exprList254 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_ID_in_expr269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_expr275 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ID_in_expr277 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_expr279 = new BitSet(new long[]{0x0000000002040010L});
-    public static final BitSet FOLLOW_exprList_in_expr281 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_expr284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_expr270 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_25_in_expr274 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ID_in_expr276 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_expr278 = new BitSet(new long[]{0x0000000002060010L});
+    public static final BitSet FOLLOW_exprList_in_expr280 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_expr283 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_17_in_expr288 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ID_in_expr290 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_expr292 = new BitSet(new long[]{0x0000000002020010L});
+    public static final BitSet FOLLOW_expr_in_expr294 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_fieldAccessOrMethCall_in_expr298 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_22_in_fieldAccessOrMethCall313 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall315 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_fieldAccessOrMethCall321 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall323 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_fieldAccessOrMethCall325 = new BitSet(new long[]{0x0000000002060010L});
+    public static final BitSet FOLLOW_exprList_in_fieldAccessOrMethCall327 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_fieldAccessOrMethCall330 = new BitSet(new long[]{0x0000000000000002L});
 
 }

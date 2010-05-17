@@ -52,9 +52,13 @@ exprList
   ;
 
 expr
-  : ID
-  | 'new' ID '(' exprList? ')'
+  : (ID | 'new' ID '(' exprList? ')'  | '(' ID ')' expr ) fieldAccessOrMethCall*
 	;	
+	
+fieldAccessOrMethCall
+  : '.' ID
+  | '.' ID '(' exprList? ')'
+  ;	
 
 ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
