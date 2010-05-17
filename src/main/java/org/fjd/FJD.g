@@ -1,18 +1,23 @@
 grammar FJD;
 
 options {
-  output = AST;
+    output=AST;
+    ASTLabelType=CommonTree;  
 }
 
 tokens {
   PROGRAM;
   CLASS;
+  SUPER_CLASS;
   FIELD;
+  FIELDS;
   CTOR;
   SUPER_STMT;
   FIELD_INIT;
+  METHODS;
   METHOD;
   TYPE;
+  ARGS;
   ARG;
   METH_BODY;
 
@@ -35,11 +40,12 @@ program
 
 classDecl
 	: 'class' className=ID 'extends' superClass=ID '{' fieldDecls ctorDecl methodDecls '}'
-	  -> ^(CLASS $className $superClass fieldDecls ctorDecl methodDecls)
+	  -> ^(CLASS $className ^(SUPER_CLASS $superClass) fieldDecls ctorDecl methodDecls)
 	;
 
 fieldDecls	
-	: (fieldDecl)*
+	: fieldDecl*
+	  -> ^(FIELDS fieldDecl*) 
 	;
 	
 fieldDecl
@@ -53,7 +59,8 @@ ctorDecl
 	;
 
 argList
-  : arg (','! arg)*
+  : arg (',' arg)*
+    -> ^(ARGS arg+)
 	;
 	
 arg
@@ -82,6 +89,7 @@ fieldInits
 	
 methodDecls
 	: methodDecl*
+	  -> ^(METHODS methodDecl*)
 	;
 	
 methodDecl

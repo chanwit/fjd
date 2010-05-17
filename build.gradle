@@ -22,6 +22,8 @@ dependencies {
 
     testCompile group: 'junit',     name: 'junit', version: '4.8.1'
     testCompile group: 'org.antlr', name:'gunit',  version: '3.2'
+    testCompile group: 'org.antlr', name: 'antlr',    version: '3.2'
+    testCompile group: 'org.antlr', name: 'antlr-runtime', version: '3.2'
 }
 
 task generateGrammarSources (description: 'Invokes the antlr3-task from ant to generate grammar sources') << {
