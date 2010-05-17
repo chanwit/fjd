@@ -18,11 +18,14 @@ import org.mbte.groovypp.compiler.*
 @GroovyASTTransformation(phase = CompilePhase.CONVERSION)
 class G7ASTTransform implements ASTTransformation, Opcodes {
 
+	static final String FJD_EXT = ".fjd"
+	static final String G7_EXT  = ".g7"
+	
     void visit(ASTNode[] nodes, SourceUnit source) {
         ModuleNode module = nodes[0]
         def toProcess     = new LinkedList<ClassNode>()
         final fileName    = source.name
-        final forceTyped  = fileName.endsWith('.fjd') || fileName.endsWith('.g7')
+        final forceTyped  = fileName.endsWith(FJD_EXT) || fileName.endsWith(G7_EXT)
 
         if(forceTyped) {
             for(c in module.classes) {
