@@ -8,7 +8,7 @@ import org.fjd.ast.*
     static final object = new ClassNode(name: "Object", superClass: object)
     
     ClassTable() {
-        super();
+        super()
         this["Object"] = object
     }
     

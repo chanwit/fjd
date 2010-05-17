@@ -34,94 +34,94 @@ tokens {
 @lexer::header  { package org.fjd; }
 
 program	
-  : classDecl+  
-	  expr
-	  -> ^(PROGRAM classDecl+ ^(EXPR expr)) 
-	;
+    : classDecl+  
+      expr
+      -> ^(PROGRAM classDecl+ ^(EXPR expr)) 
+    ;
 
 classDecl
-	: 'class' className=ID 'extends' superClass=ID '{' fieldDecls ctorDecl methodDecls '}'
-	  -> ^(CLASS $className ^(SUPER_CLASS $superClass) fieldDecls ctorDecl methodDecls)
-	;
+    : 'class' className=ID 'extends' superClass=ID '{' fieldDecls ctorDecl methodDecls '}'
+      -> ^(CLASS $className ^(SUPER_CLASS $superClass) fieldDecls ctorDecl methodDecls)
+    ;
 
 fieldDecls	
-	: fieldDecl*
-	  -> ^(FIELDS fieldDecl*) 
-	;
-	
+    : fieldDecl*
+      -> ^(FIELDS fieldDecl*) 
+    ;
+    
 fieldDecl
-  : type ID ';'
-    -> ^(FIELD type ID)
-  ;
+    : type ID ';'
+      -> ^(FIELD type ID)
+    ;
 
 ctorDecl
-	: name=ID '(' argList? ')' '{' ctorBody '}'
-	  -> ^(CTOR $name argList? ctorBody)
-	;
+    : name=ID '(' argList? ')' '{' ctorBody '}'
+      -> ^(CTOR $name argList? ctorBody)
+    ;
 
 argList
-  : arg (',' arg)*
-    -> ^(ARGS arg+)
-	;
-	
+    : arg (',' arg)*
+      -> ^(ARGS arg+)
+    ;
+    
 arg
-  : type ID -> ^(ARG type ID)
-  ;
-	
+    : type ID -> ^(ARG type ID)
+    ;
+    
 type
-  : ID
-    -> ^(TYPE ID)	
-	;
+    : ID
+    -> ^(TYPE ID)
+    ;
 
 ctorBody
-	: superStmt
-	  fieldInits?
-	;
-	
+    : superStmt
+      fieldInits?
+    ;
+    
 superStmt
-	: 'super' '(' argList? ')' ';'	
-	  -> ^(SUPER_STMT argList?)
-	;
+    : 'super' '(' argList? ')' ';'	
+      -> ^(SUPER_STMT argList?)
+    ;
 
 fieldInits
-	: 'this' '.' field=ID '=' value=ID ';'
-	  -> ^(FIELD_INIT $field $value)
-	;
-	
+    : 'this' '.' field=ID '=' value=ID ';'
+      -> ^(FIELD_INIT $field $value)
+    ;
+    
 methodDecls
-	: methodDecl*
-	  -> ^(METHODS methodDecl*)
-	;
-	
+    : methodDecl*
+      -> ^(METHODS methodDecl*)
+    ;
+    
 methodDecl
-	: type name=ID '(' argList? ')' '{' methBody '}'
-	  -> ^(METHOD type $name argList? methBody)
-	;	
-	
+    : type name=ID '(' argList? ')' '{' methBody '}'
+      -> ^(METHOD type $name argList? methBody)
+    ;	
+    
 methBody
-	: 'return' expr ';'
-	  -> ^(METH_BODY expr)
-	;	
+    : 'return' expr ';'
+      -> ^(METH_BODY ^(EXPR expr))
+    ;	
 
 exprList
-  : expr (','! expr)*
-  ;
+    : expr (','! expr)*
+    ;
 
 expr
-  :
-  (   'this' -> ^(THIS)
-	  | ID     -> ^(VALUE ID)
-	  | 'new' ID '(' exprList? ')'  -> ^(NEW ID exprList?)
-	  | '(' ID ')' expr -> ^(CAST ID expr)
-  ) fieldAccessOrMethCall*
-	;	
-	
+    :
+    (   'this' -> ^(THIS)
+      | ID     -> ^(VALUE ID)
+      | 'new' ID '(' exprList? ')'  -> ^(NEW ID exprList?)
+      | '(' ID ')' expr -> ^(CAST ID expr)
+    ) fieldAccessOrMethCall*
+    ;
+    
 fieldAccessOrMethCall
-  : '.' ID  -> ^(FIELD_ACCESS ID)
-  | '.' ID '(' exprList? ')' -> ^(METH_CALL ID exprList? )
-  ;	
+    : '.' ID  -> ^(FIELD_ACCESS ID)
+    | '.' ID '(' exprList? ')' -> ^(METH_CALL ID exprList? )
+    ;
 
-ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
 
 WS  :   ( ' '
