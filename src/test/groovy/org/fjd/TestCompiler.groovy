@@ -13,12 +13,18 @@ import org.fjd.compiler.*;
 @Typed class TestCompiler extends GroovyTestCase {
     
     void testSomething() {
-		def input = new ANTLRFileStream("src/test/groovy/org/fjd/Program1.fjd", "UTF-8")
-		def lex = new FJDLexer(input)
-		def tokens = new CommonTokenStream(lex)
-		def parser = new FJDParser(tokens)
-		def tree = parser.program().tree as Tree;
-		new Generator(tree).visit();
+        def input = new ANTLRFileStream(
+            "src/test/groovy/org/fjd/Program1.fjd", 
+            "UTF-8"
+        )
+
+        def lex = new FJDLexer(input)
+        def tokens = new CommonTokenStream(lex)
+        def parser = new FJDParser(tokens)
+        def tree = parser.program().tree as Tree;
+
+        def CT = new ClassTable()
+        new Generator(CT).visit(tree)
     }
     
 }

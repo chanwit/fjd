@@ -1,5 +1,5 @@
 package org.fjd.ast
 
-class ExprNode {
+@Typed class ExprNode {
 
 }

@@ -8,6 +8,7 @@ options {
 tokens {
   PROGRAM;
   CLASS;
+  EXPR;
   SUPER_CLASS;
   FIELD;
   FIELDS;
@@ -35,7 +36,7 @@ tokens {
 program	
   : classDecl+  
 	  expr
-	  -> ^(PROGRAM classDecl+ expr) 
+	  -> ^(PROGRAM classDecl+ ^(EXPR expr)) 
 	;
 
 classDecl
