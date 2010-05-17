@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 14:05:07 C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g 2010-05-17 19:39:48
+// $ANTLR 3.2 Sep 23, 2009 14:05:07 C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g 2010-05-17 22:06:25
  package org.fjd; 
 
 import org.antlr.runtime.*;
@@ -357,7 +357,7 @@ public class FJDLexer extends Lexer {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:124:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:124:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:124:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -368,7 +368,7 @@ public class FJDLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:124:31: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:124:33: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop1:
             do {
                 int alt1=2;
