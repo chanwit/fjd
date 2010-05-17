@@ -1,31 +1,68 @@
 grammar FJD;
 
+options {
+  output = AST;
+}
+
+tokens {
+  PROGRAM;
+  CLASS;
+  FIELD;
+  CTOR;
+  SUPER_STMT;
+  FIELD_INIT;
+  METHOD;
+  TYPE;
+  ARG;
+  METH_BODY;
+
+  THIS;
+  VALUE;
+  NEW;
+  CAST;
+  FIELD_ACCESS;
+  METH_CALL;
+}
+
 @parser::header { package org.fjd; }
 @lexer::header  { package org.fjd; }
 
 program	
-  : classDecl+
+  : classDecl+  
 	  expr
+	  -> ^(PROGRAM classDecl+ expr) 
 	;
 
 classDecl
-	: 'class' ID 'extends' ID '{' fieldDecls ctorDecl methodDecls '}'
+	: 'class' className=ID 'extends' superClass=ID '{' fieldDecls ctorDecl methodDecls '}'
+	  -> ^(CLASS $className $superClass fieldDecls ctorDecl methodDecls)
 	;
 
 fieldDecls	
-	: (type ID ';')*
+	: (fieldDecl)*
 	;
+	
+fieldDecl
+  : type ID ';'
+    -> ^(FIELD type ID)
+  ;
 
 ctorDecl
-	: ID '(' argList? ')' '{' ctorBody '}'
+	: name=ID '(' argList? ')' '{' ctorBody '}'
+	  -> ^(CTOR $name argList? ctorBody)
 	;
 
 argList
-  : type ID (',' type ID)*
+  : arg (','! arg)*
 	;
 	
+arg
+  : type ID -> ^(ARG type ID)
+  ;
+	
 type
-  : ID	
+  : ID
+    -> ^(TYPE ID)	
 	;
 
 ctorBody
@@ -35,10 +72,12 @@ ctorBody
 	
 superStmt
 	: 'super' '(' argList? ')' ';'	
+	  -> ^(SUPER_STMT argList?)
 	;
 
 fieldInits
-	: 'this' '.' ID '=' ID ';'
+	: 'this' '.' field=ID '=' value=ID ';'
+	  -> ^(FIELD_INIT $field $value)
 	;
 	
 methodDecls
@@ -46,24 +85,31 @@ methodDecls
 	;
 	
 methodDecl
-	: type ID '(' argList? ')' '{' methBody '}'
+	: type name=ID '(' argList? ')' '{' methBody '}'
+	  -> ^(METHOD type $name argList? methBody)
 	;	
 	
 methBody
 	: 'return' expr ';'
+	  -> ^(METH_BODY expr)
 	;	
 
 exprList
-  : expr (',' expr)*
+  : expr (','! expr)*
   ;
 
 expr
-  : ('this' | ID | 'new' ID '(' exprList? ')'  | '(' ID ')' expr ) fieldAccessOrMethCall*
+  :
+  (   'this' -> ^(THIS)
+	  | ID     -> ^(VALUE ID)
+	  | 'new' ID '(' exprList? ')'  -> ^(NEW ID exprList?)
+	  | '(' ID ')' expr -> ^(CAST ID expr)
+  ) fieldAccessOrMethCall*
 	;	
 	
 fieldAccessOrMethCall
-  : '.' ID
-  | '.' ID '(' exprList? ')'
+  : '.' ID  -> ^(FIELD_ACCESS ID)
+  | '.' ID '(' exprList? ')' -> ^(METH_CALL ID exprList? )
   ;	
 
 ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
