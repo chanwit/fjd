@@ -109,7 +109,7 @@ import org.fjd.compiler.*
         assert (newExpr.arguments[0] as NewExprNode).type == CT['Object']
     }
     
-    void test_MethodCall() {
+    void test_MethodCall_and_FieldAccess() {
         def program = '''
     class A extends Object {
         A() {
@@ -120,7 +120,7 @@ import org.fjd.compiler.*
         }
     }
     
-    new A().method((Object) new A()).field
+    new A().method((Object)new A()).field
 '''
         def CT = new ClassTable()
         def p = compile(program, CT)
@@ -140,14 +140,12 @@ import org.fjd.compiler.*
         def newExpr = body.expr.children[0] as NewExprNode
         assert newExpr.type == CT['Object']
         assert newExpr.arguments.size() == 0
-        
+
         def evalExpr = p.expr
         assert evalExpr.children[0] instanceof FieldAccessExprNode
         def f = (evalExpr.children[0] as FieldAccessExprNode)
         assert f.children[0] instanceof MethodCallExprNode
         def m = f.children[0] as MethodCallExprNode
-        assert m.children[0] instanceof NewExprNode        
-        //def n = evalExpr.children[0] as NewExprNode
-        //assert n.children[0] == MethodCallExprNode
+        assert m.children[0] instanceof NewExprNode
     }
 }
