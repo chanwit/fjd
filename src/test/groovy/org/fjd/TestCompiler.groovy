@@ -13,6 +13,16 @@ import org.fjd.compiler.*
 
 @Typed class TestCompiler extends GroovyTestCase {
     
+    private ProgramNode compile(String str, ClassTable CT) {
+        def input = new ANTLRStringStream(str)
+        def lex = new FJDLexer(input)
+        def tokens = new CommonTokenStream(lex)
+        def parser = new FJDParser(tokens)
+        def tree = parser.program().tree as Tree
+
+        return new Generator(CT).visit(tree) as ProgramNode        
+    }
+    
     void testSomething() {
         def program1 = '''
     class A extends Object {
@@ -24,15 +34,8 @@ import org.fjd.compiler.*
     
     new A()
 '''
-        def input = new ANTLRStringStream(program1)
-
-        def lex = new FJDLexer(input)
-        def tokens = new CommonTokenStream(lex)
-        def parser = new FJDParser(tokens)
-        def tree = parser.program().tree as Tree;
-
         def CT = new ClassTable()
-        def programNode = new Generator(CT).visit(tree) as ProgramNode
+        def programNode = compile(program1, CT)
 
         def c = programNode.classes[0]
         assert c.name == 'A'
@@ -43,12 +46,11 @@ import org.fjd.compiler.*
         assert x.name == 'x'
         
         def expr = programNode.expr
-        println expr
         assert expr instanceof ExprNode
         assert expr.children[0] instanceof NewExprNode
         def newExpr = expr.children[0] as NewExprNode
         assert newExpr.type.name == "A"
         assert newExpr.arguments.size() == 0
     }
-    
+
 }
