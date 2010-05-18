@@ -23,6 +23,7 @@ tokens {
   METH_BODY;
 
   EXPR;
+  EXPR_LIST;
   THIS;
   VALUE;
   NEW_EXPR;
@@ -105,15 +106,16 @@ methBody
     ;	
 
 exprList
-    : expr (','! expr)*
+    : expr (',' expr)*
+    -> ^(EXPR_LIST expr+)
     ;
 
 expr
     :
     (   'this' -> ^(THIS)
       | ID     -> ^(VALUE ID)
-      | 'new' ID '(' exprList? ')'  -> ^(NEW_EXPR ID exprList?)
-      | '(' ID ')' expr -> ^(CAST_EXPR ID expr)
+      | 'new' type '(' exprList? ')'  -> ^(NEW_EXPR type exprList?)
+      | '(' type ')' expr -> ^(CAST_EXPR type expr)
     ) fieldAccessOrMethCall*
     ;
     

@@ -42,7 +42,13 @@ import org.fjd.compiler.*
         assert x.type.name == 'Object'
         assert x.name == 'x'
         
-        assert programNode.expr instanceof ExprNode
+        def expr = programNode.expr
+        println expr
+        assert expr instanceof ExprNode
+        assert expr.children[0] instanceof NewExprNode
+        def newExpr = expr.children[0] as NewExprNode
+        assert newExpr.type.name == "A"
+        assert newExpr.arguments.size() == 0
     }
     
 }

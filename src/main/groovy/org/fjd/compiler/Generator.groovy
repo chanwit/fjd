@@ -16,10 +16,23 @@ import static org.fjd.FJDParser.*
     
     Object visit(Tree node) {
         switch(node.type) {
-            case PROGRAM: return visitProgram(node)
-            case CLASS:   return visitClass(node)
-            case EXPR :   return visitExpr(node)
-            case FIELDS:  return visitFields(node)
+            //            
+            // structure group
+            //
+            case PROGRAM:   return visitProgram(node)
+            case CLASS:     return visitClass(node)
+            case FIELDS:    return visitFields(node)
+
+            //
+            // expression group
+            //
+            case EXPR :     return visitExpr(node)
+            case NEW_EXPR:  return visitNewExpr(node)
+            case CAST_EXPR: return visitCastExpr(node)
+            case FIELD_ACCESS_EXPR:
+                            return visitFieldAccessExpr(node)
+            case METH_CALL_EXPR:
+                            return visitMethodCallExpr(node)
         }
     }
     
@@ -28,7 +41,7 @@ import static org.fjd.FJDParser.*
         def ast = new ProgramNode()
         
         for(i in 0..node.childCount-1) {
-            Object result = visit(node.getChild(i))
+            def result = visit(node.getChild(i))
             switch(result) {
                 case ClassNode:
                     ast.addClass(result as ClassNode)
@@ -43,7 +56,50 @@ import static org.fjd.FJDParser.*
     }
 
     ExprNode visitExpr(Tree node) {
-        new ExprNode()
+        def expr = new ExprNode()
+        for(i in 0..node.childCount-1) {
+            def result = visit(node.getChild(i))
+            switch(result) {
+                case ExprNode:
+                    expr.add( result as ExprNode )
+                    break
+            }
+        }
+        return expr
+    }
+    
+    //
+    // never return null
+    //
+    ExprListNode visitExprList(Tree node) {                
+        def result = new ExprListNode()
+        if(node == null) return result
+
+        for(i in 0..node.childCount-1) {
+            result << visit(node.getChild(i))
+        }
+        return result
+    }
+
+    NewExprNode visitNewExpr(Tree node) {
+        ClassNode type = visitType(node.getChild(0))
+        ExprListNode exprList = visitExprList(node.getChild(1))
+        return new NewExprNode(
+            type: type,
+            arguments: exprList
+        )        
+    }
+
+    CastExprNode visitCastExpr(Tree node) {
+        return new CastExprNode()
+    }
+
+    FieldAccessExprNode visitFieldAccessExpr(Tree node) {
+        return new FieldAccessExprNode()
+    }
+
+    MethodCallExprNode visitMethodCallExpr(Tree node) {
+        return new MethodCallExprNode()
     }
 
     String visitID(Tree node) {
@@ -53,7 +109,7 @@ import static org.fjd.FJDParser.*
     
     FieldsNode visitFields(Tree node) {
         FieldsNode result = []
-        for(i in 0..node.getChildCount()-1) {
+        for(i in 0..node.childCount-1) {
             result << visitField(node.getChild(i))
         }
         return result
@@ -102,7 +158,7 @@ import static org.fjd.FJDParser.*
             c.resolved = true
         }
 
-        for(i in 2..node.getChildCount()-1) {
+        for(i in 2..node.childCount-1) {
 
             Object result = visit(node.getChild(i))
             switch(result) {
@@ -132,7 +188,8 @@ import static org.fjd.FJDParser.*
         }
 
         return new ClassNode(
-            name: name // information is not known until everything resolved
+            name: name,
+            resolved: false
         )
     }
 
