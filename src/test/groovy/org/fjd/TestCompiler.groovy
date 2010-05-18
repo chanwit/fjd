@@ -40,7 +40,8 @@ import org.fjd.compiler.*
         assert c.fields.size() == 1
         def x = c.fields[0]
         assert x.type.name == 'Object'
-        assert x.name == 'x'        
+        assert x.name == 'x'
+        
         assert programNode.expr instanceof ExprNode
     }
     

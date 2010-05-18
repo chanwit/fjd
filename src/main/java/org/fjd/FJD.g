@@ -8,7 +8,7 @@ options {
 tokens {
   PROGRAM;
   CLASS;
-  EXPR;
+
   SUPER_CLASS;
   FIELD;
   FIELDS;
@@ -22,12 +22,13 @@ tokens {
   ARG;
   METH_BODY;
 
+  EXPR;
   THIS;
   VALUE;
-  NEW;
-  CAST;
-  FIELD_ACCESS;
-  METH_CALL;
+  NEW_EXPR;
+  CAST_EXPR;
+  FIELD_ACCESS_EXPR;
+  METH_CALL_EXPR;
 }
 
 @parser::header { package org.fjd; }
@@ -111,14 +112,14 @@ expr
     :
     (   'this' -> ^(THIS)
       | ID     -> ^(VALUE ID)
-      | 'new' ID '(' exprList? ')'  -> ^(NEW ID exprList?)
-      | '(' ID ')' expr -> ^(CAST ID expr)
+      | 'new' ID '(' exprList? ')'  -> ^(NEW_EXPR ID exprList?)
+      | '(' ID ')' expr -> ^(CAST_EXPR ID expr)
     ) fieldAccessOrMethCall*
     ;
     
 fieldAccessOrMethCall
-    : '.' ID  -> ^(FIELD_ACCESS ID)
-    | '.' ID '(' exprList? ')' -> ^(METH_CALL ID exprList? )
+    : '.' ID  -> ^(FIELD_ACCESS_EXPR ID)
+    | '.' ID '(' exprList? ')' -> ^(METH_CALL_EXPR ID exprList? )
     ;
 
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*

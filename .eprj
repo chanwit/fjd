@@ -20,14 +20,23 @@
                 <string>*.groovy</string>
                 <string>*.gradle</string>
                 <string>*.fjd</string>
+                <string>*.g</string>
             </array>
         </dict>
         <key>fileTriggers</key>
         <dict>
+            <key>.g</key>
+            <string>src\main\java\org\fjd\FJD.g</string>
+            <key>Classno</key>
+            <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
+            <key>cla</key>
+            <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>classnode</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>field</key>
             <string>src\main\groovy\org\fjd\ast\FieldNode.groovy</string>
+            <key>fjd</key>
+            <string>src\main\java\org\fjd\FJD.g</string>
             <key>gene</key>
             <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
             <key>progra</key>

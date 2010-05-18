@@ -30,8 +30,12 @@ import static org.fjd.FJDParser.*
         for(i in 0..node.childCount-1) {
             Object result = visit(node.getChild(i))
             switch(result) {
-                case ClassNode: ast.addClass(result as ClassNode); break
-                case ExprNode : ast.expr = result as ExprNode; break
+                case ClassNode:
+                    ast.addClass(result as ClassNode)
+                    break
+                case ExprNode:
+                    ast.expr = result as ExprNode
+                    break
             }
         }
 
@@ -66,38 +70,51 @@ import static org.fjd.FJDParser.*
     ClassNode visitType(Tree node) {
         assert node.text == 'TYPE'
         String name = visitID(node.getChild(0))
-    
+
         if(CT.containsKey(name)) {
             return CT[name]
         }
 
         return new ClassNode(
-            name: name // information is not known until everything resolved
+            name: name,
+            resolved: false
         )
     }
 
     ClassNode visitClass(Tree node) {
         assert node.text == "CLASS"
         String name = visitID(node.getChild(0))
-        
+
+        ClassNode c = null
         if(CT.containsKey(name)) {
-            def c = CT[name]
-            if(c.superClass) return c // already resolved, can be return
+            c = CT[name]
+            if(c.resolved) return c // already resolved, can be return
         }
-
         ClassNode superClassNode = visitSuperClass(node.getChild(1))
-
-        def c = new ClassNode(
-            name: name,
-            superClass: superClassNode
-        )
+        if(c == null) {
+            c = new ClassNode(
+                name: name,
+                superClass: superClassNode,
+                resolved: true
+            )
+        } else {
+            c.superClass = superClassNode
+            c.resolved = true
+        }
 
         for(i in 2..node.getChildCount()-1) {
 
             Object result = visit(node.getChild(i))
             switch(result) {
-                case FieldsNode: c.fields = result as FieldsNode; break
-                case ConstructorNode: c.ctor = result as ConstructorNode; break                 case MethodsNode: c.methods = result as MethodsNode; break
+                case FieldsNode:
+                    c.fields = result as FieldsNode
+                    break
+                case ConstructorNode:
+                    c.ctor = result as ConstructorNode
+                    break
+                case MethodsNode: 
+                    c.methods = result as MethodsNode
+                    break
             }
 
         }
