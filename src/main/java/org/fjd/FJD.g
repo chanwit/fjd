@@ -38,14 +38,18 @@ tokens {
 @lexer::header  { package org.fjd; }
 
 program	
-    : classDecl+  
+    : classDecl+
       expr
       -> ^(PROGRAM classDecl+ ^(EXPR expr)) 
     ;
 
 classDecl
-    : 'class' className=ID 'extends' superClass=ID '{' fieldDecls ctorDecl methodDecls '}'
-      -> ^(CLASS $className ^(SUPER_CLASS $superClass) fieldDecls ctorDecl methodDecls)
+    :   'class' className=ID 'extends' superClass=ID '{' 
+            fieldDecls ctorDecl methodDecls 
+        '}'
+    ->  ^(CLASS $className ^(SUPER_CLASS $superClass)
+            fieldDecls ctorDecl methodDecls
+        )
     ;
 
 fieldDecls	
@@ -142,7 +146,7 @@ castExpr
 
 fieldAccessOrMethCall
     : '.' ID  -> ^(FIELD_ACCESS_EXPR ID)
-    | '.' ID '(' exprList? ')' -> ^(METH_CALL_EXPR ID exprList? )
+    | '.' ID '(' exprList? ')' -> ^(METH_CALL_EXPR ID exprList?)
     ;
 
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*

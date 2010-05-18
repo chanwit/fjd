@@ -35,6 +35,8 @@
             <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>cla</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
+            <key>clas</key>
+            <string>src\main\groovy\org\fjd\compiler\ClassTable.groovy</string>
             <key>class</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>classnod</key>
@@ -44,6 +46,8 @@
             <key>classta</key>
             <string>src\main\groovy\org\fjd\compiler\ClassTable.groovy</string>
             <key>cons</key>
+            <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
+            <key>const</key>
             <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>field</key>
             <string>src\main\groovy\org\fjd\ast\FieldNode.groovy</string>
@@ -65,6 +69,8 @@
             <string>src\test\groovy\org\fjd\Program1.fjd</string>
             <key>program</key>
             <string>src\main\groovy\org\fjd\ast\ProgramNode.groovy</string>
+            <key>super</key>
+            <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>test</key>
             <string>src\test\groovy\org\fjd\TestCompiler.groovy</string>
         </dict>

@@ -7,7 +7,7 @@ import org.fjd.ast.*
 
     static final object = new ClassNode(
         name: "Object", 
-        superClass: object, 
+        superClass: object,
         resolved: true
     )
 
