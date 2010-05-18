@@ -1,8 +1,0 @@
-class A extends Object {
-  Object x;
-  A() {
-    super();
-  }
-}
-
-new A()

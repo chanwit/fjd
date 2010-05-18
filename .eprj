@@ -15,7 +15,12 @@
             <key>includeDirs</key>
             <array />
             <key>includeFiles</key>
-            <array />
+            <array>
+                <string>*.java</string>
+                <string>*.groovy</string>
+                <string>*.gradle</string>
+                <string>*.fjd</string>
+            </array>
         </dict>
         <key>fileTriggers</key>
         <dict>

@@ -2,22 +2,29 @@ package org.fjd
 
 import groovy.util.*
 
-import org.antlr.runtime.ANTLRFileStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.fjd.FJDLexer;
-import org.fjd.FJDParser;
-import org.antlr.runtime.tree.*;
+import org.antlr.runtime.*
+import org.antlr.runtime.*
+import org.fjd.FJDLexer
+import org.fjd.FJDParser
+import org.antlr.runtime.tree.*
 
-import org.fjd.ast.*;
-import org.fjd.compiler.*;
+import org.fjd.ast.*
+import org.fjd.compiler.*
 
 @Typed class TestCompiler extends GroovyTestCase {
     
     void testSomething() {
-        def input = new ANTLRFileStream(
-            "src/test/groovy/org/fjd/Program1.fjd", 
-            "UTF-8"
-        )
+        def program1 = '''
+    class A extends Object {
+      Object x;
+      A() {
+        super();
+      }
+    }
+    
+    new A()
+'''
+        def input = new ANTLRStringStream(program1)
 
         def lex = new FJDLexer(input)
         def tokens = new CommonTokenStream(lex)
@@ -26,15 +33,6 @@ import org.fjd.compiler.*;
 
         def CT = new ClassTable()
         def programNode = new Generator(CT).visit(tree) as ProgramNode
-
-        // class A extends Object {
-        //   Object x;
-        //   A() {
-        //     super();
-        //   }
-        // }
-        // 
-        // new A()
 
         def c = programNode.classes[0]
         assert c.name == 'A'
