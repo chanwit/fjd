@@ -86,6 +86,20 @@ import org.fjd.compiler.*
         assert CT[A.name] == A
         def B = programNode.classes[1]
         assert B.name == 'B'
+        
+        assert B.fields[0].name == 'x'
+        assert B.fields[0].type == CT["Object"]
+        assert B.ctor instanceof ConstructorNode
+        assert B.ctor.arguments.size() == 1
+        assert B.ctor.arguments[0].name == 'x'
+        assert B.ctor.arguments[0].type == CT['Object']
+        
+        def ctorBody = B.ctor.body
+        assert ctorBody instanceof ConstructorBodyNode
+        assert ctorBody.superStmt.arguments.size() == 0
+        assert ctorBody.fieldInits.size() == 1
+        assert ctorBody.fieldInits[0].field == 'x'
+        assert ctorBody.fieldInits[0].value == 'x'
     }
 
 }

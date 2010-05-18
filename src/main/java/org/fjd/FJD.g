@@ -13,8 +13,10 @@ tokens {
   FIELD;
   FIELDS;
   CTOR;
+  CTOR_BODY;
   SUPER_STMT;
   FIELD_INIT;
+  FIELD_INIT_LIST;
   METHODS;
   METHOD;
   TYPE;
@@ -65,19 +67,21 @@ argList
     : arg (',' arg)*
       -> ^(ARGS arg+)
     ;
-    
+
 arg
-    : type ID -> ^(ARG type ID)
+    : type ID 
+      -> ^(ARG type ID)
     ;
-    
+
 type
     : ID
-    -> ^(TYPE ID)
+      -> ^(TYPE ID)
     ;
 
 ctorBody
     : superStmt
-      fieldInits?
+      fieldInits
+      -> ^(CTOR_BODY superStmt fieldInits)
     ;
     
 superStmt
@@ -86,6 +90,11 @@ superStmt
     ;
 
 fieldInits
+    : fieldInit*
+      -> ^(FIELD_INIT_LIST fieldInit*)
+    ;
+
+fieldInit
     : 'this' '.' field=ID '=' value=ID ';'
       -> ^(FIELD_INIT $field $value)
     ;

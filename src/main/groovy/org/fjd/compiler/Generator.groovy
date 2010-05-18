@@ -22,6 +22,13 @@ import static org.fjd.FJDParser.*
             case PROGRAM:   return visitProgram(node)
             case CLASS:     return visitClass(node)
             case FIELDS:    return visitFields(node)
+            case CTOR:      return visitCtor(node)
+            
+            case ARGS:      return visitArgs(node)
+            case ARG:       return visitArg(node)
+            case CTOR_BODY: return visitCtorBody(node)
+            
+            case METHODS:   return null
 
             //
             // expression group
@@ -33,6 +40,8 @@ import static org.fjd.FJDParser.*
                             return visitFieldAccessExpr(node)
             case METH_CALL_EXPR:
                             return visitMethodCallExpr(node)
+
+            default: throw new Exception("NIY ${node.text}")
         }
     }
     
@@ -53,6 +62,54 @@ import static org.fjd.FJDParser.*
         }
 
         return ast
+    }
+
+    ArgsNode visitArgs(Tree node) {
+        ArgsNode args = []
+        if(node==null) return args
+
+        for(i in 0..<node.childCount) {
+            args << visitArg(node.getChild(0))
+        }
+        return args
+    }
+
+    ArgNode visitArg(Tree node) {
+        new ArgNode(
+            type: visitType(node.getChild(0)),
+            name: visitID(node.getChild(1))
+        )
+    }
+
+    SuperStmtNode visitSuperStmt(Tree node) {
+        // -> ^(SUPER_STMT argList?)
+        new SuperStmtNode(
+            arguments: visitArgs(node.getChild(0))
+        )
+    }
+    
+    FieldInitNode visitFieldInit(Tree node) {
+        // -> ^(FIELD_INIT $field $value)
+        new FieldInitNode(
+            field: visitID(node.getChild(0)),
+            value: visitID(node.getChild(1))
+        )
+    }
+    
+    List<FieldInitNode> visitFieldInits(Tree node) {
+        List<FieldInitNode> fieldInits = []
+        for(i in 0..<node.childCount) {
+            fieldInits << visitFieldInit(node.getChild(i))
+        }
+        return fieldInits
+    }
+
+    ConstructorBodyNode visitCtorBody(Tree node) {
+        // -> ^(CTOR_BODY superStmt fieldInits)   
+        new ConstructorBodyNode(
+            superStmt: visitSuperStmt(node.getChild(0)),
+            fieldInits: visitFieldInits(node.getChild(1))
+        )
     }
 
     ExprNode visitExpr(Tree node) {
@@ -108,7 +165,6 @@ import static org.fjd.FJDParser.*
     }
     
     FieldsNode visitFields(Tree node) {
-        println node.toStringTree()
         FieldsNode result = []
         if(node.childCount==0) return result
 
@@ -138,6 +194,32 @@ import static org.fjd.FJDParser.*
             name: name,
             resolved: false
         )
+    }
+    
+    ConstructorNode visitCtor(Tree node) {
+        def ctorNode = new ConstructorNode()
+        //
+        // -> ^(CTOR $name argList? ctorBody)
+        //
+        
+        //
+        // constructor name
+        //
+        ctorNode.name = visitID(node.getChild(0))
+
+        for(i in 1..<node.childCount) {
+            def result = visit(node.getChild(i))
+            switch(result) {
+                case ArgsNode:
+                    ctorNode.arguments = result as ArgsNode
+                    break
+                case ConstructorBodyNode:
+                    ctorNode.body = result as ConstructorBodyNode
+                    break
+            }
+        }
+
+        return ctorNode
     }
 
     ClassNode visitClass(Tree node) {

@@ -29,10 +29,20 @@
             <string>src\main\java\org\fjd\FJD.g</string>
             <key>Classno</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
+            <key>ConstructorBodyNode</key>
+            <string>src\main\groovy\org\fjd\ast\ConstructorBodyNode.groovy</string>
+            <key>SuperStmtNode</key>
+            <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>cla</key>
+            <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
+            <key>classnod</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>classnode</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
+            <key>classta</key>
+            <string>src\main\groovy\org\fjd\compiler\ClassTable.groovy</string>
+            <key>cons</key>
+            <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>field</key>
             <string>src\main\groovy\org\fjd\ast\FieldNode.groovy</string>
             <key>fjd</key>
