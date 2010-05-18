@@ -40,7 +40,7 @@ import static org.fjd.FJDParser.*
         assert node.text == 'PROGRAM'
         def ast = new ProgramNode()
         
-        for(i in 0..node.childCount-1) {
+        for(i in 0..<node.childCount) {
             def result = visit(node.getChild(i))
             switch(result) {
                 case ClassNode:
@@ -57,7 +57,7 @@ import static org.fjd.FJDParser.*
 
     ExprNode visitExpr(Tree node) {
         def expr = new ExprNode()
-        for(i in 0..node.childCount-1) {
+        for(i in 0..<node.childCount) {
             def result = visit(node.getChild(i))
             switch(result) {
                 case ExprNode:
@@ -75,7 +75,7 @@ import static org.fjd.FJDParser.*
         def result = new ExprListNode()
         if(node == null) return result
 
-        for(i in 0..node.childCount-1) {
+        for(i in 0..<node.childCount) {
             result << visit(node.getChild(i))
         }
         return result
@@ -108,13 +108,16 @@ import static org.fjd.FJDParser.*
     }
     
     FieldsNode visitFields(Tree node) {
+        println node.toStringTree()
         FieldsNode result = []
-        for(i in 0..node.childCount-1) {
+        if(node.childCount==0) return result
+
+        for(i in 0 ..< node.childCount) {
             result << visitField(node.getChild(i))
         }
         return result
     }
-    
+
     FieldNode visitField(Tree node) {
         assert node.text == 'FIELD'
         ClassNode type = visitType(node.getChild(0))
@@ -122,7 +125,7 @@ import static org.fjd.FJDParser.*
 
         return new FieldNode(type: type, name: name)
     }
-    
+
     ClassNode visitType(Tree node) {
         assert node.text == 'TYPE'
         String name = visitID(node.getChild(0))
@@ -158,7 +161,7 @@ import static org.fjd.FJDParser.*
             c.resolved = true
         }
 
-        for(i in 2..node.childCount-1) {
+        for(i in 2..<node.childCount) {
 
             Object result = visit(node.getChild(i))
             switch(result) {

@@ -23,7 +23,7 @@ import org.fjd.compiler.*
         return new Generator(CT).visit(tree) as ProgramNode        
     }
     
-    void testSomething() {
+    void test_1_Class_1_Expression() {
         def program1 = '''
     class A extends Object {
       Object x;
@@ -49,8 +49,43 @@ import org.fjd.compiler.*
         assert expr instanceof ExprNode
         assert expr.children[0] instanceof NewExprNode
         def newExpr = expr.children[0] as NewExprNode
-        assert newExpr.type.name == "A"
+        assert newExpr.type.name == 'A'
         assert newExpr.arguments.size() == 0
+    }
+    
+    void test_2_Class_1_Expression() {
+        def program2 = '''
+    class A extends Object {
+        A() {
+            super();
+        }
+    }
+    
+    class B extends A {
+        Object x;
+        B(Object x) {
+            super();
+            this x = x;
+        }
+    }
+    
+    new B(new Object())
+'''
+        def CT = new ClassTable()
+        def programNode = compile(program2, CT)
+
+        assert programNode.classes.size() == 2
+        assert programNode.expr != null
+
+        def A = programNode.classes[0]
+        assert A.name == 'A'
+
+        //
+        // it should be the same object in ClassTable
+        //
+        assert CT[A.name] == A
+        def B = programNode.classes[1]
+        assert B.name == 'B'
     }
 
 }
