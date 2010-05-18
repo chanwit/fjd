@@ -28,7 +28,7 @@ import static org.fjd.FJDParser.*
             case ARG:       return visitArg(node)
             case CTOR_BODY: return visitCtorBody(node)
             
-            case METHODS:   return null
+            case METHODS:   return visitMethods(node)
 
             //
             // expression group
@@ -62,6 +62,35 @@ import static org.fjd.FJDParser.*
         }
 
         return ast
+    }
+    
+    List<MethodNode> visitMethods(Tree node) {
+        List<MethodNode> methods = []
+        for(i in 0..<node.childCount) {
+            methods << visitMethod(node.getChild(i))
+        }
+        return methods
+    }
+
+    MethodBodyNode visitMethodBody(Tree node) {
+        new MethodBodyNode(
+            expr: visit(node.getChild(0))
+        )
+    }
+
+    MethodNode visitMethod(Tree node) {
+        // -> ^(METHOD type $name argList? methBody)
+        def mn = new MethodNode(
+            returnType: visitType(node.getChild(0)),
+            name: visitID(node.getChild(1))
+        )
+        if(node.getChild(2).type == ARGS) {
+            mn.arguments = visitArgs(node.getChild(2))
+            mn.body = visitMethodBody(node.getChild(3))
+        } else {
+            mn.body = visitMethodBody(node.getChild(2))
+        }
+        return mn
     }
 
     ArgsNode visitArgs(Tree node) {
@@ -113,18 +142,33 @@ import static org.fjd.FJDParser.*
     }
 
     ExprNode visitExpr(Tree node) {
+        //
+        // Rewriting expression
+        // from (expr a b c    )
+        // to   (expr c (b (a)))
+        //
         def expr = new ExprNode()
+
+        ExprNode base = null
         for(i in 0..<node.childCount) {
             def result = visit(node.getChild(i))
             switch(result) {
+                case FieldAccessExprNode:
+                    result.add(base as ExprNode)
+                    break                
+                case MethodCallExprNode:
+                    result.add(base as ExprNode)
+                    break
                 case ExprNode:
-                    expr.add( result as ExprNode )
+                    //
                     break
             }
+            base = result as ExprNode
         }
+        expr.add(base)
         return expr
     }
-    
+
     //
     // never return null
     //
@@ -144,7 +188,7 @@ import static org.fjd.FJDParser.*
         return new NewExprNode(
             type: type,
             arguments: exprList
-        )        
+        )
     }
 
     CastExprNode visitCastExpr(Tree node) {
@@ -223,6 +267,8 @@ import static org.fjd.FJDParser.*
     }
 
     ClassNode visitClass(Tree node) {
+        // -> ^(CLASS $className ^(SUPER_CLASS $superClass) 
+        //            fieldDecls ctorDecl methodDecls)
         assert node.text == "CLASS"
         String name = visitID(node.getChild(0))
 
@@ -243,22 +289,9 @@ import static org.fjd.FJDParser.*
             c.resolved = true
         }
 
-        for(i in 2..<node.childCount) {
-
-            Object result = visit(node.getChild(i))
-            switch(result) {
-                case FieldsNode:
-                    c.fields = result as FieldsNode
-                    break
-                case ConstructorNode:
-                    c.ctor = result as ConstructorNode
-                    break
-                case MethodsNode: 
-                    c.methods = result as MethodsNode
-                    break
-            }
-
-        }
+        c.fields  = visit(node.getChild(2)) as FieldsNode
+        c.ctor    = visit(node.getChild(3)) as ConstructorNode
+        c.methods = visit(node.getChild(4)) as List<MethodNode>
         
         CT[name] = c
         return c

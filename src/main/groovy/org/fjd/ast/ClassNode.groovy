@@ -8,6 +8,6 @@ package org.fjd.ast
     ClassNode superClass
     FieldsNode fields = []
     ConstructorNode ctor
-    MethodsNode methods = []
+    List<MethodNode> methods = []
 
 }

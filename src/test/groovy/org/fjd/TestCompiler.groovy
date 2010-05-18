@@ -65,7 +65,7 @@ import org.fjd.compiler.*
         Object x;
         B(Object x) {
             super();
-            this x = x;
+            this.x = x;
         }
     }
     
@@ -100,6 +100,54 @@ import org.fjd.compiler.*
         assert ctorBody.fieldInits.size() == 1
         assert ctorBody.fieldInits[0].field == 'x'
         assert ctorBody.fieldInits[0].value == 'x'
+        
+        def expr = programNode.expr
+        assert expr.children[0] instanceof NewExprNode
+        def newExpr = expr.children[0] as NewExprNode
+        assert newExpr.type == CT['B']
+        assert newExpr.arguments[0] instanceof NewExprNode
+        assert (newExpr.arguments[0] as NewExprNode).type == CT['Object']
     }
+    
+    void test_MethodCall() {
+        def program = '''
+    class A extends Object {
+        A() {
+            super();
+        }
+        Object method() {
+            return new Object();
+        }
+    }
+    
+    new A().method((Object) new A()).field
+'''
+        def CT = new ClassTable()
+        def p = compile(program, CT)
 
+        def A = p.classes[0]
+        assert A == CT['A']
+        assert A.fields.size() == 0
+        assert A.ctor != null
+        assert A.methods.size() == 1
+        def method = A.methods[0]
+        assert method.name == 'method'
+        assert method.returnType == CT['Object']
+        assert method.arguments.size() == 0
+        assert method.body != null
+        def body = method.body
+        assert body.expr.children[0] instanceof NewExprNode
+        def newExpr = body.expr.children[0] as NewExprNode
+        assert newExpr.type == CT['Object']
+        assert newExpr.arguments.size() == 0
+        
+        def evalExpr = p.expr
+        assert evalExpr.children[0] instanceof FieldAccessExprNode
+        def f = (evalExpr.children[0] as FieldAccessExprNode)
+        assert f.children[0] instanceof MethodCallExprNode
+        def m = f.children[0] as MethodCallExprNode
+        assert m.children[0] instanceof NewExprNode        
+        //def n = evalExpr.children[0] as NewExprNode
+        //assert n.children[0] == MethodCallExprNode
+    }
 }

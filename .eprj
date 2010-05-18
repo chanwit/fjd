@@ -35,6 +35,8 @@
             <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>cla</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
+            <key>class</key>
+            <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>classnod</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>classnode</key>
@@ -49,6 +51,16 @@
             <string>src\main\java\org\fjd\FJD.g</string>
             <key>gene</key>
             <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
+            <key>method</key>
+            <string>src\main\groovy\org\fjd\ast\MethodNode.groovy</string>
+            <key>methodn</key>
+            <string>src\main\groovy\org\fjd\ast\MethodNode.groovy</string>
+            <key>methodno</key>
+            <string>src\main\groovy\org\fjd\ast\MethodBodyNode.groovy</string>
+            <key>newex</key>
+            <string>src\main\groovy\org\fjd\ast\NewExprNode.groovy</string>
+            <key>newexp</key>
+            <string>src\main\groovy\org\fjd\ast\NewExprNode.groovy</string>
             <key>progra</key>
             <string>src\test\groovy\org\fjd\Program1.fjd</string>
             <key>program</key>

@@ -116,18 +116,30 @@ methBody
 
 exprList
     : expr (',' expr)*
-    -> ^(EXPR_LIST expr+)
+      -> ^(EXPR_LIST expr+)
     ;
 
 expr
-    :
-    (   'this' -> ^(THIS)
-      | ID     -> ^(VALUE ID)
-      | 'new' type '(' exprList? ')'  -> ^(NEW_EXPR type exprList?)
-      | '(' type ')' expr -> ^(CAST_EXPR type expr)
-    ) fieldAccessOrMethCall*
+    : (ID | thisExpr) fieldAccessOrMethCall*    
     ;
-    
+
+thisExpr
+    : 'this' 
+      -> ^(THIS)
+    | newExpr
+    ;
+
+newExpr
+    : 'new' type '(' exprList? ')'
+       -> ^(NEW_EXPR type exprList?) 
+    | castExpr
+    ;
+
+castExpr
+    : '(' type ')' expr
+      -> ^(CAST_EXPR type expr)
+    ;
+
 fieldAccessOrMethCall
     : '.' ID  -> ^(FIELD_ACCESS_EXPR ID)
     | '.' ID '(' exprList? ')' -> ^(METH_CALL_EXPR ID exprList? )
