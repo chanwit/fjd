@@ -11,17 +11,7 @@ import org.antlr.runtime.tree.*
 import org.fjd.ast.*
 import org.fjd.compiler.*
 
-@Typed class TestCompiler extends GroovyTestCase {
-    
-    private ProgramNode compile(String str, ClassTable CT) {
-        def input = new ANTLRStringStream(str)
-        def lex = new FJDLexer(input)
-        def tokens = new CommonTokenStream(lex)
-        def parser = new FJDParser(tokens)
-        def tree = parser.program().tree as Tree
-
-        return new Generator(CT).visit(tree) as ProgramNode        
-    }
+@Typed class TestCompiler extends FJDTestCase {
     
     void test_1_Class_1_Expression() {
         def program1 = '''

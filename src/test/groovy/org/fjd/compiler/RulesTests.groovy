@@ -6,18 +6,8 @@ import org.antlr.runtime.tree.*
 import org.fjd.*
 import org.fjd.ast.*
 
-@Typed class RulesTests extends GroovyTestCase {
-    
-    private ProgramNode compile(String str, ClassTable CT) {
-        def input = new ANTLRStringStream(str)
-        def lex = new FJDLexer(input)
-        def tokens = new CommonTokenStream(lex)
-        def parser = new FJDParser(tokens)
-        def tree = parser.program().tree as Tree
+@Typed class RulesTests extends FJDTestCase {
 
-        return new Generator(CT).visit(tree) as ProgramNode        
-    }    
-    
     void testSubClassOf() {
         def program = '''
     class A extends Object {

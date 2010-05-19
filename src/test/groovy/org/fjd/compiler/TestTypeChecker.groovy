@@ -6,17 +6,7 @@ import org.antlr.runtime.tree.*
 import org.fjd.*
 import org.fjd.ast.*
 
-@Typed class TestTypeChecker extends GroovyTestCase {
-
-    private ProgramNode compile(String str, ClassTable CT) {
-        def input = new ANTLRStringStream(str)
-        def lex = new FJDLexer(input)
-        def tokens = new CommonTokenStream(lex)
-        def parser = new FJDParser(tokens)
-        def tree = parser.program().tree as Tree
-
-        return new Generator(CT).visit(tree) as ProgramNode        
-    }
+@Typed class TestTypeChecker extends FJDTestCase {
     
     void testRunTypeChecker() {
         def program1 = '''
