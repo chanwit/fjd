@@ -122,9 +122,11 @@ class RulesTests extends FJDTestCase {
         def A = CT['A']
         def B = CT['B']
 
-        def body = r.mbody('method', B)
-        assert body[0][0] == 'a'
-        assert body[0][1] == 'b'
-        assert body[1].children[0] instanceof NewExprNode
+        def (x, e) = r.mbody('method', B)
+        assert x == ['a','b']
+        assert e.children[0] instanceof NewExprNode
+        def n = e.children[0]
+        assert n.type == CT['Object']
+        assert n.arguments.size() == 0
     }
 }
