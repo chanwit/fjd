@@ -24,10 +24,10 @@ tokens {
   ARG;
   METH_BODY;
 
-  EXPR;
   EXPR_LIST;
-  THIS;
-  VALUE;
+  EXPR;
+  THIS_EXPR;
+  VALUE_EXPR;
   NEW_EXPR;
   CAST_EXPR;
   FIELD_ACCESS_EXPR;
@@ -124,12 +124,13 @@ exprList
     ;
 
 expr
-    : (ID | thisExpr) fieldAccessOrMethCall*    
+    : (ID -> ^(VALUE_EXPR ID)
+    | thisExpr) fieldAccessOrMethCall*    
     ;
 
 thisExpr
     : 'this' 
-      -> ^(THIS)
+      -> ^(THIS_EXPR)
     | newExpr
     ;
 

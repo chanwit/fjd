@@ -32,7 +32,8 @@ class RulesTests extends FJDTestCase {
 '''
 
         def CT = new ClassTable()
-        def programNode = compile(program, CT)
+        def TT = new Environment()
+        def programNode = compile(program, CT, TT)
         def r = new Rules(CT: CT)
         def A = CT['A']
         def B = CT['B']
@@ -68,7 +69,8 @@ class RulesTests extends FJDTestCase {
     new A()
 '''
         def CT = new ClassTable()
-        def programNode = compile(program, CT)
+        def TT = new Environment()
+        def programNode = compile(program, CT, TT)
         def r = new Rules(CT: CT)
         def A = CT['A']
         def B = CT['B']
@@ -117,7 +119,8 @@ class RulesTests extends FJDTestCase {
     new A()
 '''
         def CT = new ClassTable()
-        def programNode = compile(program, CT)
+        def TT = new Environment()
+        def programNode = compile(program, CT, TT)
         def r = new Rules(CT: CT)
         def A = CT['A']
         def B = CT['B']
@@ -128,5 +131,9 @@ class RulesTests extends FJDTestCase {
         def n = e.children[0]
         assert n.type == CT['Object']
         assert n.arguments.size() == 0
+    }
+
+    void test_override() {
+               
     }
 }

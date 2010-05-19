@@ -65,8 +65,12 @@
             <string>src\main\java\org\fjd\FJD.g</string>
             <key>fjd</key>
             <string>src\main\java\org\fjd\FJD.g</string>
+            <key>fjdte</key>
+            <string>src\test\groovy\org\fjd\FJDTestCase.groovy</string>
             <key>fjg</key>
             <string>src\main\java\org\fjd\FJD.g</string>
+            <key>ge</key>
+            <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
             <key>gene</key>
             <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
             <key>method</key>
@@ -87,6 +91,8 @@
             <string>src\main\groovy\org\fjd\ast\ProgramNode.groovy</string>
             <key>re</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
+            <key>rule</key>
+            <string>src\main\groovy\org\fjd\compiler\Rules.groovy</string>
             <key>rules</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>super</key>

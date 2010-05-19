@@ -7,11 +7,14 @@ import static org.fjd.FJDParser.*
 @Typed class Generator {
 
     private ClassTable CT
+    private Environment TT
+
     private ProgramNode ast
     private def parent
 
-    Generator(ClassTable CT) {
+    Generator(ClassTable CT, Environment TT) {
         this.CT = CT
+        this.TT = TT
     }
 
     Object visit(Tree node) {
@@ -36,6 +39,8 @@ import static org.fjd.FJDParser.*
             // expression group
             //
             case EXPR :     return visitExpr(node)
+            case THIS_EXPR: return visitThisExpr(node)
+            case VALUE_EXPR:return visitValueExpr(node)
             case NEW_EXPR:  return visitNewExpr(node)
             case CAST_EXPR: return visitCastExpr(node)
             case FIELD_ACCESS_EXPR:
@@ -86,12 +91,14 @@ import static org.fjd.FJDParser.*
             returnType: visitType(node.getChild(0)),
             name: visitID(node.getChild(1))
         )
+        TT.pushMethod(mn)
         if(node.getChild(2).type == ARGS) {
             mn.arguments = visitArgs(node.getChild(2))
             mn.body = visitMethodBody(node.getChild(3))
         } else {
             mn.body = visitMethodBody(node.getChild(2))
         }
+        TT.popMethod()
         return mn
     }
 
@@ -183,6 +190,23 @@ import static org.fjd.FJDParser.*
         }
         return result
     }
+    
+    ThisExprNode visitThisExpr(Tree node) {        
+        def result = new ThisExprNode()
+        TT.put(result, TT.getCurrentClass())
+        return result
+    }
+    
+    ValueExprNode visitValueExpr(Tree node) {
+        def name = visitID(node.getChild(0)) 
+        def result = new ValueExprNode(name: name)
+        MethodNode mn = TT.getCurrentMethod()    
+        def arg = mn.arguments.find { it.name == name }
+        if(arg) {
+            TT.put(result, arg.type)
+        }
+        return result
+    }
 
     NewExprNode visitNewExpr(Tree node) {
         new NewExprNode(
@@ -264,8 +288,10 @@ import static org.fjd.FJDParser.*
     }
 
     ClassNode visitClass(Tree node) {
+        //
         // -> ^(CLASS $className ^(SUPER_CLASS $superClass)
         //            fieldDecls ctorDecl methodDecls)
+        //
         assert node.text == "CLASS"
         String name = visitID(node.getChild(0))
 
@@ -273,12 +299,20 @@ import static org.fjd.FJDParser.*
         if(c.resolved) return c
 
         c.superClass = visitSuperClass(node.getChild(1))
+        TT.push(c)
         c.fields     = visit(node.getChild(2)) as List<FieldNode>
         c.ctor       = visit(node.getChild(3)) as ConstructorNode
         c.methods    = visit(node.getChild(4)) as List<MethodNode>
+        TT.pop()
         c.resolved   = true
 
         return c
+    }
+
+    ClassNode visitSuperClass(Tree node) {
+        assert node.text == "SUPER_CLASS"
+        String name = visitID(node.getChild(0))
+        return getFromCT(CT, name)
     }
 
     private ClassNode getFromCT(ClassTable CT, String name) {
@@ -290,12 +324,6 @@ import static org.fjd.FJDParser.*
             CT[name] = cn
         }
         return cn
-    }
-
-    ClassNode visitSuperClass(Tree node) {
-        assert node.text == "SUPER_CLASS"
-        String name = visitID(node.getChild(0))
-        return getFromCT(CT, name)
     }
 
 }

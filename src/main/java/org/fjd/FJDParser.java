@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 14:05:07 C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g 2010-05-18 21:06:30
+// $ANTLR 3.2 Sep 23, 2009 14:05:07 C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g 2010-05-20 00:02:38
  package org.fjd; 
 
 import org.antlr.runtime.*;
@@ -11,7 +11,7 @@ import org.antlr.runtime.tree.*;
 
 public class FJDParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "PROGRAM", "CLASS", "SUPER_CLASS", "FIELD", "FIELDS", "CTOR", "CTOR_BODY", "SUPER_STMT", "FIELD_INIT", "FIELD_INIT_LIST", "METHODS", "METHOD", "TYPE", "ARGS", "ARG", "METH_BODY", "EXPR", "EXPR_LIST", "THIS", "VALUE", "NEW_EXPR", "CAST_EXPR", "FIELD_ACCESS_EXPR", "METH_CALL_EXPR", "ID", "WS", "ESC_SEQ", "STRING", "CHAR", "HEX_DIGIT", "UNICODE_ESC", "OCTAL_ESC", "'class'", "'extends'", "'{'", "'}'", "';'", "'('", "')'", "','", "'super'", "'this'", "'.'", "'='", "'return'", "'new'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "PROGRAM", "CLASS", "SUPER_CLASS", "FIELD", "FIELDS", "CTOR", "CTOR_BODY", "SUPER_STMT", "FIELD_INIT", "FIELD_INIT_LIST", "METHODS", "METHOD", "TYPE", "ARGS", "ARG", "METH_BODY", "EXPR_LIST", "EXPR", "THIS_EXPR", "VALUE_EXPR", "NEW_EXPR", "CAST_EXPR", "FIELD_ACCESS_EXPR", "METH_CALL_EXPR", "ID", "WS", "ESC_SEQ", "STRING", "CHAR", "HEX_DIGIT", "UNICODE_ESC", "OCTAL_ESC", "'class'", "'extends'", "'{'", "'}'", "';'", "'('", "')'", "','", "'super'", "'this'", "'.'", "'='", "'return'", "'new'"
     };
     public static final int CLASS=5;
     public static final int FIELD_ACCESS_EXPR=26;
@@ -21,18 +21,18 @@ public class FJDParser extends Parser {
     public static final int ID=28;
     public static final int EOF=-1;
     public static final int TYPE=16;
-    public static final int EXPR_LIST=21;
+    public static final int EXPR_LIST=20;
     public static final int CTOR_BODY=10;
     public static final int ESC_SEQ=30;
-    public static final int EXPR=20;
+    public static final int EXPR=21;
     public static final int FIELD_INIT=12;
     public static final int METHODS=14;
     public static final int ARG=18;
     public static final int CTOR=9;
     public static final int CAST_EXPR=25;
-    public static final int THIS=22;
     public static final int ARGS=17;
     public static final int FIELD_INIT_LIST=13;
+    public static final int THIS_EXPR=22;
     public static final int T__42=42;
     public static final int T__43=43;
     public static final int T__40=40;
@@ -48,7 +48,7 @@ public class FJDParser extends Parser {
     public static final int SUPER_CLASS=6;
     public static final int HEX_DIGIT=33;
     public static final int FIELDS=8;
-    public static final int VALUE=23;
+    public static final int VALUE_EXPR=23;
     public static final int WS=29;
     public static final int T__36=36;
     public static final int T__37=37;
@@ -298,7 +298,7 @@ public class FJDParser extends Parser {
 
 
             // AST REWRITE
-            // elements: methodDecls, superClass, className, fieldDecls, ctorDecl
+            // elements: methodDecls, fieldDecls, superClass, ctorDecl, className
             // token labels: superClass, className
             // rule labels: retval
             // token list labels: 
@@ -641,7 +641,7 @@ public class FJDParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ctorBody, name, argList
+            // elements: ctorBody, argList, name
             // token labels: name
             // rule labels: retval
             // token list labels: 
@@ -850,7 +850,7 @@ public class FJDParser extends Parser {
 
 
             // AST REWRITE
-            // elements: type, ID
+            // elements: ID, type
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1008,7 +1008,7 @@ public class FJDParser extends Parser {
 
 
             // AST REWRITE
-            // elements: superStmt, fieldInits
+            // elements: fieldInits, superStmt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1336,7 +1336,7 @@ public class FJDParser extends Parser {
 
 
             // AST REWRITE
-            // elements: field, value
+            // elements: value, field
             // token labels: field, value
             // rule labels: retval
             // token list labels: 
@@ -1583,7 +1583,7 @@ public class FJDParser extends Parser {
 
 
             // AST REWRITE
-            // elements: argList, name, methBody, type
+            // elements: methBody, argList, type, name
             // token labels: name
             // rule labels: retval
             // token list labels: 
@@ -1858,7 +1858,7 @@ public class FJDParser extends Parser {
     };
 
     // $ANTLR start "expr"
-    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:126:1: expr : ( ID | thisExpr ) ( fieldAccessOrMethCall )* ;
+    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:126:1: expr : ( ID -> ^( VALUE_EXPR ID ) | thisExpr ) ( fieldAccessOrMethCall )* ;
     public final FJDParser.expr_return expr() throws RecognitionException {
         FJDParser.expr_return retval = new FJDParser.expr_return();
         retval.start = input.LT(1);
@@ -1872,14 +1872,14 @@ public class FJDParser extends Parser {
 
 
         CommonTree ID52_tree=null;
-
+        RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
+        RewriteRuleSubtreeStream stream_thisExpr=new RewriteRuleSubtreeStream(adaptor,"rule thisExpr");
+        RewriteRuleSubtreeStream stream_fieldAccessOrMethCall=new RewriteRuleSubtreeStream(adaptor,"rule fieldAccessOrMethCall");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:5: ( ( ID | thisExpr ) ( fieldAccessOrMethCall )* )
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:7: ( ID | thisExpr ) ( fieldAccessOrMethCall )*
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:5: ( ( ID -> ^( VALUE_EXPR ID ) | thisExpr ) ( fieldAccessOrMethCall )* )
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:7: ( ID -> ^( VALUE_EXPR ID ) | thisExpr ) ( fieldAccessOrMethCall )*
             {
-            root_0 = (CommonTree)adaptor.nil();
-
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:7: ( ID | thisExpr )
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:7: ( ID -> ^( VALUE_EXPR ID ) | thisExpr )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1899,29 +1899,55 @@ public class FJDParser extends Parser {
                 case 1 :
                     // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:8: ID
                     {
-                    ID52=(Token)match(input,ID,FOLLOW_ID_in_expr927); 
-                    ID52_tree = (CommonTree)adaptor.create(ID52);
-                    adaptor.addChild(root_0, ID52_tree);
+                    ID52=(Token)match(input,ID,FOLLOW_ID_in_expr927);  
+                    stream_ID.add(ID52);
 
 
+
+                    // AST REWRITE
+                    // elements: ID
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+
+                    root_0 = (CommonTree)adaptor.nil();
+                    // 127:11: -> ^( VALUE_EXPR ID )
+                    {
+                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:14: ^( VALUE_EXPR ID )
+                        {
+                        CommonTree root_1 = (CommonTree)adaptor.nil();
+                        root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(VALUE_EXPR, "VALUE_EXPR"), root_1);
+
+                        adaptor.addChild(root_1, stream_ID.nextNode());
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+                    retval.tree = root_0;
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:13: thisExpr
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:128:7: thisExpr
                     {
-                    pushFollow(FOLLOW_thisExpr_in_expr931);
+                    pushFollow(FOLLOW_thisExpr_in_expr943);
                     thisExpr53=thisExpr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, thisExpr53.getTree());
+                    stream_thisExpr.add(thisExpr53.getTree());
 
                     }
                     break;
 
             }
 
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:23: ( fieldAccessOrMethCall )*
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:128:17: ( fieldAccessOrMethCall )*
             loop11:
             do {
                 int alt11=2;
@@ -1934,14 +1960,14 @@ public class FJDParser extends Parser {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:127:23: fieldAccessOrMethCall
+            	    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:128:17: fieldAccessOrMethCall
             	    {
-            	    pushFollow(FOLLOW_fieldAccessOrMethCall_in_expr934);
+            	    pushFollow(FOLLOW_fieldAccessOrMethCall_in_expr946);
             	    fieldAccessOrMethCall54=fieldAccessOrMethCall();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, fieldAccessOrMethCall54.getTree());
+            	    stream_fieldAccessOrMethCall.add(fieldAccessOrMethCall54.getTree());
 
             	    }
             	    break;
@@ -1978,7 +2004,7 @@ public class FJDParser extends Parser {
     };
 
     // $ANTLR start "thisExpr"
-    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:130:1: thisExpr : ( 'this' -> ^( THIS ) | newExpr );
+    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:131:1: thisExpr : ( 'this' -> ^( THIS_EXPR ) | newExpr );
     public final FJDParser.thisExpr_return thisExpr() throws RecognitionException {
         FJDParser.thisExpr_return retval = new FJDParser.thisExpr_return();
         retval.start = input.LT(1);
@@ -1993,7 +2019,7 @@ public class FJDParser extends Parser {
         RewriteRuleTokenStream stream_45=new RewriteRuleTokenStream(adaptor,"token 45");
 
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:131:5: ( 'this' -> ^( THIS ) | newExpr )
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:132:5: ( 'this' -> ^( THIS_EXPR ) | newExpr )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -2011,9 +2037,9 @@ public class FJDParser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:131:7: 'this'
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:132:7: 'this'
                     {
-                    string_literal55=(Token)match(input,45,FOLLOW_45_in_thisExpr956);  
+                    string_literal55=(Token)match(input,45,FOLLOW_45_in_thisExpr968);  
                     stream_45.add(string_literal55);
 
 
@@ -2029,12 +2055,12 @@ public class FJDParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 132:7: -> ^( THIS )
+                    // 133:7: -> ^( THIS_EXPR )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:132:10: ^( THIS )
+                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:133:10: ^( THIS_EXPR )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
-                        root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(THIS, "THIS"), root_1);
+                        root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(THIS_EXPR, "THIS_EXPR"), root_1);
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -2045,11 +2071,11 @@ public class FJDParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:133:7: newExpr
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:134:7: newExpr
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_newExpr_in_thisExpr977);
+                    pushFollow(FOLLOW_newExpr_in_thisExpr989);
                     newExpr56=newExpr();
 
                     state._fsp--;
@@ -2084,7 +2110,7 @@ public class FJDParser extends Parser {
     };
 
     // $ANTLR start "newExpr"
-    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:136:1: newExpr : ( 'new' type '(' ( exprList )? ')' -> ^( NEW_EXPR type ( exprList )? ) | castExpr );
+    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:137:1: newExpr : ( 'new' type '(' ( exprList )? ')' -> ^( NEW_EXPR type ( exprList )? ) | castExpr );
     public final FJDParser.newExpr_return newExpr() throws RecognitionException {
         FJDParser.newExpr_return retval = new FJDParser.newExpr_return();
         retval.start = input.LT(1);
@@ -2110,7 +2136,7 @@ public class FJDParser extends Parser {
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         RewriteRuleSubtreeStream stream_exprList=new RewriteRuleSubtreeStream(adaptor,"rule exprList");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:137:5: ( 'new' type '(' ( exprList )? ')' -> ^( NEW_EXPR type ( exprList )? ) | castExpr )
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:138:5: ( 'new' type '(' ( exprList )? ')' -> ^( NEW_EXPR type ( exprList )? ) | castExpr )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -2128,21 +2154,21 @@ public class FJDParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:137:7: 'new' type '(' ( exprList )? ')'
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:138:7: 'new' type '(' ( exprList )? ')'
                     {
-                    string_literal57=(Token)match(input,49,FOLLOW_49_in_newExpr994);  
+                    string_literal57=(Token)match(input,49,FOLLOW_49_in_newExpr1006);  
                     stream_49.add(string_literal57);
 
-                    pushFollow(FOLLOW_type_in_newExpr996);
+                    pushFollow(FOLLOW_type_in_newExpr1008);
                     type58=type();
 
                     state._fsp--;
 
                     stream_type.add(type58.getTree());
-                    char_literal59=(Token)match(input,41,FOLLOW_41_in_newExpr998);  
+                    char_literal59=(Token)match(input,41,FOLLOW_41_in_newExpr1010);  
                     stream_41.add(char_literal59);
 
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:137:22: ( exprList )?
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:138:22: ( exprList )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -2151,9 +2177,9 @@ public class FJDParser extends Parser {
                     }
                     switch (alt13) {
                         case 1 :
-                            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:137:22: exprList
+                            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:138:22: exprList
                             {
-                            pushFollow(FOLLOW_exprList_in_newExpr1000);
+                            pushFollow(FOLLOW_exprList_in_newExpr1012);
                             exprList60=exprList();
 
                             state._fsp--;
@@ -2165,13 +2191,13 @@ public class FJDParser extends Parser {
 
                     }
 
-                    char_literal61=(Token)match(input,42,FOLLOW_42_in_newExpr1003);  
+                    char_literal61=(Token)match(input,42,FOLLOW_42_in_newExpr1015);  
                     stream_42.add(char_literal61);
 
 
 
                     // AST REWRITE
-                    // elements: type, exprList
+                    // elements: exprList, type
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2181,15 +2207,15 @@ public class FJDParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 138:8: -> ^( NEW_EXPR type ( exprList )? )
+                    // 139:8: -> ^( NEW_EXPR type ( exprList )? )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:138:11: ^( NEW_EXPR type ( exprList )? )
+                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:139:11: ^( NEW_EXPR type ( exprList )? )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(NEW_EXPR, "NEW_EXPR"), root_1);
 
                         adaptor.addChild(root_1, stream_type.nextTree());
-                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:138:27: ( exprList )?
+                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:139:27: ( exprList )?
                         if ( stream_exprList.hasNext() ) {
                             adaptor.addChild(root_1, stream_exprList.nextTree());
 
@@ -2205,11 +2231,11 @@ public class FJDParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:139:7: castExpr
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:140:7: castExpr
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_castExpr_in_newExpr1030);
+                    pushFollow(FOLLOW_castExpr_in_newExpr1042);
                     castExpr62=castExpr();
 
                     state._fsp--;
@@ -2244,7 +2270,7 @@ public class FJDParser extends Parser {
     };
 
     // $ANTLR start "castExpr"
-    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:142:1: castExpr : '(' type ')' expr -> ^( CAST_EXPR type expr ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:143:1: castExpr : '(' type ')' expr -> ^( CAST_EXPR type expr ) ;
     public final FJDParser.castExpr_return castExpr() throws RecognitionException {
         FJDParser.castExpr_return retval = new FJDParser.castExpr_return();
         retval.start = input.LT(1);
@@ -2265,22 +2291,22 @@ public class FJDParser extends Parser {
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:143:5: ( '(' type ')' expr -> ^( CAST_EXPR type expr ) )
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:143:7: '(' type ')' expr
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:144:5: ( '(' type ')' expr -> ^( CAST_EXPR type expr ) )
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:144:7: '(' type ')' expr
             {
-            char_literal63=(Token)match(input,41,FOLLOW_41_in_castExpr1047);  
+            char_literal63=(Token)match(input,41,FOLLOW_41_in_castExpr1059);  
             stream_41.add(char_literal63);
 
-            pushFollow(FOLLOW_type_in_castExpr1049);
+            pushFollow(FOLLOW_type_in_castExpr1061);
             type64=type();
 
             state._fsp--;
 
             stream_type.add(type64.getTree());
-            char_literal65=(Token)match(input,42,FOLLOW_42_in_castExpr1051);  
+            char_literal65=(Token)match(input,42,FOLLOW_42_in_castExpr1063);  
             stream_42.add(char_literal65);
 
-            pushFollow(FOLLOW_expr_in_castExpr1053);
+            pushFollow(FOLLOW_expr_in_castExpr1065);
             expr66=expr();
 
             state._fsp--;
@@ -2299,9 +2325,9 @@ public class FJDParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 144:7: -> ^( CAST_EXPR type expr )
+            // 145:7: -> ^( CAST_EXPR type expr )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:144:10: ^( CAST_EXPR type expr )
+                // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:145:10: ^( CAST_EXPR type expr )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(CAST_EXPR, "CAST_EXPR"), root_1);
@@ -2341,7 +2367,7 @@ public class FJDParser extends Parser {
     };
 
     // $ANTLR start "fieldAccessOrMethCall"
-    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:147:1: fieldAccessOrMethCall : ( '.' ID -> ^( FIELD_ACCESS_EXPR ID ) | '.' ID '(' ( exprList )? ')' -> ^( METH_CALL_EXPR ID ( exprList )? ) );
+    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:148:1: fieldAccessOrMethCall : ( '.' ID -> ^( FIELD_ACCESS_EXPR ID ) | '.' ID '(' ( exprList )? ')' -> ^( METH_CALL_EXPR ID ( exprList )? ) );
     public final FJDParser.fieldAccessOrMethCall_return fieldAccessOrMethCall() throws RecognitionException {
         FJDParser.fieldAccessOrMethCall_return retval = new FJDParser.fieldAccessOrMethCall_return();
         retval.start = input.LT(1);
@@ -2369,7 +2395,7 @@ public class FJDParser extends Parser {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_exprList=new RewriteRuleSubtreeStream(adaptor,"rule exprList");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:148:5: ( '.' ID -> ^( FIELD_ACCESS_EXPR ID ) | '.' ID '(' ( exprList )? ')' -> ^( METH_CALL_EXPR ID ( exprList )? ) )
+            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:149:5: ( '.' ID -> ^( FIELD_ACCESS_EXPR ID ) | '.' ID '(' ( exprList )? ')' -> ^( METH_CALL_EXPR ID ( exprList )? ) )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2407,12 +2433,12 @@ public class FJDParser extends Parser {
             }
             switch (alt16) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:148:7: '.' ID
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:149:7: '.' ID
                     {
-                    char_literal67=(Token)match(input,46,FOLLOW_46_in_fieldAccessOrMethCall1086);  
+                    char_literal67=(Token)match(input,46,FOLLOW_46_in_fieldAccessOrMethCall1098);  
                     stream_46.add(char_literal67);
 
-                    ID68=(Token)match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall1088);  
+                    ID68=(Token)match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall1100);  
                     stream_ID.add(ID68);
 
 
@@ -2428,9 +2454,9 @@ public class FJDParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 148:15: -> ^( FIELD_ACCESS_EXPR ID )
+                    // 149:15: -> ^( FIELD_ACCESS_EXPR ID )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:148:18: ^( FIELD_ACCESS_EXPR ID )
+                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:149:18: ^( FIELD_ACCESS_EXPR ID )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(FIELD_ACCESS_EXPR, "FIELD_ACCESS_EXPR"), root_1);
@@ -2446,18 +2472,18 @@ public class FJDParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:149:7: '.' ID '(' ( exprList )? ')'
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:150:7: '.' ID '(' ( exprList )? ')'
                     {
-                    char_literal69=(Token)match(input,46,FOLLOW_46_in_fieldAccessOrMethCall1105);  
+                    char_literal69=(Token)match(input,46,FOLLOW_46_in_fieldAccessOrMethCall1117);  
                     stream_46.add(char_literal69);
 
-                    ID70=(Token)match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall1107);  
+                    ID70=(Token)match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall1119);  
                     stream_ID.add(ID70);
 
-                    char_literal71=(Token)match(input,41,FOLLOW_41_in_fieldAccessOrMethCall1109);  
+                    char_literal71=(Token)match(input,41,FOLLOW_41_in_fieldAccessOrMethCall1121);  
                     stream_41.add(char_literal71);
 
-                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:149:18: ( exprList )?
+                    // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:150:18: ( exprList )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -2466,9 +2492,9 @@ public class FJDParser extends Parser {
                     }
                     switch (alt15) {
                         case 1 :
-                            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:149:18: exprList
+                            // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:150:18: exprList
                             {
-                            pushFollow(FOLLOW_exprList_in_fieldAccessOrMethCall1111);
+                            pushFollow(FOLLOW_exprList_in_fieldAccessOrMethCall1123);
                             exprList72=exprList();
 
                             state._fsp--;
@@ -2480,13 +2506,13 @@ public class FJDParser extends Parser {
 
                     }
 
-                    char_literal73=(Token)match(input,42,FOLLOW_42_in_fieldAccessOrMethCall1114);  
+                    char_literal73=(Token)match(input,42,FOLLOW_42_in_fieldAccessOrMethCall1126);  
                     stream_42.add(char_literal73);
 
 
 
                     // AST REWRITE
-                    // elements: exprList, ID
+                    // elements: ID, exprList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2496,15 +2522,15 @@ public class FJDParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 149:32: -> ^( METH_CALL_EXPR ID ( exprList )? )
+                    // 150:32: -> ^( METH_CALL_EXPR ID ( exprList )? )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:149:35: ^( METH_CALL_EXPR ID ( exprList )? )
+                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:150:35: ^( METH_CALL_EXPR ID ( exprList )? )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot((CommonTree)adaptor.create(METH_CALL_EXPR, "METH_CALL_EXPR"), root_1);
 
                         adaptor.addChild(root_1, stream_ID.nextNode());
-                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:149:55: ( exprList )?
+                        // C:\\projects\\fjd\\src\\main\\java\\org\\fjd\\FJD.g:150:55: ( exprList )?
                         if ( stream_exprList.hasNext() ) {
                             adaptor.addChild(root_1, stream_exprList.nextTree());
 
@@ -2602,26 +2628,26 @@ public class FJDParser extends Parser {
     public static final BitSet FOLLOW_43_in_exprList890 = new BitSet(new long[]{0x0002220010000000L});
     public static final BitSet FOLLOW_expr_in_exprList892 = new BitSet(new long[]{0x0000080000000002L});
     public static final BitSet FOLLOW_ID_in_expr927 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_thisExpr_in_expr931 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_fieldAccessOrMethCall_in_expr934 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_45_in_thisExpr956 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_newExpr_in_thisExpr977 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_newExpr994 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_type_in_newExpr996 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_newExpr998 = new BitSet(new long[]{0x0002260010000000L});
-    public static final BitSet FOLLOW_exprList_in_newExpr1000 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_newExpr1003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_castExpr_in_newExpr1030 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_castExpr1047 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_type_in_castExpr1049 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_castExpr1051 = new BitSet(new long[]{0x0002220010000000L});
-    public static final BitSet FOLLOW_expr_in_castExpr1053 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_fieldAccessOrMethCall1086 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall1088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_fieldAccessOrMethCall1105 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall1107 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_fieldAccessOrMethCall1109 = new BitSet(new long[]{0x0002260010000000L});
-    public static final BitSet FOLLOW_exprList_in_fieldAccessOrMethCall1111 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_fieldAccessOrMethCall1114 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_thisExpr_in_expr943 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_fieldAccessOrMethCall_in_expr946 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_45_in_thisExpr968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_newExpr_in_thisExpr989 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_newExpr1006 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_type_in_newExpr1008 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_newExpr1010 = new BitSet(new long[]{0x0002260010000000L});
+    public static final BitSet FOLLOW_exprList_in_newExpr1012 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_newExpr1015 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_castExpr_in_newExpr1042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_castExpr1059 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_type_in_castExpr1061 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_castExpr1063 = new BitSet(new long[]{0x0002220010000000L});
+    public static final BitSet FOLLOW_expr_in_castExpr1065 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_fieldAccessOrMethCall1098 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall1100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_fieldAccessOrMethCall1117 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall1119 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_fieldAccessOrMethCall1121 = new BitSet(new long[]{0x0002260010000000L});
+    public static final BitSet FOLLOW_exprList_in_fieldAccessOrMethCall1123 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_fieldAccessOrMethCall1126 = new BitSet(new long[]{0x0000000000000002L});
 
 }
