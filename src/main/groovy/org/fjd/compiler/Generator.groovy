@@ -229,15 +229,7 @@ import static org.fjd.FJDParser.*
     ClassNode visitType(Tree node) {
         assert node.text == 'TYPE'
         String name = visitID(node.getChild(0))
-
-        if(CT.containsKey(name)) {
-            return CT[name]
-        }
-
-        return new ClassNode(
-            name: name,
-            resolved: false
-        )
+        return getFromCT(CT, name)
     }
     
     ConstructorNode visitCtor(Tree node) {
@@ -272,43 +264,33 @@ import static org.fjd.FJDParser.*
         assert node.text == "CLASS"
         String name = visitID(node.getChild(0))
 
-        ClassNode c = null
-        if(CT.containsKey(name)) {
-            c = CT[name]
-            if(c.resolved) return c // already resolved, can be return
-        }
-        ClassNode superClassNode = visitSuperClass(node.getChild(1))
-        if(c == null) {
-            c = new ClassNode(
-                name: name,
-                superClass: superClassNode,
-                resolved: true
-            )
-        } else {
-            c.superClass = superClassNode
-            c.resolved = true
-        }
+        ClassNode c = getFromCT(CT, name)
+        if(c.resolved) return c
 
-        c.fields  = visit(node.getChild(2)) as FieldsNode
-        c.ctor    = visit(node.getChild(3)) as ConstructorNode
-        c.methods = visit(node.getChild(4)) as List<MethodNode>
-        
-        CT[name] = c
+        c.superClass = visitSuperClass(node.getChild(1))
+        c.fields     = visit(node.getChild(2)) as FieldsNode
+        c.ctor       = visit(node.getChild(3)) as ConstructorNode
+        c.methods    = visit(node.getChild(4)) as List<MethodNode>
+        c.resolved   = true
+
         return c
+    }
+    
+    private ClassNode getFromCT(ClassTable CT, String name) {
+        ClassNode cn
+        if(CT.containsKey(name)) {
+            cn = CT[name]   
+        } else {
+            cn = new ClassNode(name: name, resolved: false)
+            CT[name] = cn
+        }
+        return cn
     }
     
     ClassNode visitSuperClass(Tree node) {
         assert node.text == "SUPER_CLASS"
         String name = visitID(node.getChild(0))
-
-        if(CT.containsKey(name)) {
-            return CT[name]
-        }
-
-        return new ClassNode(
-            name: name,
-            resolved: false
-        )
+        return getFromCT(CT, name)
     }
 
 }
