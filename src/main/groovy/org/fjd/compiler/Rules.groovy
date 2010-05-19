@@ -1,5 +1,7 @@
 package org.fjd.compiler
 
+import org.fjd.ast.*
+
 @Typed class Rules {
     
     ClassTable CT
@@ -19,7 +21,7 @@ package org.fjd.compiler
         return subClassOf(c.superClass, d)
     }
     
-    List<FieldNode> fields(Class c) {
+    List<FieldNode> fields(ClassNode c) {
         if(c == CT['Object']) return []
         def d = c.superClass
         return fields(d) + c.fields

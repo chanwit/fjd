@@ -31,6 +31,8 @@
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>ConstructorBodyNode</key>
             <string>src\main\groovy\org\fjd\ast\ConstructorBodyNode.groovy</string>
+            <key>Rules.groovy</key>
+            <string>src\main\groovy\org\fjd\compiler\Rules.groovy</string>
             <key>SuperStmtNode</key>
             <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>cla</key>
