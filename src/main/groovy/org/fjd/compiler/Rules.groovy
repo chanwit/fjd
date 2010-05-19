@@ -20,13 +20,13 @@ import org.fjd.ast.*
         
         return subClassOf(c.superClass, d)
     }
-    
+
     List<FieldNode> fields(ClassNode c) {
         if(c == CT['Object']) return []
         def d = c.superClass
         return fields(d) + c.fields
     }
-    
+
     def mbody(String m, ClassNode c) {
         if(c == CT['Object']) return null
         def M = c.methods.find { it.name == m }
@@ -35,7 +35,7 @@ import org.fjd.ast.*
         }
         return mbody(m, c.superClass)        
     }
-    
+
     def mtype(String m, ClassNode c) {
         if(c == CT['Object']) return null
         def M = c.methods.find { it.name == m }
@@ -43,5 +43,13 @@ import org.fjd.ast.*
             return [M.arguments.collect { it.type }, M.returnType]
         }
         return mtype(m, c.superClass)
+    }
+
+    def override(String m, ClassNode D, List methTypeOfC) {
+        def CBar, C0 = methTypeOfC
+        def DBar, D0 = mtype(m, D)        
+        return CBar == DBar && C0 == D0
+        // else
+        /// return true
     }
 }
