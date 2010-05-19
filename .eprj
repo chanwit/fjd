@@ -31,6 +31,8 @@
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>ConstructorBodyNode</key>
             <string>src\main\groovy\org\fjd\ast\ConstructorBodyNode.groovy</string>
+            <key>NewExprNode</key>
+            <string>src\main\groovy\org\fjd\ast\NewExprNode.groovy</string>
             <key>Rules.groovy</key>
             <string>src\main\groovy\org\fjd\compiler\Rules.groovy</string>
             <key>SuperStmtNode</key>
@@ -49,6 +51,8 @@
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>classta</key>
             <string>src\main\groovy\org\fjd\compiler\ClassTable.groovy</string>
+            <key>con</key>
+            <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>cons</key>
             <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>const</key>
@@ -86,6 +90,8 @@
             <key>super</key>
             <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>test</key>
+            <string>src\test\groovy\org\fjd\TestCompiler.groovy</string>
+            <key>testco</key>
             <string>src\test\groovy\org\fjd\TestCompiler.groovy</string>
             <key>tests</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
