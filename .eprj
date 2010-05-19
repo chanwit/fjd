@@ -35,6 +35,8 @@
             <string>src\main\groovy\org\fjd\compiler\Rules.groovy</string>
             <key>SuperStmtNode</key>
             <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
+            <key>castex</key>
+            <string>src\main\groovy\org\fjd\ast\CastExprNode.groovy</string>
             <key>cla</key>
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>clas</key>
@@ -52,7 +54,9 @@
             <key>const</key>
             <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>field</key>
-            <string>src\main\groovy\org\fjd\ast\FieldNode.groovy</string>
+            <string>src\main\groovy\org\fjd\ast\FieldAccessExprNode.groovy</string>
+            <key>fieldacc</key>
+            <string>src\main\groovy\org\fjd\ast\FieldAccessExprNode.groovy</string>
             <key>fj</key>
             <string>src\main\java\org\fjd\FJD.g</string>
             <key>fjd</key>
@@ -63,6 +67,8 @@
             <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
             <key>method</key>
             <string>src\main\groovy\org\fjd\ast\MethodNode.groovy</string>
+            <key>methodca</key>
+            <string>src\main\groovy\org\fjd\ast\MethodCallExprNode.groovy</string>
             <key>methodn</key>
             <string>src\main\groovy\org\fjd\ast\MethodNode.groovy</string>
             <key>methodno</key>

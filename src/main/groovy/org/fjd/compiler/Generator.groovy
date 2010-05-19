@@ -23,6 +23,8 @@ import static org.fjd.FJDParser.*
             case CLASS:     return visitClass(node)
             case FIELDS:    return visitFields(node)
             case CTOR:      return visitCtor(node)
+            case TYPE:      return visitType(node)
+            case EXPR_LIST: return visitExprList(node)
             
             case ARGS:      return visitArgs(node)
             case ARG:       return visitArg(node)
@@ -192,15 +194,26 @@ import static org.fjd.FJDParser.*
     }
 
     CastExprNode visitCastExpr(Tree node) {
-        return new CastExprNode()
+        // -> ^(CAST_EXPR type expr)
+        new CastExprNode(
+            type: visit(node.getChild(0)),
+            expr: visit(node.getChild(1))
+        )
     }
 
     FieldAccessExprNode visitFieldAccessExpr(Tree node) {
-        return new FieldAccessExprNode()
+        // -> ^(FIELD_ACCESS_EXPR ID)
+        new FieldAccessExprNode(
+            field: visitID(node.getChild(0))
+        )
     }
 
     MethodCallExprNode visitMethodCallExpr(Tree node) {
-        return new MethodCallExprNode()
+        // -> ^(METH_CALL_EXPR ID exprList?)
+        new MethodCallExprNode(
+            name: visitID(node.getChild(0)),
+            exprList: visitExprList(node.getChild(1)) as List<ArgNode>
+        )
     }
 
     String visitID(Tree node) {

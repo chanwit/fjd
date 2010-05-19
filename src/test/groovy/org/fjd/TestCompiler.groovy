@@ -134,8 +134,13 @@ import org.fjd.compiler.*
         def evalExpr = p.expr
         assert evalExpr.children[0] instanceof FieldAccessExprNode
         def f = (evalExpr.children[0] as FieldAccessExprNode)
+        assert f.field == 'field'
+               
         assert f.children[0] instanceof MethodCallExprNode
         def m = f.children[0] as MethodCallExprNode
+        assert m.name == 'method'
+        assert m.exprList[0] instanceof CastExprNode
+
         assert m.children[0] instanceof NewExprNode
     }
 }
