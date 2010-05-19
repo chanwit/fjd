@@ -98,7 +98,7 @@ import static org.fjd.FJDParser.*
         if(node==null) return args
 
         for(i in 0..<node.childCount) {
-            args << visitArg(node.getChild(0))
+            args << visitArg(node.getChild(i))
         }
         return args
     }

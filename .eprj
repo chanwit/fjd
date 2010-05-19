@@ -53,6 +53,8 @@
             <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>field</key>
             <string>src\main\groovy\org\fjd\ast\FieldNode.groovy</string>
+            <key>fj</key>
+            <string>src\main\java\org\fjd\FJD.g</string>
             <key>fjd</key>
             <string>src\main\java\org\fjd\FJD.g</string>
             <key>fjg</key>
@@ -73,10 +75,14 @@
             <string>src\test\groovy\org\fjd\Program1.fjd</string>
             <key>program</key>
             <string>src\main\groovy\org\fjd\ast\ProgramNode.groovy</string>
+            <key>rules</key>
+            <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>super</key>
             <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>test</key>
             <string>src\test\groovy\org\fjd\TestCompiler.groovy</string>
+            <key>tests</key>
+            <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
         </dict>
     </dict>
 </plist>

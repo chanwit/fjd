@@ -27,11 +27,11 @@ import org.fjd.ast.*
         return fields(d) + c.fields
     }
 
-    def mbody(String m, ClassNode c) {
+    List mbody(String m, ClassNode c) {
         if(c == CT['Object']) return null
         def M = c.methods.find { it.name == m }
-        if(M) {
-            return [M.arguments, M.body.expr]
+        if(M) {            
+            return [M.arguments.collect { it.name } as String[], M.body.expr]
         }
         return mbody(m, c.superClass)        
     }
@@ -40,7 +40,7 @@ import org.fjd.ast.*
         if(c == CT['Object']) return null
         def M = c.methods.find { it.name == m }
         if(M) {            
-            return [M.arguments.collect { it.type }, M.returnType]
+            return [M.arguments.collect { it.type } as ClassNode[], M.returnType]
         }
         return mtype(m, c.superClass)
     }

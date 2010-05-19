@@ -6,7 +6,7 @@ import org.antlr.runtime.tree.*
 import org.fjd.*
 import org.fjd.ast.*
 
-@Typed class RulesTests extends FJDTestCase {
+class RulesTests extends FJDTestCase {
 
     void test_subClassOf() {
         def program = '''
@@ -119,10 +119,12 @@ import org.fjd.ast.*
         def CT = new ClassTable()
         def programNode = compile(program, CT)
         def r = new Rules(CT: CT)
+        def A = CT['A']
         def B = CT['B']
 
-        List body = r.mbody('method', B)
-        println body[0]
-        println body[1]
+        def body = r.mbody('method', B)
+        assert body[0][0] == 'a'
+        assert body[0][1] == 'b'
+        assert body[1].children[0] instanceof NewExprNode
     }
 }
