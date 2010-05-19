@@ -36,7 +36,7 @@ import org.fjd.ast.*
         return mbody(m, c.superClass)        
     }
 
-    def mtype(String m, ClassNode c) {
+    List mtype(String m, ClassNode c) {
         if(c == CT['Object']) return null
         def M = c.methods.find { it.name == m }
         if(M) {            
