@@ -41,6 +41,52 @@ import org.fjd.ast.*
         assert r.subClassOf(A, A) == true
         assert r.subClassOf(C, A) == true
         assert r.subClassOf(C, CT['Object']) == true
-
+    }
+    
+    void testFields() {
+        def program = '''
+    class A extends Object {
+        Object f1;
+        A f2;
+        A(Object f1, A f2) {
+            super();
+            this.f1 = f1;
+            this.f2 = f2;
+        }
+    }
+    
+    class B extends A {
+        A f3;
+        Object f4;
+        B(Object f1, A f2, A f3, Object f4) {
+            super(f1, f2);
+            this.f3 = f3;
+            this.f4 = f4;
+        }
+    }
+    
+    new A()
+'''
+        def CT = new ClassTable()
+        def programNode = compile(program, CT)
+        def r = new Rules(CT: CT)
+        def A = CT['A']
+        def B = CT['B']
+        println "A: ${A}"
+        assert r.fields(CT['Object']) == []
+        def f_b = r.fields(B)
+        assert f_b[0].name == 'f1'
+        assert f_b[0].type == CT['Object']        
+        assert f_b[1].name == 'f2'
+        println "Another A: ${f_b[1].type}, ${f_b[1].type.name}"
+        assert f_b[1].type == A
+        assert f_b[2].name == 'f3'
+        assert f_b[2].type == A        
+        assert f_b[3].name == 'f4'
+        assert f_b[3].type == CT['Object']
+        
+        def f_a = r.fields(A)        
+        assert f_a[0].name == 'f1'
+        assert f_a[1].name == 'f2'
     }
 }

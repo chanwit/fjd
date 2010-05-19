@@ -55,6 +55,8 @@
             <string>src\main\groovy\org\fjd\ast\FieldNode.groovy</string>
             <key>fjd</key>
             <string>src\main\java\org\fjd\FJD.g</string>
+            <key>fjg</key>
+            <string>src\main\java\org\fjd\FJD.g</string>
             <key>gene</key>
             <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
             <key>method</key>
