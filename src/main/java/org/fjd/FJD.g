@@ -124,8 +124,12 @@ exprList
     ;
 
 expr
-    : (ID -> ^(VALUE_EXPR ID)
-    | thisExpr) fieldAccessOrMethCall*    
+    : ( valueExpr | thisExpr) fieldAccessOrMethCall*    
+    ;
+
+valueExpr
+    : ID
+      -> ^(VALUE_EXPR ID)
     ;
 
 thisExpr

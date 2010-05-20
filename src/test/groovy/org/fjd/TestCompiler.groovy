@@ -24,8 +24,9 @@ import org.fjd.compiler.*
     
     new A()
 '''
+        def TT = new Environment()
         def CT = new ClassTable()
-        def programNode = compile(program1, CT)
+        def programNode = compile(program1, CT, TT)
 
         def c = programNode.classes[0]
         assert c.name == 'A'
@@ -61,8 +62,9 @@ import org.fjd.compiler.*
     
     new B(new Object())
 '''
+        def TT = new Environment()
         def CT = new ClassTable()
-        def programNode = compile(program2, CT)
+        def programNode = compile(program2, CT, TT)
 
         assert programNode.classes.size() == 2
         assert programNode.expr != null
@@ -112,8 +114,10 @@ import org.fjd.compiler.*
     
     new A().method((Object)new A()).field
 '''
+
+        def TT = new Environment()
         def CT = new ClassTable()
-        def p = compile(program, CT)
+        def p = compile(program, CT, TT)
 
         def A = p.classes[0]
         assert A == CT['A']

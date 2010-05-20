@@ -44,6 +44,44 @@ class RulesTests extends FJDTestCase {
         assert r.subClassOf(C, CT['Object']) == true
     }
     
+    void test_subClassOf_List() {
+        def program = '''
+    class A extends Object {
+        A() {
+            super();
+        }
+    }
+    
+    class B extends A {
+        B() {
+            super();
+        }
+    }
+    
+    class C extends B {
+        C() {
+            super();
+        }
+    }
+    
+    new A()
+'''
+
+        def CT = new ClassTable()
+        def TT = new Environment()
+        def programNode = compile(program, CT, TT)
+        def r = new Rules(CT: CT)
+        def A = CT['A']
+        def B = CT['B']
+        def C = CT['C']
+        def O = ClassTable.object
+        assert r.subClassOf([B,  B], [A,  A]) == true
+        assert r.subClassOf([A,B,C], [A,B,C]) == true
+        assert r.subClassOf([B,C,B], [O,O,O]) == true
+        assert r.subClassOf([B,C,B], [A,B,C]) == false
+        assert r.subClassOf([B,C,B], [A,A,A]) == true
+    }
+    
     void test_fields() {
         def program = '''
     class A extends Object {

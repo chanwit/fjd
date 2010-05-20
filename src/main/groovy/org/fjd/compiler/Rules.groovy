@@ -9,6 +9,12 @@ import org.fjd.ast.*
 
     boolean subClassOf(ClassNode c, ClassNode d) {
         //
+        // special cases
+        //
+        if (c == ClassTable.object && c == d) return true        
+        if (c == ClassTable.object && c != d) return false
+        
+        //
         // ---------
         //  C <: C
         //
@@ -17,9 +23,11 @@ import org.fjd.ast.*
         // CT(C) = class C extend D { ... }
         // --------------------------------
         //             C <: D
-        if(CT[c.name] == c && c.superClass == d) return true
+        
+        ClassNode superClass = c.superClass? c.superClass: ClassTable.object
+        if(CT[c.name] == c && superClass == d) return true
 
-        return subClassOf(c.superClass, d)
+        return subClassOf(superClass, d)
     }
 
     boolean subClassOf(List<ClassNode> CBar, List<ClassNode> DBar) {

@@ -31,12 +31,22 @@
             <string>src\main\groovy\org\fjd\ast\ClassNode.groovy</string>
             <key>ConstructorBodyNode</key>
             <string>src\main\groovy\org\fjd\ast\ConstructorBodyNode.groovy</string>
+            <key>FJDParser</key>
+            <string>src\main\java\org\fjd\FJDParser.java</string>
+            <key>FJDTestCase</key>
+            <string>src\test\groovy\org\fjd\FJDTestCase.groovy</string>
             <key>NewExprNode</key>
             <string>src\main\groovy\org\fjd\ast\NewExprNode.groovy</string>
             <key>Rules.groovy</key>
             <string>src\main\groovy\org\fjd\compiler\Rules.groovy</string>
+            <key>RulesTests</key>
+            <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>SuperStmtNode</key>
             <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
+            <key>TestCompiler</key>
+            <string>src\test\groovy\org\fjd\TestCompiler.groovy</string>
+            <key>TestTypeChecker</key>
+            <string>src\test\groovy\org\fjd\compiler\TestTypeChecker.groovy</string>
             <key>castex</key>
             <string>src\main\groovy\org\fjd\ast\CastExprNode.groovy</string>
             <key>cla</key>
@@ -57,6 +67,8 @@
             <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>const</key>
             <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
+            <key>ct</key>
+            <string>src\main\groovy\org\fjd\compiler\ClassTable.groovy</string>
             <key>field</key>
             <string>src\main\groovy\org\fjd\ast\FieldAccessExprNode.groovy</string>
             <key>fieldacc</key>
@@ -91,8 +103,10 @@
             <string>src\main\groovy\org\fjd\ast\ProgramNode.groovy</string>
             <key>re</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
-            <key>rule</key>
+            <key>ru</key>
             <string>src\main\groovy\org\fjd\compiler\Rules.groovy</string>
+            <key>rule</key>
+            <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>rules</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>super</key>

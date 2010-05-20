@@ -19,8 +19,9 @@ import org.fjd.ast.*
     
     new A()
 '''
+        def TT = new Environment()
         def CT = new ClassTable()
-        def programNode = compile(program1, CT)
+        def programNode = compile(program1, CT, TT)
         def tc = new TypeChecker()
         tc.visit(programNode)
         assert tc.result == ', A, Object, Object, x, A'

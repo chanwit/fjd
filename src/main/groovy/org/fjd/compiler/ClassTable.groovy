@@ -6,10 +6,8 @@ import org.fjd.ast.*
 @Typed class ClassTable extends HashMap<String, ClassNode>{
 
     static final object = new ClassNode(
-        name: "Object", 
-        superClass: object,
-        resolved: true
-    )
+                                name: "Object",
+                                resolved: true)
 
     ClassTable() {
         super()
