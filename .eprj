@@ -35,6 +35,8 @@
             <string>src\main\java\org\fjd\FJDParser.java</string>
             <key>FJDTestCase</key>
             <string>src\test\groovy\org\fjd\FJDTestCase.groovy</string>
+            <key>FieldInitNode</key>
+            <string>src\main\groovy\org\fjd\ast\FieldInitNode.groovy</string>
             <key>NewExprNode</key>
             <string>src\main\groovy\org\fjd\ast\NewExprNode.groovy</string>
             <key>Rules.groovy</key>
@@ -47,6 +49,8 @@
             <string>src\test\groovy\org\fjd\TestCompiler.groovy</string>
             <key>TestTypeChecker</key>
             <string>src\test\groovy\org\fjd\compiler\TestTypeChecker.groovy</string>
+            <key>arg</key>
+            <string>src\main\groovy\org\fjd\ast\ArgNode.groovy</string>
             <key>argno</key>
             <string>src\main\groovy\org\fjd\ast\ArgNode.groovy</string>
             <key>castex</key>
@@ -64,7 +68,7 @@
             <key>classta</key>
             <string>src\main\groovy\org\fjd\compiler\ClassTable.groovy</string>
             <key>con</key>
-            <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
+            <string>src\main\groovy\org\fjd\ast\ConstructorBodyNode.groovy</string>
             <key>cons</key>
             <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>const</key>
@@ -114,11 +118,13 @@
             <key>re</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>ru</key>
-            <string>src\main\groovy\org\fjd\compiler\Rules.groovy</string>
+            <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>rule</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>rules</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
+            <key>su</key>
+            <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>super</key>
             <string>src\main\groovy\org\fjd\ast\SuperStmtNode.groovy</string>
             <key>test</key>

@@ -149,7 +149,7 @@ import org.fjd.ast.*
         // m.children[0] is e
         // m.exprList is eBar
         //
-        ClassNode C = T_EXPR(m.children[0])
+        def C = T_EXPR(m.children[0])
         def M = C.methods.find { it.name == m.name }
         if(M) {
             def (DBar, Cr) = mtype(M, C)
@@ -164,10 +164,10 @@ import org.fjd.ast.*
     //
     // M OK in C ?
     //
-    boolean T_METHOD(MethodNode mn, ClassNode C) {
+    void T_METHOD(MethodNode mn, ClassNode C) {
 
-        if (C.methods.find { it == mn } == mn)
-            return false
+        if (C.methods.find { it == mn } != mn)
+            throw new Exception("Reject ${mn}, ${C}")
 
         def CBar = mn.arguments.collect { it.type }
         def e  = mn.body.expr.children[0]
@@ -177,16 +177,42 @@ import org.fjd.ast.*
 
         if(subClassOf(Ce, Cr)) {
             if(override(mn, D, [CBar, Cr])) {
-                return true
+                return
             }
         }
-        return false
+
+        throw new Exception("Reject ${mn}, ${C}")
     }
  
     //
     // C OK ?   
     //
-    boolean T_CLASS(ClassNode cn) {
+    @Typed(TypePolicy.DYNAMIC)
+    void T_CLASS(ClassNode C) {
+        def D = C.superClass
+        def K = C.ctor
+        if(K.name != C.name) throw new Exception("Reject ${K} ${C}")
 
+        def Kbody = C.ctor.body
+        def DBar_CBar = Kbody.superStmt.arguments.collect { it.type }
+        def gBar_fBar = Kbody.superStmt.arguments.collect { it.name }
+        
+        def DBar = fields(D).collect { it.type }
+        def gBar = fields(D).collect { it.name }
+        
+        def CBar = C.fields.collect { it.type }
+        def fBar = C.fields.collect { it.name }
+
+        Kbody.fieldInits.inject(0) { i, fi ->
+            if(fi.field != fi.value)     throw new Exception("Reject ${C}")
+            if(fi.field != fBar[i].name) throw new Exception("Reject ${C}")
+            i + 1
+        }
+        if(DBar_CBar != (DBar + CBar)) throw new Exception("Reject ${C}")
+        if(gBar_fBar != (gBar + fBar)) throw new Exception("Reject ${C}")
+
+        C.methods.each {
+            T_METHOD(it, C)
+        }
     }
 }

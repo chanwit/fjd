@@ -171,7 +171,7 @@ class RulesTests extends FJDTestCase {
         assert n.arguments.size() == 0
     }
 
-    void test_T_EXPR_001() {
+    void test_T_EXPR_and_T_METHOD() {
         def program = '''
     class A extends Object {
         A() {
@@ -188,8 +188,41 @@ class RulesTests extends FJDTestCase {
         def TT = new Environment()
         def programNode = compile(program, CT, TT)
         def r = new Rules(CT: CT, TT: TT)
+        def A = CT['A']
 
         ClassNode c = r.T_EXPR(programNode.expr.children[0])
-        assert c == CT['A']
+        assert c == A
+
+        def getThis = A.methods.find { it.name = 'getThis' }
+        r.T_METHOD(getThis, A)
+        r.T_CLASS(A)
+    }
+    
+    void test_T_METHOD_should_fail() {
+        def program = '''
+    class A extends Object {
+        A() {
+            super();
+        }
+        X getThis() {
+            return this;
+        }
+    }
+    
+    new A()
+'''
+        def CT = new ClassTable()
+        def TT = new Environment()
+        def programNode = compile(program, CT, TT)
+        def r = new Rules(CT: CT, TT: TT)
+        
+        def A = CT['A']
+        def getThis = A.methods.find { it.name = 'getThis' }
+        try {
+            r.T_METHOD(getThis, A)               
+            fail("Fail here")
+        }catch(Exception e) {
+            assert e != null
+        }
     }
 }
