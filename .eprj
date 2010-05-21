@@ -75,6 +75,8 @@
             <string>src\main\groovy\org\fjd\ast\FieldAccessExprNode.groovy</string>
             <key>fieldacc</key>
             <string>src\main\groovy\org\fjd\ast\FieldAccessExprNode.groovy</string>
+            <key>fielde</key>
+            <string>src\main\groovy\org\fjd\ast\FieldAccessExprNode.groovy</string>
             <key>fj</key>
             <string>src\main\java\org\fjd\FJD.g</string>
             <key>fjd</key>

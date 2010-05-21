@@ -11,9 +11,9 @@ import org.fjd.ast.*
         //
         // special cases
         //
-        if (c == ClassTable.object && c == d) return true        
+        if (c == ClassTable.object && c == d) return true
         if (c == ClassTable.object && c != d) return false
-        
+
         //
         // ---------
         //  C <: C
@@ -23,7 +23,7 @@ import org.fjd.ast.*
         // CT(C) = class C extend D { ... }
         // --------------------------------
         //             C <: D
-        
+
         ClassNode superClass = c.superClass? c.superClass: ClassTable.object
         if(CT[c.name] == c && superClass == d) return true
 
@@ -55,7 +55,9 @@ import org.fjd.ast.*
     }
 
     List mtype(String m, ClassNode c) {
-        if(c == CT['Object']) return null
+        if(c == CT['Object'])
+            return null
+
         def M = c.methods.find { it.name == m }
         if(M) {
             return [M.arguments.collect { it.type } as ClassNode[], M.returnType]
@@ -77,56 +79,73 @@ import org.fjd.ast.*
 
     ClassNode T_EXPR(ExprNode e) {
         switch(e) {
-            case ThisExprNode: return T_VAR(e)
-            case ValueExprNode: return T_VAR(e)
-            case NewExprNode: return T_NEW(e)
-            case FieldAccessExprNode: return T_FIELD(e)
-            case MethodCallExprNode: return T_INVK(e)
-            case CastExprNode: return T_CAST(e)
+            case ThisExprNode:
+                    return T_VAR(e)
+            case ValueExprNode:
+                    return T_VAR(e)
+            case NewExprNode:
+                    return T_NEW(e)
+            case FieldAccessExprNode:
+                    return T_FIELD(e)
+            case MethodCallExprNode:
+                    return T_INVK(e)
+            case CastExprNode:
+                    return T_CAST(e)
         }
     }
 
     ClassNode T_VAR(ExprNode x) {
-        return TT.get(x)
+        def c = TT.get(x)
+        if(c)
+            return c
+
+        throw new Exception("Reject ${x}")
     }
-    
-    @Typed(TypePolicy.DYNAMIC)    
+
+    @Typed(TypePolicy.DYNAMIC)
     ClassNode T_NEW(NewExprNode e) {
         def C = e.type
         def eBar = e.arguments
         def fields = fields(C)
-        def DBar = fields.collect { it.type }
-        def CBar = eBar.collect { T_EXPR(it) }
-        if(subClassOf(CBar, DBar)) {
+        def DBar = fields.collect { it.type    }
+        def CBar = eBar.collect   { T_EXPR(it) }
+
+        if(subClassOf(CBar, DBar))
             return C
-        }
+
+        throw new Exception("Reject ${e}")
     }
-    
+
     ClassNode T_CAST(CastExprNode c) {
         //
         // (C)e: C
         //
         def e = c.expr
-        def C = c.type   
-             
+        def C = c.type
+
         def D = T_EXPR(e)
         if(subClassOf(C, D) || subClassOf(D, C)) {
             return C
         }
+
+        throw new Exception("Reject ${c}")
     }
 
-    @Typed(TypePolicy.DYNAMIC)
     ClassNode T_FIELD(FieldAccessExprNode f) {
-        ClassNode C = T_EXPR(f.children[0])
-        List<FieldNode> fields = fields(C)
-        return (fields.find { it.name == f })?.type
+        def C = T_EXPR(f.children[0])
+        def fields = fields(C)
+        def field  = fields.find { it.name == f.field }
+        if(field)
+            return field.type
+
+        throw new Exception("Reject ${f}")
     }
 
     @Typed(TypePolicy.DYNAMIC)
     ClassNode T_INVK(MethodCallExprNode m) {
         //
         // e.m(eBar) : Cr
-        // 
+        //
         // m.children[0] is e
         // m.exprList is eBar
         //
@@ -135,7 +154,7 @@ import org.fjd.ast.*
         def CBar = m.exprList.collect { T_EXPR(it) }
         if(subClass(CBar, DBar))
             return Cr
-        else 
-            return null    
+
+        throw new Exception("Reject ${m}")
     }
 }

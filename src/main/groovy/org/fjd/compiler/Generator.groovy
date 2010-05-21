@@ -190,20 +190,20 @@ import static org.fjd.FJDParser.*
         }
         return result
     }
-    
-    ThisExprNode visitThisExpr(Tree node) {        
+
+    ThisExprNode visitThisExpr(Tree node) {
         def result = new ThisExprNode()
-        TT.put(result, TT.getCurrentClass())
+        TT[result] = TT.getCurrentClass()
         return result
     }
-    
+
     ValueExprNode visitValueExpr(Tree node) {
-        def name = visitID(node.getChild(0)) 
+        def name = visitID(node.getChild(0))
         def result = new ValueExprNode(name: name)
-        MethodNode mn = TT.getCurrentMethod()    
+        MethodNode mn = TT.getCurrentMethod()
         def arg = mn.arguments.find { it.name == name }
         if(arg) {
-            TT.put(result, arg.type)
+            TT[result] = arg.type
         }
         return result
     }
