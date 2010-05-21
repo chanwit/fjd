@@ -45,20 +45,20 @@ import org.fjd.ast.*
         return fields(d) + c.fields
     }
 
-    List mbody(String m, ClassNode c) {
+    List mbody(MethodNode m, ClassNode c) {
         if(c == CT['Object']) return null
-        def M = c.methods.find { it.name == m }
+        def M = c.methods.find { it == m }
         if(M) {
             return [M.arguments.collect { it.name } as String[], M.body.expr]
         }
         return mbody(m, c.superClass)
     }
 
-    List mtype(String m, ClassNode c) {
+    List mtype(MethodNode m, ClassNode c) {
         if(c == CT['Object'])
             return null
 
-        def M = c.methods.find { it.name == m }
+        def M = c.methods.find { it == m }
         if(M) {
             return [M.arguments.collect { it.type } as List<ClassNode>, M.returnType]
         }
@@ -66,7 +66,7 @@ import org.fjd.ast.*
     }
 
     @Typed(TypePolicy.DYNAMIC)
-    def override(String m, ClassNode D, methTypeOfC) {
+    def override(MethodNode m, ClassNode D, List methTypeOfC) {
 
         if(mtype(m, D) == null) return true
 
@@ -150,11 +150,43 @@ import org.fjd.ast.*
         // m.exprList is eBar
         //
         ClassNode C = T_EXPR(m.children[0])
-        def (DBar, Cr) = mtype(m.name, C)
-        def CBar = m.exprList.collect { T_EXPR(it) }
-        if(subClassOf(CBar, DBar))
-            return Cr
+        def M = C.methods.find { it.name == m.name }
+        if(M) {
+            def (DBar, Cr) = mtype(M, C)
+            def CBar = m.exprList.collect { T_EXPR(it) }
+            if(subClassOf(CBar, DBar))
+                return Cr
+        }
 
         throw new Exception("Reject ${m}")
+    }
+
+    //
+    // M OK in C ?
+    //
+    boolean T_METHOD(MethodNode mn, ClassNode C) {
+
+        if (C.methods.find { it == mn } == mn)
+            return false
+
+        def CBar = mn.arguments.collect { it.type }
+        def e  = mn.body.expr.children[0]
+        def Ce = T_EXPR(e)
+        def Cr = mn.returnType
+        def D  = C.superClass
+
+        if(subClassOf(Ce, Cr)) {
+            if(override(mn, D, [CBar, Cr])) {
+                return true
+            }
+        }
+        return false
+    }
+ 
+    //
+    // C OK ?   
+    //
+    boolean T_CLASS(ClassNode cn) {
+
     }
 }

@@ -47,6 +47,8 @@
             <string>src\test\groovy\org\fjd\TestCompiler.groovy</string>
             <key>TestTypeChecker</key>
             <string>src\test\groovy\org\fjd\compiler\TestTypeChecker.groovy</string>
+            <key>argno</key>
+            <string>src\main\groovy\org\fjd\ast\ArgNode.groovy</string>
             <key>castex</key>
             <string>src\main\groovy\org\fjd\ast\CastExprNode.groovy</string>
             <key>cla</key>
@@ -90,13 +92,15 @@
             <key>gene</key>
             <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
             <key>method</key>
-            <string>src\main\groovy\org\fjd\ast\MethodNode.groovy</string>
+            <string>src\main\groovy\org\fjd\ast\MethodBodyNode.groovy</string>
             <key>methodca</key>
             <string>src\main\groovy\org\fjd\ast\MethodCallExprNode.groovy</string>
             <key>methodn</key>
             <string>src\main\groovy\org\fjd\ast\MethodNode.groovy</string>
             <key>methodno</key>
             <string>src\main\groovy\org\fjd\ast\MethodBodyNode.groovy</string>
+            <key>methon</key>
+            <string>src\main\groovy\org\fjd\ast\MethodNode.groovy</string>
             <key>new</key>
             <string>src\main\groovy\org\fjd\ast\NewExprNode.groovy</string>
             <key>newex</key>
