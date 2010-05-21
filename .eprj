@@ -69,6 +69,8 @@
             <string>src\main\groovy\org\fjd\ast\ConstructorNode.groovy</string>
             <key>ct</key>
             <string>src\main\groovy\org\fjd\compiler\ClassTable.groovy</string>
+            <key>fiel</key>
+            <string>src\main\groovy\org\fjd\ast\FieldNode.groovy</string>
             <key>field</key>
             <string>src\main\groovy\org\fjd\ast\FieldAccessExprNode.groovy</string>
             <key>fieldacc</key>
@@ -93,6 +95,8 @@
             <string>src\main\groovy\org\fjd\ast\MethodNode.groovy</string>
             <key>methodno</key>
             <string>src\main\groovy\org\fjd\ast\MethodBodyNode.groovy</string>
+            <key>new</key>
+            <string>src\main\groovy\org\fjd\ast\NewExprNode.groovy</string>
             <key>newex</key>
             <string>src\main\groovy\org\fjd\ast\NewExprNode.groovy</string>
             <key>newexp</key>

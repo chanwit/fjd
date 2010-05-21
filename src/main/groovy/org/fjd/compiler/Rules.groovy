@@ -90,12 +90,29 @@ import org.fjd.ast.*
         return TT.get(x)
     }
     
+    @Typed(TypePolicy.DYNAMIC)    
     ClassNode T_NEW(NewExprNode e) {
-        
+        def C = e.type
+        def eBar = e.arguments
+        def fields = fields(C)
+        def DBar = fields.collect { it.type }
+        def CBar = eBar.collect { T_EXPR(it) }
+        if(subClassOf(CBar, DBar)) {
+            return C
+        }
     }
     
     ClassNode T_CAST(CastExprNode c) {
-        
+        //
+        // (C)e: C
+        //
+        def e = c.expr
+        def C = c.type   
+             
+        def D = T_EXPR(e)
+        if(subClassOf(C, D) || subClassOf(D, C)) {
+            return C
+        }
     }
 
     @Typed(TypePolicy.DYNAMIC)
