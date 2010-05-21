@@ -15,19 +15,19 @@ class RulesTests extends FJDTestCase {
             super();
         }
     }
-    
+
     class B extends A {
         B() {
             super();
         }
     }
-    
+
     class C extends B {
         C() {
             super();
         }
     }
-    
+
     new A()
 '''
 
@@ -43,7 +43,7 @@ class RulesTests extends FJDTestCase {
         assert r.subClassOf(C, A) == true
         assert r.subClassOf(C, CT['Object']) == true
     }
-    
+
     void test_subClassOf_List() {
         def program = '''
     class A extends Object {
@@ -51,19 +51,19 @@ class RulesTests extends FJDTestCase {
             super();
         }
     }
-    
+
     class B extends A {
         B() {
             super();
         }
     }
-    
+
     class C extends B {
         C() {
             super();
         }
     }
-    
+
     new A()
 '''
 
@@ -81,7 +81,7 @@ class RulesTests extends FJDTestCase {
         assert r.subClassOf([B,C,B], [A,B,C]) == false
         assert r.subClassOf([B,C,B], [A,A,A]) == true
     }
-    
+
     void test_fields() {
         def program = '''
     class A extends Object {
@@ -93,7 +93,7 @@ class RulesTests extends FJDTestCase {
             this.f2 = f2;
         }
     }
-    
+
     class B extends A {
         A f3;
         Object f4;
@@ -103,7 +103,7 @@ class RulesTests extends FJDTestCase {
             this.f4 = f4;
         }
     }
-    
+
     new A()
 '''
         def CT = new ClassTable()
@@ -116,15 +116,15 @@ class RulesTests extends FJDTestCase {
         assert r.fields(CT['Object']) == []
         def f_b = r.fields(B)
         assert f_b[0].name == 'f1'
-        assert f_b[0].type == CT['Object']        
+        assert f_b[0].type == CT['Object']
         assert f_b[1].name == 'f2'
         assert f_b[1].type == A
         assert f_b[2].name == 'f3'
-        assert f_b[2].type == A        
+        assert f_b[2].type == A
         assert f_b[3].name == 'f4'
         assert f_b[3].type == CT['Object']
-        
-        def f_a = r.fields(A)        
+
+        def f_a = r.fields(A)
         assert f_a[0].name == 'f1'
         assert f_a[1].name == 'f2'
     }
@@ -140,7 +140,7 @@ class RulesTests extends FJDTestCase {
             this.f2 = f2;
         }
     }
-    
+
     class B extends A {
         A f3;
         Object f4;
@@ -153,7 +153,7 @@ class RulesTests extends FJDTestCase {
             return new Object();
         }
     }
-    
+
     new A()
 '''
         def CT = new ClassTable()
@@ -171,7 +171,25 @@ class RulesTests extends FJDTestCase {
         assert n.arguments.size() == 0
     }
 
-    void test_override() {
-               
+    void test_T_EXPR_001() {
+        def program = '''
+    class A extends Object {
+        A() {
+            super();
+        }
+        A getThis() {
+            return this;
+        }
+    }
+
+    new A().getThis()
+'''
+        def CT = new ClassTable()
+        def TT = new Environment()
+        def programNode = compile(program, CT, TT)
+        def r = new Rules(CT: CT, TT: TT)
+
+        ClassNode c = r.T_EXPR(programNode.expr.children[0])
+        assert c == CT['A']
     }
 }

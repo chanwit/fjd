@@ -60,7 +60,7 @@ import org.fjd.ast.*
 
         def M = c.methods.find { it.name == m }
         if(M) {
-            return [M.arguments.collect { it.type } as ClassNode[], M.returnType]
+            return [M.arguments.collect { it.type } as List<ClassNode>, M.returnType]
         }
         return mtype(m, c.superClass)
     }
@@ -152,7 +152,7 @@ import org.fjd.ast.*
         ClassNode C = T_EXPR(m.children[0])
         def (DBar, Cr) = mtype(m.name, C)
         def CBar = m.exprList.collect { T_EXPR(it) }
-        if(subClass(CBar, DBar))
+        if(subClassOf(CBar, DBar))
             return Cr
 
         throw new Exception("Reject ${m}")
