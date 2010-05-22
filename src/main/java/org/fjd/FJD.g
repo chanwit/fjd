@@ -20,6 +20,7 @@ tokens {
   METHODS;
   METHOD;
   TYPE;
+  DYNAMIC;
   ARGS;
   ARG;
   METH_BODY;
@@ -80,6 +81,8 @@ arg
 type
     : ID
       -> ^(TYPE ID)
+    | 'def'
+      -> ^(TYPE DYNAMIC)
     ;
 
 ctorBody

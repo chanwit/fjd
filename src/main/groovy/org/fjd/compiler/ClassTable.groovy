@@ -5,13 +5,20 @@ import org.fjd.ast.*
 
 @Typed class ClassTable extends HashMap<String, ClassNode>{
 
-    static final object = new ClassNode(
+    static final object  =  new ClassNode(
                                 name: "Object",
-                                resolved: true)
+                                resolved: true
+                            )
+
+    static final dynamic =  new ClassNode(
+                                name: "Dynamic",
+                                resolved: true
+                            )
 
     ClassTable() {
         super()
-        this["Object"] = object
+        this["Object"]  = object
+        this['Dynamic'] = dynamic
     }
 
 }
