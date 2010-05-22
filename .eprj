@@ -95,6 +95,8 @@
             <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
             <key>gene</key>
             <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
+            <key>gener</key>
+            <string>src\main\groovy\org\fjd\compiler\Generator.groovy</string>
             <key>method</key>
             <string>src\main\groovy\org\fjd\ast\MethodBodyNode.groovy</string>
             <key>methodca</key>

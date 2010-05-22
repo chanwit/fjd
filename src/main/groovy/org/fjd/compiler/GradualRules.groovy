@@ -13,8 +13,6 @@ import org.fjd.ast.*
         if(D == ClassTable.dynamic) return ClassTable.dynamic
     }
     
-    boolean 
-    
     boolean consistent(ClassNode C, ClassNode D) {
         
     }

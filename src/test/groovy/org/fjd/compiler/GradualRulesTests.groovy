@@ -8,4 +8,11 @@ import org.fjd.ast.*
 
 class GradualRulesTests extends FJDTestCase {
 
+    void testConsistency() {
+
+    }
+    
+    void testMaskOff() {
+
+    }
 }

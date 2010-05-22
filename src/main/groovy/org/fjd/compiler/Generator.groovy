@@ -34,6 +34,8 @@ import static org.fjd.FJDParser.*
             case CTOR_BODY: return visitCtorBody(node)
 
             case METHODS:   return visitMethods(node)
+            case ID:        return visitID(node)
+            case DYNAMIC:   return visitDynamic(node)
 
             //
             // expression group
@@ -242,6 +244,11 @@ import static org.fjd.FJDParser.*
         assert node.type == ID
         return node.text
     }
+    
+    String visitDynamic(Tree node) {
+        assert node.type == DYNAMIC
+        return 'Dynamic'
+    }
 
     List<FieldNode> visitFields(Tree node) {
         List<FieldNode> result = []
@@ -262,7 +269,7 @@ import static org.fjd.FJDParser.*
 
     ClassNode visitType(Tree node) {
         assert node.text == 'TYPE'
-        String name = visitID(node.getChild(0))
+        String name = visit(node.getChild(0)) as String
         return getFromCT(CT, name)
     }
 
