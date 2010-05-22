@@ -1,5 +1,6 @@
 package org.fjd.compiler
 
+import org.fjd.RejectException
 import org.fjd.ast.*
 
 @Typed class Rules {
@@ -99,7 +100,7 @@ import org.fjd.ast.*
         if(c)
             return c
 
-        throw new Exception("Reject ${x}")
+        throw new RejectException("Variable ${x} is not in the environment TT.")
     }
 
     @Typed(TypePolicy.DYNAMIC)
@@ -113,7 +114,7 @@ import org.fjd.ast.*
         if(subClassOf(CBar, DBar))
             return C
 
-        throw new Exception("Reject ${e}")
+        throw new RejectException("T_NEW: Type of ${e} not correct: ${C.name}.")
     }
 
     ClassNode T_CAST(CastExprNode c) {
@@ -128,7 +129,7 @@ import org.fjd.ast.*
             return C
         }
 
-        throw new Exception("Reject ${c}")
+        throw new RejectException("T_CAST: Type of ${c} not correct: ${C.name}.")
     }
 
     ClassNode T_FIELD(FieldAccessExprNode f) {
@@ -138,7 +139,7 @@ import org.fjd.ast.*
         if(field)
             return field.type
 
-        throw new Exception("Reject ${f}")
+        throw new RejectException("T_FIELD: Type of ${f} not correct: ${field.type.name}")
     }
 
     @Typed(TypePolicy.DYNAMIC)
@@ -158,7 +159,7 @@ import org.fjd.ast.*
                 return Cr
         }
 
-        throw new Exception("Reject ${m}")
+        throw new Exception("T_INVK: Type of method ${m} not correct: ${Cr.name}")
     }
 
     //
@@ -181,7 +182,7 @@ import org.fjd.ast.*
             }
         }
 
-        throw new Exception("Reject ${mn}, ${C}")
+        throw new RejectException("Method ${mn.name} not OK in ${C.name}")
     }
  
     //
@@ -191,7 +192,8 @@ import org.fjd.ast.*
     void T_CLASS(ClassNode C) {
         def D = C.superClass
         def K = C.ctor
-        if(K.name != C.name) throw new Exception("Reject ${K} ${C}")
+        if(K.name != C.name)
+            throw new RejectException("Constructor name is not correct ${K.name}")
 
         def Kbody = C.ctor.body
         def DBar_CBar = Kbody.superStmt.arguments.collect { it.type }
@@ -200,16 +202,20 @@ import org.fjd.ast.*
         def DBar = fields(D).collect { it.type }
         def gBar = fields(D).collect { it.name }
         
-        def CBar = C.fields.collect { it.type }
-        def fBar = C.fields.collect { it.name }
+        def CBar = C.fields.collect  { it.type }
+        def fBar = C.fields.collect  { it.name }
 
         Kbody.fieldInits.inject(0) { i, fi ->
-            if(fi.field != fi.value)     throw new Exception("Reject ${C}")
-            if(fi.field != fBar[i].name) throw new Exception("Reject ${C}")
+            if(fi.field != fi.value)     
+                throw new RejectException("Reject ${C}")
+            if(fi.field != fBar[i].name)
+                throw new RejectException("Reject ${C}")
             i + 1
         }
-        if(DBar_CBar != (DBar + CBar)) throw new Exception("Reject ${C}")
-        if(gBar_fBar != (gBar + fBar)) throw new Exception("Reject ${C}")
+        if(DBar_CBar != (DBar + CBar))
+            throw new RejectException("Reject ${C}")
+        if(gBar_fBar != (gBar + fBar))
+            throw new RejectException("Reject ${C}")
 
         C.methods.each {
             T_METHOD(it, C)

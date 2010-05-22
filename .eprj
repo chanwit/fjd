@@ -119,6 +119,8 @@
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>ru</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
+            <key>rul</key>
+            <string>src\main\groovy\org\fjd\compiler\Rules.groovy</string>
             <key>rule</key>
             <string>src\test\groovy\org\fjd\compiler\RulesTests.groovy</string>
             <key>rules</key>

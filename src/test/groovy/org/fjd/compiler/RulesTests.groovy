@@ -221,8 +221,9 @@ class RulesTests extends FJDTestCase {
         try {
             r.T_METHOD(getThis, A)               
             fail("Fail here")
-        }catch(Exception e) {
+        }catch(RejectException e) {
             assert e != null
         }
+        try { r.T_CLASS(A); fail("Fail here") } catch(RejectException e) {}
     }
 }
