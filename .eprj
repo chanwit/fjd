@@ -21,6 +21,7 @@
                 <string>*.gradle</string>
                 <string>*.fjd</string>
                 <string>*.g</string>
+                <string>*.als</string>
             </array>
         </dict>
         <key>fileTriggers</key>
