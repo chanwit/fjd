@@ -1,9 +1,13 @@
 package org.fjd.compiler
 
-import org.fjd.ast.*
-import java.util.*
+import java.util.HashMap
+import java.util.Stack
 
-@Typed class Environment extends HashMap<ExprNode, ClassNode> {
+import org.fjd.ast.ClassNode
+import org.fjd.ast.ExprNode
+import org.fjd.ast.MethodNode
+
+class Environment extends HashMap<ExprNode, ClassNode> {
 
     private Stack<ClassNode>  classStack  = new Stack<ClassNode>()
     private Stack<MethodNode> methodStack = new Stack<MethodNode>()
@@ -20,7 +24,7 @@ import java.util.*
     void pop() {
         classStack.pop()
     }
-    
+
     void pushMethod(MethodNode m) {
         methodStack.push(m)
     }

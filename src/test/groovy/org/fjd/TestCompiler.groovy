@@ -1,18 +1,17 @@
 package org.fjd
 
-import groovy.util.*
+import org.fjd.ast.CastExprNode
+import org.fjd.ast.ConstructorBodyNode
+import org.fjd.ast.ConstructorNode
+import org.fjd.ast.ExprNode
+import org.fjd.ast.FieldAccessExprNode
+import org.fjd.ast.MethodCallExprNode
+import org.fjd.ast.NewExprNode
+import org.fjd.compiler.ClassTable
+import org.fjd.compiler.Environment
 
-import org.antlr.runtime.*
-import org.antlr.runtime.*
-import org.fjd.FJDLexer
-import org.fjd.FJDParser
-import org.antlr.runtime.tree.*
+class TestCompiler extends FJDTestCase {
 
-import org.fjd.ast.*
-import org.fjd.compiler.*
-
-@Typed class TestCompiler extends FJDTestCase {
-    
     void test_1_Class_1_Expression() {
         def program1 = '''
     class A extends Object {
@@ -21,7 +20,7 @@ import org.fjd.compiler.*
         super();
       }
     }
-    
+
     new A()
 '''
         def TT = new Environment()
@@ -35,7 +34,7 @@ import org.fjd.compiler.*
         def x = c.fields[0]
         assert x.type.name == 'Object'
         assert x.name == 'x'
-        
+
         def expr = programNode.expr
         assert expr instanceof ExprNode
         assert expr.children[0] instanceof NewExprNode
@@ -43,7 +42,7 @@ import org.fjd.compiler.*
         assert newExpr.type.name == 'A'
         assert newExpr.arguments.size() == 0
     }
-    
+
     void test_2_Class_1_Expression() {
         def program2 = '''
     class A extends Object {
@@ -51,7 +50,7 @@ import org.fjd.compiler.*
             super();
         }
     }
-    
+
     class B extends A {
         Object x;
         B(Object x) {
@@ -59,7 +58,7 @@ import org.fjd.compiler.*
             this.x = x;
         }
     }
-    
+
     new B(new Object())
 '''
         def TT = new Environment()
@@ -78,21 +77,21 @@ import org.fjd.compiler.*
         assert CT[A.name] == A
         def B = programNode.classes[1]
         assert B.name == 'B'
-        
+
         assert B.fields[0].name == 'x'
         assert B.fields[0].type == CT["Object"]
         assert B.ctor instanceof ConstructorNode
         assert B.ctor.arguments.size() == 1
         assert B.ctor.arguments[0].name == 'x'
         assert B.ctor.arguments[0].type == CT['Object']
-        
+
         def ctorBody = B.ctor.body
         assert ctorBody instanceof ConstructorBodyNode
         assert ctorBody.superStmt.arguments.size() == 0
         assert ctorBody.fieldInits.size() == 1
         assert ctorBody.fieldInits[0].field == 'x'
         assert ctorBody.fieldInits[0].value == 'x'
-        
+
         def expr = programNode.expr
         assert expr.children[0] instanceof NewExprNode
         def newExpr = expr.children[0] as NewExprNode
@@ -100,7 +99,7 @@ import org.fjd.compiler.*
         assert newExpr.arguments[0] instanceof NewExprNode
         assert (newExpr.arguments[0] as NewExprNode).type == CT['Object']
     }
-    
+
     void test_MethodCall_and_FieldAccess() {
         def program = '''
     class A extends Object {
@@ -111,7 +110,7 @@ import org.fjd.compiler.*
             return new Object();
         }
     }
-    
+
     new A().method((Object)new A()).field
 '''
 
@@ -139,7 +138,7 @@ import org.fjd.compiler.*
         assert evalExpr.children[0] instanceof FieldAccessExprNode
         def f = (evalExpr.children[0] as FieldAccessExprNode)
         assert f.field == 'field'
-               
+
         assert f.children[0] instanceof MethodCallExprNode
         def m = f.children[0] as MethodCallExprNode
         assert m.name == 'method'

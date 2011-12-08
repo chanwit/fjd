@@ -2,8 +2,8 @@ package org.fjd.compiler
 
 import org.fjd.ast.*
 
-@Typed abstract class AbstractTypeChecker {
-    
+abstract class AbstractTypeChecker {
+
     void visit(ProgramNode program) {
         for(c in program.classes) {
             visit(c)
@@ -17,18 +17,18 @@ import org.fjd.ast.*
         for(f in c.fields) {
             visit(f)
         }
-        visit(c.ctor)
+        if(c.ctor) visit(c.ctor)
         for(m in c.methods) {
             visit(m)
         }
     }
-    
+
     void visit(FieldNode f) {
         if(f==null) return
         visit(f.type)
         visit(f.name)
     }
-    
+
     void visit(ConstructorNode c) {
         if(c==null) return
         visit(c.name)
@@ -37,21 +37,21 @@ import org.fjd.ast.*
         }
         visit(c.body)
     }
-    
+
     void visit(ConstructorBodyNode c) {
         if(c==null) return
         visit(c.superStmt)
         for(f in c.fieldInits) {
             visit(f)
         }
-    }    
-    
+    }
+
     void visit(FieldInitNode f) {
         if(f==null) return
         visit(f.field)
         visit(f.value)
     }
-    
+
     void visit(ArgNode a) {
         if(a==null) return
         visit(a.type)
@@ -64,7 +64,7 @@ import org.fjd.ast.*
             visit(a)
         }
     }
-    
+
     void visit(MethodNode m) {
         if(m==null) return
         visit(m.returnType)
@@ -74,12 +74,12 @@ import org.fjd.ast.*
         }
         visit(m.body)
     }
-    
+
     void visit(MethodBodyNode m) {
         if(m==null) return
         visit(m.expr)
     }
-    
+
     void visit(ExprNode e) {
         if(e==null) return
         for(c in e.children) {

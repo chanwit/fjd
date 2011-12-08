@@ -1,13 +1,17 @@
 package org.fjd
 
-import groovy.util.*
-import org.antlr.runtime.*
-import org.antlr.runtime.tree.*
-import org.fjd.*
-import org.fjd.compiler.*
-import org.fjd.ast.*
+import groovy.util.GroovyTestCase
 
-@Typed abstract class FJDTestCase extends GroovyTestCase {
+import org.antlr.runtime.ANTLRStringStream
+import org.antlr.runtime.CommonTokenStream
+import org.antlr.runtime.tree.Tree
+import org.fjd.ast.ProgramNode
+import org.fjd.compiler.ClassTable
+import org.fjd.compiler.Environment
+import org.fjd.compiler.Generator
+import org.fjd.FJDParser
+
+abstract class FJDTestCase extends GroovyTestCase {
 
      protected ProgramNode compile(String str, ClassTable CT, Environment TT) {
         def input = new ANTLRStringStream(str)
@@ -16,7 +20,7 @@ import org.fjd.ast.*
         def parser = new FJDParser(tokens)
         def tree = parser.program().tree as Tree
 
-        return new Generator(CT, TT).visit(tree) as ProgramNode        
+        return new Generator(CT, TT).visit(tree) as ProgramNode
     }
 
 }

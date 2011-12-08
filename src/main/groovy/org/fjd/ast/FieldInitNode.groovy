@@ -1,6 +1,6 @@
 package org.fjd.ast
 
-@Typed class FieldInitNode {
+class FieldInitNode {
     
     String field
     String value

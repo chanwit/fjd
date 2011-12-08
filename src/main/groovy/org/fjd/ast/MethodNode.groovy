@@ -1,6 +1,6 @@
 package org.fjd.ast
 
-@Typed class MethodNode {
+class MethodNode {
 
     ClassNode returnType
     String name

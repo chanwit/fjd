@@ -1,4 +1,4 @@
 package org.fjd.ast
 
-@Typed class ThisExprNode extends ExprNode {
+class ThisExprNode extends ExprNode {
 }

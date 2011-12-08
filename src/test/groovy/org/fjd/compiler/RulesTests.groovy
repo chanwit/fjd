@@ -1,10 +1,9 @@
 package org.fjd.compiler
 
-import groovy.util.*
-import org.antlr.runtime.*
-import org.antlr.runtime.tree.*
-import org.fjd.*
-import org.fjd.ast.*
+import org.fjd.FJDTestCase;
+import org.fjd.ast.ClassNode
+import org.fjd.ast.NewExprNode
+import org.fjd.RejectException
 
 class RulesTests extends FJDTestCase {
 
@@ -166,7 +165,7 @@ class RulesTests extends FJDTestCase {
         def (x, e) = r.mbody(method, B)
         assert x == ['a','b']
         assert e.children[0] instanceof NewExprNode
-        def n = e.children[0]
+        def n = e.children[0] as NewExprNode
         assert n.type == CT['Object']
         assert n.arguments.size() == 0
     }
@@ -188,7 +187,7 @@ class RulesTests extends FJDTestCase {
         def TT = new Environment()
         def programNode = compile(program, CT, TT)
         def r = new Rules(CT: CT, TT: TT)
-        def A = CT['A']
+        def A = CT['A'] as ClassNode
 
         ClassNode c = r.T_EXPR(programNode.expr.children[0])
         assert c == A
@@ -197,7 +196,7 @@ class RulesTests extends FJDTestCase {
         r.T_METHOD(getThis, A)
         r.T_CLASS(A)
     }
-    
+
     void test_T_METHOD_should_fail() {
         def program = '''
     class A extends Object {
@@ -208,18 +207,18 @@ class RulesTests extends FJDTestCase {
             return this;
         }
     }
-    
+
     new A()
 '''
         def CT = new ClassTable()
         def TT = new Environment()
         def programNode = compile(program, CT, TT)
         def r = new Rules(CT: CT, TT: TT)
-        
-        def A = CT['A']
+
+        def A = CT['A'] as ClassNode
         def getThis = A.methods.find { it.name = 'getThis' }
         try {
-            r.T_METHOD(getThis, A)               
+            r.T_METHOD(getThis, A)
             fail("Fail here")
         }catch(RejectException e) {
             assert e != null

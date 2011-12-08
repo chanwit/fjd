@@ -1,6 +1,6 @@
 package org.fjd.ast
 
-@Typed class ExprNode {
+class ExprNode {
 
     List<ExprNode> children = []
 

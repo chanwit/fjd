@@ -1,6 +1,6 @@
 package org.fjd.ast
 
-@Typed class MethodBodyNode {
+class MethodBodyNode {
 
     ExprNode expr
 

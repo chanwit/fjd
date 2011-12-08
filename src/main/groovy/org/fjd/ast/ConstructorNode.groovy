@@ -1,6 +1,6 @@
 package org.fjd.ast
 
-@Typed class ConstructorNode {
+class ConstructorNode {
 
     String name
     List<ArgNode> arguments = []

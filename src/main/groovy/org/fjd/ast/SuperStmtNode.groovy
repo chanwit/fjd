@@ -1,5 +1,5 @@
 package org.fjd.ast
 
-@Typed class SuperStmtNode {
+class SuperStmtNode {
     List<ArgNode> arguments
 }

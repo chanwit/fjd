@@ -4,7 +4,7 @@ import org.fjd.ast.*
 import org.antlr.runtime.tree.Tree
 import static org.fjd.FJDParser.*
 
-@Typed class Generator {
+class Generator {
 
     private ClassTable CT
     private Environment TT

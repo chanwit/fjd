@@ -3,7 +3,7 @@ package org.fjd.compiler
 import org.fjd.RejectException
 import org.fjd.ast.*
 
-@Typed class Rules {
+class Rules {
 
     ClassTable CT
     Environment TT
@@ -25,7 +25,7 @@ import org.fjd.ast.*
         // --------------------------------
         //             C <: D
 
-        ClassNode superClass = c.superClass? c.superClass: ClassTable.object
+        ClassNode superClass = c.superClass ? c.superClass : ClassTable.object
         if(CT[c.name] == c && superClass == d) return true
 
         return subClassOf(superClass, d)
@@ -66,7 +66,6 @@ import org.fjd.ast.*
         return mtype(m, c.superClass)
     }
 
-    @Typed(TypePolicy.DYNAMIC)
     def override(MethodNode m, ClassNode D, List methTypeOfC) {
 
         if(mtype(m, D) == null) return true
@@ -103,7 +102,6 @@ import org.fjd.ast.*
         throw new RejectException("Variable ${x} is not in the environment TT.")
     }
 
-    @Typed(TypePolicy.DYNAMIC)
     ClassNode T_NEW(NewExprNode e) {
         def C = e.type
         def eBar = e.arguments
@@ -135,14 +133,13 @@ import org.fjd.ast.*
     ClassNode T_FIELD(FieldAccessExprNode f) {
         def C = T_EXPR(f.children[0])
         def fields = fields(C)
-        def field  = fields.find { it.name == f.field }
+        def field  = fields.find { it.name == f.field } as FieldNode
         if(field)
             return field.type
 
         throw new RejectException("T_FIELD: Type of ${f} not correct: ${field.type.name}")
     }
 
-    @Typed(TypePolicy.DYNAMIC)
     ClassNode T_INVK(MethodCallExprNode m) {
         //
         // e.m(eBar) : Cr
@@ -167,7 +164,7 @@ import org.fjd.ast.*
     //
     void T_METHOD(MethodNode mn, ClassNode C) {
 
-        if (C.methods.find { it == mn } != mn)
+        if (!C.methods.contains(mn))
             throw new Exception("Reject ${mn}, ${C}")
 
         def CBar = mn.arguments.collect { it.type }
@@ -184,11 +181,10 @@ import org.fjd.ast.*
 
         throw new RejectException("Method ${mn.name} not OK in ${C.name}")
     }
- 
+
     //
-    // C OK ?   
+    // C OK ?
     //
-    @Typed(TypePolicy.DYNAMIC)
     void T_CLASS(ClassNode C) {
         def D = C.superClass
         def K = C.ctor
@@ -198,15 +194,15 @@ import org.fjd.ast.*
         def Kbody = C.ctor.body
         def DBar_CBar = Kbody.superStmt.arguments.collect { it.type }
         def gBar_fBar = Kbody.superStmt.arguments.collect { it.name }
-        
+
         def DBar = fields(D).collect { it.type }
         def gBar = fields(D).collect { it.name }
-        
+
         def CBar = C.fields.collect  { it.type }
         def fBar = C.fields.collect  { it.name }
 
         Kbody.fieldInits.inject(0) { i, fi ->
-            if(fi.field != fi.value)     
+            if(fi.field != fi.value)
                 throw new RejectException("Reject ${C}")
             if(fi.field != fBar[i].name)
                 throw new RejectException("Reject ${C}")

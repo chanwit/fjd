@@ -1,6 +1,6 @@
 package org.fjd.ast
 
-@Typed class ConstructorBodyNode {
+class ConstructorBodyNode {
 
     SuperStmtNode superStmt
     List<FieldInitNode> fieldInits = []

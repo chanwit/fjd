@@ -2,7 +2,7 @@ package org.fjd.compiler
 
 import org.fjd.ast.*
 
-@Typed class GradualRules {
+class GradualRules {
 
     ClassTable  CT
     Environment TT

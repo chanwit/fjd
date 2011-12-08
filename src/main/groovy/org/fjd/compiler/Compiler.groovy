@@ -6,7 +6,7 @@ import org.fjd.FJDLexer;
 import org.fjd.FJDParser;
 import org.antlr.runtime.tree.*;
 
-@Typed class Compiler {
+class Compiler {
 
 	static void main(String[] args) {
 		def input = new ANTLRFileStream(args[0], "UTF-8")

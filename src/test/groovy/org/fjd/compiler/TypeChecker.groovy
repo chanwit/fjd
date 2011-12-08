@@ -1,7 +1,7 @@
 package org.fjd.compiler
 
-@Typed class TypeChecker extends AbstractTypeChecker {
- 
+class TypeChecker extends AbstractTypeChecker {
+
     String result = ''
 
     @Override

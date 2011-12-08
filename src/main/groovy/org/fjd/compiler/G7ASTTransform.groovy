@@ -14,7 +14,6 @@ import java.util.LinkedList
 
 import org.mbte.groovypp.compiler.*
 
-@Typed
 @GroovyASTTransformation(phase = CompilePhase.CONVERSION)
 class G7ASTTransform implements ASTTransformation, Opcodes {
 

@@ -3,7 +3,6 @@ apply plugin: 'eclipse'
 
 repositories {
     mavenCentral()
-    mavenRepo urls: "http://groovypp.artifactoryonline.com/groovypp/libs-releases-local/"
 }
 
 configurations {
@@ -11,19 +10,20 @@ configurations {
 }
 
 dependencies {
-    grammarCompile 'org.antlr:antlr:3.2'
-    compile group: 'org.antlr', name: 'antlr-runtime', version: '3.2'
+    def antlrVer = '3.4'
+    
+    grammarCompile "org.antlr:antlr:${antlrVer}"
+    compile        "org.antlr:antlr-runtime:${antlrVer}"
 
 	def gppVersion = '0.2.5'
-    groovy group: 'org.codehaus.groovy', name: 'groovy',   version: "1.8.0-beta-1-SNAPSHOT-gpp-${gppVersion}"
-    groovy group: 'org.mbte.groovypp',   name: 'groovypp', version: "${gppVersion}"
+    groovy group: 'org.codehaus.groovy', name: 'groovy-all',   version: "1.8.4"
     groovy group: 'asm',       name: 'asm-all',  version: '3.2'
-    groovy group: 'org.antlr', name: 'antlr',    version: '3.2'
+    groovy group: 'org.antlr', name: 'antlr',    version: antlrVer
 
     testCompile group: 'junit',     name: 'junit', version: '4.8.1'
-    testCompile group: 'org.antlr', name:'gunit',  version: '3.2'
-    testCompile group: 'org.antlr', name: 'antlr',    version: '3.2'
-    testCompile group: 'org.antlr', name: 'antlr-runtime', version: '3.2'
+    testCompile group: 'org.antlr', name: 'gunit', version: antlrVer
+    testCompile group: 'org.antlr', name: 'antlr', version: antlrVer
+    testCompile group: 'org.antlr', name: 'antlr-runtime', version: antlrVer
 }
 
 task generateGrammarSources (description: 'Invokes the antlr3-task from ant to generate grammar sources') << {

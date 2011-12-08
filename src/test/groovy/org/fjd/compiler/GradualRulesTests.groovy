@@ -1,17 +1,13 @@
 package org.fjd.compiler
 
-import groovy.util.*
-import org.antlr.runtime.*
-import org.antlr.runtime.tree.*
-import org.fjd.*
-import org.fjd.ast.*
+import org.fjd.FJDTestCase;
 
 class GradualRulesTests extends FJDTestCase {
 
     void testConsistency() {
 
     }
-    
+
     void testMaskOff() {
 
     }

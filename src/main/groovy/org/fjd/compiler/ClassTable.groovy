@@ -1,9 +1,10 @@
 package org.fjd.compiler
 
-import java.util.*
-import org.fjd.ast.*
+import java.util.HashMap
 
-@Typed class ClassTable extends HashMap<String, ClassNode>{
+import org.fjd.ast.ClassNode
+
+class ClassTable extends HashMap<String, ClassNode>{
 
     static final object  =  new ClassNode(
                                 name: "Object",

@@ -1,13 +1,13 @@
 package org.fjd.ast
 
-@Typed class ClassNode {
+class ClassNode {
 
     boolean resolved = false
 
     String name
-    ClassNode superClass
+    ClassNode superClass = null
     List<FieldNode> fields = []
-    ConstructorNode ctor
+    ConstructorNode ctor = null
     List<MethodNode> methods = []
 
 }

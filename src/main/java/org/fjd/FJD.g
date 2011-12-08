@@ -2,7 +2,7 @@ grammar FJD;
 
 options {
     output=AST;
-    ASTLabelType=CommonTree;  
+    ASTLabelType=CommonTree;
 }
 
 tokens {
@@ -38,26 +38,26 @@ tokens {
 @parser::header { package org.fjd; }
 @lexer::header  { package org.fjd; }
 
-program	
+program
     : classDecl+
       expr
-      -> ^(PROGRAM classDecl+ ^(EXPR expr)) 
+      -> ^(PROGRAM classDecl+ ^(EXPR expr))
     ;
 
 classDecl
-    :   'class' className=ID 'extends' superClass=ID '{' 
-            fieldDecls ctorDecl methodDecls 
+    :   'class' className=ID 'extends' superClass=ID '{'
+            fieldDecls ctorDecl methodDecls
         '}'
     ->  ^(CLASS $className ^(SUPER_CLASS $superClass)
             fieldDecls ctorDecl methodDecls
         )
     ;
 
-fieldDecls	
+fieldDecls
     : fieldDecl*
-      -> ^(FIELDS fieldDecl*) 
+      -> ^(FIELDS fieldDecl*)
     ;
-    
+
 fieldDecl
     : type ID ';'
       -> ^(FIELD type ID)
@@ -74,7 +74,7 @@ argList
     ;
 
 arg
-    : type ID 
+    : type ID
       -> ^(ARG type ID)
     ;
 
@@ -90,9 +90,9 @@ ctorBody
       fieldInits
       -> ^(CTOR_BODY superStmt fieldInits)
     ;
-    
+
 superStmt
-    : 'super' '(' argList? ')' ';'	
+    : 'super' '(' argList? ')' ';'
       -> ^(SUPER_STMT argList?)
     ;
 
@@ -105,21 +105,21 @@ fieldInit
     : 'this' '.' field=ID '=' value=ID ';'
       -> ^(FIELD_INIT $field $value)
     ;
-    
+
 methodDecls
     : methodDecl*
       -> ^(METHODS methodDecl*)
     ;
-    
+
 methodDecl
     : type name=ID '(' argList? ')' '{' methBody '}'
       -> ^(METHOD type $name argList? methBody)
-    ;	
-    
+    ;
+
 methBody
     : 'return' expr ';'
       -> ^(METH_BODY ^(EXPR expr))
-    ;	
+    ;
 
 exprList
     : expr (',' expr)*
@@ -127,7 +127,7 @@ exprList
     ;
 
 expr
-    : ( valueExpr | thisExpr) fieldAccessOrMethCall*    
+    : ( valueExpr | thisExpr ) fieldAccessOrMethCall*
     ;
 
 valueExpr
@@ -136,14 +136,14 @@ valueExpr
     ;
 
 thisExpr
-    : 'this' 
+    : 'this'
       -> ^(THIS_EXPR)
     | newExpr
     ;
 
 newExpr
     : 'new' type '(' exprList? ')'
-       -> ^(NEW_EXPR type exprList?) 
+       -> ^(NEW_EXPR type exprList?)
     | castExpr
     ;
 

@@ -1,6 +1,6 @@
 package org.fjd.ast
 
-@Typed class ProgramNode {
+class ProgramNode {
 
 	List<ClassNode> classes = []
 	ExprNode expr

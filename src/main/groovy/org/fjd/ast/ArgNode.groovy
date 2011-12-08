@@ -1,6 +1,6 @@
 package org.fjd.ast
 
-@Typed class ArgNode {
+class ArgNode {
 
     ClassNode type
     String name
