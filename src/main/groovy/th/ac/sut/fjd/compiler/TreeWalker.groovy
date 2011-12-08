@@ -4,7 +4,7 @@ import th.ac.sut.fjd.ast.*
 import org.antlr.runtime.tree.Tree
 import static th.ac.sut.fjd.FJDParser.*
 
-class Generator {
+class TreeWalker {
 
     private ClassTable CT
     private Environment TT
@@ -12,7 +12,7 @@ class Generator {
     private ProgramNode ast
     private def parent
 
-    Generator(ClassTable CT, Environment TT) {
+    TreeWalker(ClassTable CT, Environment TT) {
         this.CT = CT
         this.TT = TT
     }

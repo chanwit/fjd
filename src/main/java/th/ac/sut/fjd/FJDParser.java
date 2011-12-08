@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g 2011-12-08 23:52:55
+// $ANTLR 3.4 C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g 2011-12-09 01:16:17
  package th.ac.sut.fjd; 
 
 import org.antlr.runtime.*;
@@ -162,7 +162,7 @@ public TreeAdaptor getTreeAdaptor() {
             stream_expr.add(expr2.getTree());
 
             // AST REWRITE
-            // elements: expr, classDecl
+            // elements: classDecl, expr
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -326,7 +326,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: ctorDecl, className, methodDecls, fieldDecls, superClass
+            // elements: methodDecls, superClass, className, ctorDecl, fieldDecls
             // token labels: superClass, className
             // rule labels: retval
             // token list labels: 
@@ -406,7 +406,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "fieldDecls"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:56:1: fieldDecls : ( fieldDecl )* -> ^( FIELDS ( fieldDecl )* ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:54:1: fieldDecls : ( fieldDecl )* -> ^( FIELDS ( fieldDecl )* ) ;
     public final FJDParser.fieldDecls_return fieldDecls() throws RecognitionException {
         FJDParser.fieldDecls_return retval = new FJDParser.fieldDecls_return();
         retval.start = input.LT(1);
@@ -419,10 +419,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_fieldDecl=new RewriteRuleSubtreeStream(adaptor,"rule fieldDecl");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:57:5: ( ( fieldDecl )* -> ^( FIELDS ( fieldDecl )* ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:57:7: ( fieldDecl )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:55:5: ( ( fieldDecl )* -> ^( FIELDS ( fieldDecl )* ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:55:7: ( fieldDecl )*
             {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:57:7: ( fieldDecl )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:55:7: ( fieldDecl )*
             loop2:
             do {
                 int alt2=2;
@@ -444,9 +444,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:57:7: fieldDecl
+            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:55:7: fieldDecl
             	    {
-            	    pushFollow(FOLLOW_fieldDecl_in_fieldDecls341);
+            	    pushFollow(FOLLOW_fieldDecl_in_fieldDecls321);
             	    fieldDecl10=fieldDecl();
 
             	    state._fsp--;
@@ -473,16 +473,16 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 58:7: -> ^( FIELDS ( fieldDecl )* )
+            // 56:7: -> ^( FIELDS ( fieldDecl )* )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:58:10: ^( FIELDS ( fieldDecl )* )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:56:10: ^( FIELDS ( fieldDecl )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(FIELDS, "FIELDS")
                 , root_1);
 
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:58:19: ( fieldDecl )*
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:56:19: ( fieldDecl )*
                 while ( stream_fieldDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_fieldDecl.nextTree());
 
@@ -528,7 +528,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "fieldDecl"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:61:1: fieldDecl : type ID ';' -> ^( FIELD type ID ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:59:1: fieldDecl : type ID ';' -> ^( FIELD type ID ) ;
     public final FJDParser.fieldDecl_return fieldDecl() throws RecognitionException {
         FJDParser.fieldDecl_return retval = new FJDParser.fieldDecl_return();
         retval.start = input.LT(1);
@@ -547,26 +547,26 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:62:5: ( type ID ';' -> ^( FIELD type ID ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:62:7: type ID ';'
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:60:5: ( type ID ';' -> ^( FIELD type ID ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:60:7: type ID ';'
             {
-            pushFollow(FOLLOW_type_in_fieldDecl374);
+            pushFollow(FOLLOW_type_in_fieldDecl354);
             type11=type();
 
             state._fsp--;
 
             stream_type.add(type11.getTree());
 
-            ID12=(Token)match(input,ID,FOLLOW_ID_in_fieldDecl376);  
+            ID12=(Token)match(input,ID,FOLLOW_ID_in_fieldDecl356);  
             stream_ID.add(ID12);
 
 
-            char_literal13=(Token)match(input,41,FOLLOW_41_in_fieldDecl378);  
+            char_literal13=(Token)match(input,41,FOLLOW_41_in_fieldDecl358);  
             stream_41.add(char_literal13);
 
 
             // AST REWRITE
-            // elements: ID, type
+            // elements: type, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -576,9 +576,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 63:7: -> ^( FIELD type ID )
+            // 61:7: -> ^( FIELD type ID )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:63:10: ^( FIELD type ID )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:61:10: ^( FIELD type ID )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -630,7 +630,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "ctorDecl"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:66:1: ctorDecl : name= ID '(' ( argList )? ')' '{' ctorBody '}' -> ^( CTOR $name ( argList )? ctorBody ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:64:1: ctorDecl : name= ID '(' ( argList )? ')' '{' ctorBody '}' -> ^( CTOR $name ( argList )? ctorBody ) ;
     public final FJDParser.ctorDecl_return ctorDecl() throws RecognitionException {
         FJDParser.ctorDecl_return retval = new FJDParser.ctorDecl_return();
         retval.start = input.LT(1);
@@ -661,18 +661,18 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_argList=new RewriteRuleSubtreeStream(adaptor,"rule argList");
         RewriteRuleSubtreeStream stream_ctorBody=new RewriteRuleSubtreeStream(adaptor,"rule ctorBody");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:67:5: (name= ID '(' ( argList )? ')' '{' ctorBody '}' -> ^( CTOR $name ( argList )? ctorBody ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:67:7: name= ID '(' ( argList )? ')' '{' ctorBody '}'
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:65:5: (name= ID '(' ( argList )? ')' '{' ctorBody '}' -> ^( CTOR $name ( argList )? ctorBody ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:65:7: name= ID '(' ( argList )? ')' '{' ctorBody '}'
             {
-            name=(Token)match(input,ID,FOLLOW_ID_in_ctorDecl413);  
+            name=(Token)match(input,ID,FOLLOW_ID_in_ctorDecl393);  
             stream_ID.add(name);
 
 
-            char_literal14=(Token)match(input,37,FOLLOW_37_in_ctorDecl415);  
+            char_literal14=(Token)match(input,37,FOLLOW_37_in_ctorDecl395);  
             stream_37.add(char_literal14);
 
 
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:67:19: ( argList )?
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:65:19: ( argList )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -681,9 +681,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:67:19: argList
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:65:19: argList
                     {
-                    pushFollow(FOLLOW_argList_in_ctorDecl417);
+                    pushFollow(FOLLOW_argList_in_ctorDecl397);
                     argList15=argList();
 
                     state._fsp--;
@@ -696,27 +696,27 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal16=(Token)match(input,38,FOLLOW_38_in_ctorDecl420);  
+            char_literal16=(Token)match(input,38,FOLLOW_38_in_ctorDecl400);  
             stream_38.add(char_literal16);
 
 
-            char_literal17=(Token)match(input,50,FOLLOW_50_in_ctorDecl422);  
+            char_literal17=(Token)match(input,50,FOLLOW_50_in_ctorDecl402);  
             stream_50.add(char_literal17);
 
 
-            pushFollow(FOLLOW_ctorBody_in_ctorDecl424);
+            pushFollow(FOLLOW_ctorBody_in_ctorDecl404);
             ctorBody18=ctorBody();
 
             state._fsp--;
 
             stream_ctorBody.add(ctorBody18.getTree());
 
-            char_literal19=(Token)match(input,51,FOLLOW_51_in_ctorDecl426);  
+            char_literal19=(Token)match(input,51,FOLLOW_51_in_ctorDecl406);  
             stream_51.add(char_literal19);
 
 
             // AST REWRITE
-            // elements: name, argList, ctorBody
+            // elements: argList, ctorBody, name
             // token labels: name
             // rule labels: retval
             // token list labels: 
@@ -727,9 +727,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 68:7: -> ^( CTOR $name ( argList )? ctorBody )
+            // 66:7: -> ^( CTOR $name ( argList )? ctorBody )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:68:10: ^( CTOR $name ( argList )? ctorBody )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:66:10: ^( CTOR $name ( argList )? ctorBody )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -738,7 +738,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 adaptor.addChild(root_1, stream_name.nextNode());
 
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:68:23: ( argList )?
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:66:23: ( argList )?
                 if ( stream_argList.hasNext() ) {
                     adaptor.addChild(root_1, stream_argList.nextTree());
 
@@ -786,7 +786,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "argList"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:71:1: argList : arg ( ',' arg )* -> ^( ARGS ( arg )+ ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:69:1: argList : arg ( ',' arg )* -> ^( ARGS ( arg )+ ) ;
     public final FJDParser.argList_return argList() throws RecognitionException {
         FJDParser.argList_return retval = new FJDParser.argList_return();
         retval.start = input.LT(1);
@@ -804,17 +804,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_39=new RewriteRuleTokenStream(adaptor,"token 39");
         RewriteRuleSubtreeStream stream_arg=new RewriteRuleSubtreeStream(adaptor,"rule arg");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:72:5: ( arg ( ',' arg )* -> ^( ARGS ( arg )+ ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:72:7: arg ( ',' arg )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:70:5: ( arg ( ',' arg )* -> ^( ARGS ( arg )+ ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:70:7: arg ( ',' arg )*
             {
-            pushFollow(FOLLOW_arg_in_argList463);
+            pushFollow(FOLLOW_arg_in_argList443);
             arg20=arg();
 
             state._fsp--;
 
             stream_arg.add(arg20.getTree());
 
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:72:11: ( ',' arg )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:70:11: ( ',' arg )*
             loop4:
             do {
                 int alt4=2;
@@ -827,13 +827,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:72:12: ',' arg
+            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:70:12: ',' arg
             	    {
-            	    char_literal21=(Token)match(input,39,FOLLOW_39_in_argList466);  
+            	    char_literal21=(Token)match(input,39,FOLLOW_39_in_argList446);  
             	    stream_39.add(char_literal21);
 
 
-            	    pushFollow(FOLLOW_arg_in_argList468);
+            	    pushFollow(FOLLOW_arg_in_argList448);
             	    arg22=arg();
 
             	    state._fsp--;
@@ -860,9 +860,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 73:7: -> ^( ARGS ( arg )+ )
+            // 71:7: -> ^( ARGS ( arg )+ )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:73:10: ^( ARGS ( arg )+ )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:71:10: ^( ARGS ( arg )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -917,7 +917,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "arg"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:76:1: arg : type ID -> ^( ARG type ID ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:74:1: arg : type ID -> ^( ARG type ID ) ;
     public final FJDParser.arg_return arg() throws RecognitionException {
         FJDParser.arg_return retval = new FJDParser.arg_return();
         retval.start = input.LT(1);
@@ -933,17 +933,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:77:5: ( type ID -> ^( ARG type ID ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:77:7: type ID
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:75:5: ( type ID -> ^( ARG type ID ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:75:7: type ID
             {
-            pushFollow(FOLLOW_type_in_arg502);
+            pushFollow(FOLLOW_type_in_arg482);
             type23=type();
 
             state._fsp--;
 
             stream_type.add(type23.getTree());
 
-            ID24=(Token)match(input,ID,FOLLOW_ID_in_arg504);  
+            ID24=(Token)match(input,ID,FOLLOW_ID_in_arg484);  
             stream_ID.add(ID24);
 
 
@@ -958,9 +958,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 78:7: -> ^( ARG type ID )
+            // 76:7: -> ^( ARG type ID )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:78:10: ^( ARG type ID )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:76:10: ^( ARG type ID )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -1012,7 +1012,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "type"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:81:1: type : ( ID -> ^( TYPE ID ) | 'def' -> ^( TYPE DYNAMIC ) );
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:79:1: type : ( ID -> ^( TYPE ID ) | 'def' -> ^( TYPE DYNAMIC ) );
     public final FJDParser.type_return type() throws RecognitionException {
         FJDParser.type_return retval = new FJDParser.type_return();
         retval.start = input.LT(1);
@@ -1029,7 +1029,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
 
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:82:5: ( ID -> ^( TYPE ID ) | 'def' -> ^( TYPE DYNAMIC ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:80:5: ( ID -> ^( TYPE ID ) | 'def' -> ^( TYPE DYNAMIC ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1048,9 +1048,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:82:7: ID
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:80:7: ID
                     {
-                    ID25=(Token)match(input,ID,FOLLOW_ID_in_type537);  
+                    ID25=(Token)match(input,ID,FOLLOW_ID_in_type517);  
                     stream_ID.add(ID25);
 
 
@@ -1065,9 +1065,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 83:7: -> ^( TYPE ID )
+                    // 81:7: -> ^( TYPE ID )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:83:10: ^( TYPE ID )
+                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:81:10: ^( TYPE ID )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(
@@ -1089,9 +1089,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:84:7: 'def'
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:82:7: 'def'
                     {
-                    string_literal26=(Token)match(input,44,FOLLOW_44_in_type559);  
+                    string_literal26=(Token)match(input,44,FOLLOW_44_in_type539);  
                     stream_44.add(string_literal26);
 
 
@@ -1106,9 +1106,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 85:7: -> ^( TYPE DYNAMIC )
+                    // 83:7: -> ^( TYPE DYNAMIC )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:85:10: ^( TYPE DYNAMIC )
+                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:83:10: ^( TYPE DYNAMIC )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(
@@ -1160,7 +1160,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "ctorBody"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:88:1: ctorBody : superStmt fieldInits -> ^( CTOR_BODY superStmt fieldInits ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:86:1: ctorBody : superStmt fieldInits -> ^( CTOR_BODY superStmt fieldInits ) ;
     public final FJDParser.ctorBody_return ctorBody() throws RecognitionException {
         FJDParser.ctorBody_return retval = new FJDParser.ctorBody_return();
         retval.start = input.LT(1);
@@ -1176,17 +1176,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_superStmt=new RewriteRuleSubtreeStream(adaptor,"rule superStmt");
         RewriteRuleSubtreeStream stream_fieldInits=new RewriteRuleSubtreeStream(adaptor,"rule fieldInits");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:89:5: ( superStmt fieldInits -> ^( CTOR_BODY superStmt fieldInits ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:89:7: superStmt fieldInits
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:87:5: ( superStmt fieldInits -> ^( CTOR_BODY superStmt fieldInits ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:87:7: superStmt fieldInits
             {
-            pushFollow(FOLLOW_superStmt_in_ctorBody590);
+            pushFollow(FOLLOW_superStmt_in_ctorBody570);
             superStmt27=superStmt();
 
             state._fsp--;
 
             stream_superStmt.add(superStmt27.getTree());
 
-            pushFollow(FOLLOW_fieldInits_in_ctorBody598);
+            pushFollow(FOLLOW_fieldInits_in_ctorBody578);
             fieldInits28=fieldInits();
 
             state._fsp--;
@@ -1204,9 +1204,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 91:7: -> ^( CTOR_BODY superStmt fieldInits )
+            // 89:7: -> ^( CTOR_BODY superStmt fieldInits )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:91:10: ^( CTOR_BODY superStmt fieldInits )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:89:10: ^( CTOR_BODY superStmt fieldInits )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -1256,7 +1256,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "superStmt"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:94:1: superStmt : 'super' '(' ( argList )? ')' ';' -> ^( SUPER_STMT ( argList )? ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:92:1: superStmt : 'super' '(' ( argList )? ')' ';' -> ^( SUPER_STMT ( argList )? ) ;
     public final FJDParser.superStmt_return superStmt() throws RecognitionException {
         FJDParser.superStmt_return retval = new FJDParser.superStmt_return();
         retval.start = input.LT(1);
@@ -1281,18 +1281,18 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_38=new RewriteRuleTokenStream(adaptor,"token 38");
         RewriteRuleSubtreeStream stream_argList=new RewriteRuleSubtreeStream(adaptor,"rule argList");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:95:5: ( 'super' '(' ( argList )? ')' ';' -> ^( SUPER_STMT ( argList )? ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:95:7: 'super' '(' ( argList )? ')' ';'
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:93:5: ( 'super' '(' ( argList )? ')' ';' -> ^( SUPER_STMT ( argList )? ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:93:7: 'super' '(' ( argList )? ')' ';'
             {
-            string_literal29=(Token)match(input,48,FOLLOW_48_in_superStmt631);  
+            string_literal29=(Token)match(input,48,FOLLOW_48_in_superStmt611);  
             stream_48.add(string_literal29);
 
 
-            char_literal30=(Token)match(input,37,FOLLOW_37_in_superStmt633);  
+            char_literal30=(Token)match(input,37,FOLLOW_37_in_superStmt613);  
             stream_37.add(char_literal30);
 
 
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:95:19: ( argList )?
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:93:19: ( argList )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1301,9 +1301,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:95:19: argList
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:93:19: argList
                     {
-                    pushFollow(FOLLOW_argList_in_superStmt635);
+                    pushFollow(FOLLOW_argList_in_superStmt615);
                     argList31=argList();
 
                     state._fsp--;
@@ -1316,11 +1316,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal32=(Token)match(input,38,FOLLOW_38_in_superStmt638);  
+            char_literal32=(Token)match(input,38,FOLLOW_38_in_superStmt618);  
             stream_38.add(char_literal32);
 
 
-            char_literal33=(Token)match(input,41,FOLLOW_41_in_superStmt640);  
+            char_literal33=(Token)match(input,41,FOLLOW_41_in_superStmt620);  
             stream_41.add(char_literal33);
 
 
@@ -1335,16 +1335,16 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 96:7: -> ^( SUPER_STMT ( argList )? )
+            // 94:7: -> ^( SUPER_STMT ( argList )? )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:96:10: ^( SUPER_STMT ( argList )? )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:94:10: ^( SUPER_STMT ( argList )? )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(SUPER_STMT, "SUPER_STMT")
                 , root_1);
 
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:96:23: ( argList )?
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:94:23: ( argList )?
                 if ( stream_argList.hasNext() ) {
                     adaptor.addChild(root_1, stream_argList.nextTree());
 
@@ -1390,7 +1390,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "fieldInits"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:99:1: fieldInits : ( fieldInit )* -> ^( FIELD_INIT_LIST ( fieldInit )* ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:97:1: fieldInits : ( fieldInit )* -> ^( FIELD_INIT_LIST ( fieldInit )* ) ;
     public final FJDParser.fieldInits_return fieldInits() throws RecognitionException {
         FJDParser.fieldInits_return retval = new FJDParser.fieldInits_return();
         retval.start = input.LT(1);
@@ -1403,10 +1403,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_fieldInit=new RewriteRuleSubtreeStream(adaptor,"rule fieldInit");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:100:5: ( ( fieldInit )* -> ^( FIELD_INIT_LIST ( fieldInit )* ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:100:7: ( fieldInit )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:98:5: ( ( fieldInit )* -> ^( FIELD_INIT_LIST ( fieldInit )* ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:98:7: ( fieldInit )*
             {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:100:7: ( fieldInit )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:98:7: ( fieldInit )*
             loop7:
             do {
                 int alt7=2;
@@ -1419,9 +1419,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:100:7: fieldInit
+            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:98:7: fieldInit
             	    {
-            	    pushFollow(FOLLOW_fieldInit_in_fieldInits672);
+            	    pushFollow(FOLLOW_fieldInit_in_fieldInits652);
             	    fieldInit34=fieldInit();
 
             	    state._fsp--;
@@ -1448,16 +1448,16 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 101:7: -> ^( FIELD_INIT_LIST ( fieldInit )* )
+            // 99:7: -> ^( FIELD_INIT_LIST ( fieldInit )* )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:101:10: ^( FIELD_INIT_LIST ( fieldInit )* )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:99:10: ^( FIELD_INIT_LIST ( fieldInit )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(FIELD_INIT_LIST, "FIELD_INIT_LIST")
                 , root_1);
 
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:101:28: ( fieldInit )*
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:99:28: ( fieldInit )*
                 while ( stream_fieldInit.hasNext() ) {
                     adaptor.addChild(root_1, stream_fieldInit.nextTree());
 
@@ -1503,7 +1503,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "fieldInit"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:104:1: fieldInit : 'this' '.' field= ID '=' value= ID ';' -> ^( FIELD_INIT $field $value) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:102:1: fieldInit : 'this' '.' field= ID '=' value= ID ';' -> ^( FIELD_INIT $field $value) ;
     public final FJDParser.fieldInit_return fieldInit() throws RecognitionException {
         FJDParser.fieldInit_return retval = new FJDParser.fieldInit_return();
         retval.start = input.LT(1);
@@ -1531,30 +1531,30 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
 
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:105:5: ( 'this' '.' field= ID '=' value= ID ';' -> ^( FIELD_INIT $field $value) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:105:7: 'this' '.' field= ID '=' value= ID ';'
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:103:5: ( 'this' '.' field= ID '=' value= ID ';' -> ^( FIELD_INIT $field $value) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:103:7: 'this' '.' field= ID '=' value= ID ';'
             {
-            string_literal35=(Token)match(input,49,FOLLOW_49_in_fieldInit705);  
+            string_literal35=(Token)match(input,49,FOLLOW_49_in_fieldInit685);  
             stream_49.add(string_literal35);
 
 
-            char_literal36=(Token)match(input,40,FOLLOW_40_in_fieldInit707);  
+            char_literal36=(Token)match(input,40,FOLLOW_40_in_fieldInit687);  
             stream_40.add(char_literal36);
 
 
-            field=(Token)match(input,ID,FOLLOW_ID_in_fieldInit711);  
+            field=(Token)match(input,ID,FOLLOW_ID_in_fieldInit691);  
             stream_ID.add(field);
 
 
-            char_literal37=(Token)match(input,42,FOLLOW_42_in_fieldInit713);  
+            char_literal37=(Token)match(input,42,FOLLOW_42_in_fieldInit693);  
             stream_42.add(char_literal37);
 
 
-            value=(Token)match(input,ID,FOLLOW_ID_in_fieldInit717);  
+            value=(Token)match(input,ID,FOLLOW_ID_in_fieldInit697);  
             stream_ID.add(value);
 
 
-            char_literal38=(Token)match(input,41,FOLLOW_41_in_fieldInit719);  
+            char_literal38=(Token)match(input,41,FOLLOW_41_in_fieldInit699);  
             stream_41.add(char_literal38);
 
 
@@ -1571,9 +1571,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 106:7: -> ^( FIELD_INIT $field $value)
+            // 104:7: -> ^( FIELD_INIT $field $value)
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:106:10: ^( FIELD_INIT $field $value)
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:104:10: ^( FIELD_INIT $field $value)
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -1623,7 +1623,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "methodDecls"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:109:1: methodDecls : ( methodDecl )* -> ^( METHODS ( methodDecl )* ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:107:1: methodDecls : ( methodDecl )* -> ^( METHODS ( methodDecl )* ) ;
     public final FJDParser.methodDecls_return methodDecls() throws RecognitionException {
         FJDParser.methodDecls_return retval = new FJDParser.methodDecls_return();
         retval.start = input.LT(1);
@@ -1636,10 +1636,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_methodDecl=new RewriteRuleSubtreeStream(adaptor,"rule methodDecl");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:110:5: ( ( methodDecl )* -> ^( METHODS ( methodDecl )* ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:110:7: ( methodDecl )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:108:5: ( ( methodDecl )* -> ^( METHODS ( methodDecl )* ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:108:7: ( methodDecl )*
             {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:110:7: ( methodDecl )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:108:7: ( methodDecl )*
             loop8:
             do {
                 int alt8=2;
@@ -1652,9 +1652,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:110:7: methodDecl
+            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:108:7: methodDecl
             	    {
-            	    pushFollow(FOLLOW_methodDecl_in_methodDecls754);
+            	    pushFollow(FOLLOW_methodDecl_in_methodDecls734);
             	    methodDecl39=methodDecl();
 
             	    state._fsp--;
@@ -1681,16 +1681,16 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 111:7: -> ^( METHODS ( methodDecl )* )
+            // 109:7: -> ^( METHODS ( methodDecl )* )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:111:10: ^( METHODS ( methodDecl )* )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:109:10: ^( METHODS ( methodDecl )* )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(METHODS, "METHODS")
                 , root_1);
 
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:111:20: ( methodDecl )*
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:109:20: ( methodDecl )*
                 while ( stream_methodDecl.hasNext() ) {
                     adaptor.addChild(root_1, stream_methodDecl.nextTree());
 
@@ -1736,7 +1736,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "methodDecl"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:114:1: methodDecl : type name= ID '(' ( argList )? ')' '{' methBody '}' -> ^( METHOD type $name ( argList )? methBody ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:112:1: methodDecl : type name= ID '(' ( argList )? ')' '{' methBody '}' -> ^( METHOD type $name ( argList )? methBody ) ;
     public final FJDParser.methodDecl_return methodDecl() throws RecognitionException {
         FJDParser.methodDecl_return retval = new FJDParser.methodDecl_return();
         retval.start = input.LT(1);
@@ -1770,25 +1770,25 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_methBody=new RewriteRuleSubtreeStream(adaptor,"rule methBody");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:115:5: ( type name= ID '(' ( argList )? ')' '{' methBody '}' -> ^( METHOD type $name ( argList )? methBody ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:115:7: type name= ID '(' ( argList )? ')' '{' methBody '}'
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:113:5: ( type name= ID '(' ( argList )? ')' '{' methBody '}' -> ^( METHOD type $name ( argList )? methBody ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:113:7: type name= ID '(' ( argList )? ')' '{' methBody '}'
             {
-            pushFollow(FOLLOW_type_in_methodDecl787);
+            pushFollow(FOLLOW_type_in_methodDecl767);
             type40=type();
 
             state._fsp--;
 
             stream_type.add(type40.getTree());
 
-            name=(Token)match(input,ID,FOLLOW_ID_in_methodDecl791);  
+            name=(Token)match(input,ID,FOLLOW_ID_in_methodDecl771);  
             stream_ID.add(name);
 
 
-            char_literal41=(Token)match(input,37,FOLLOW_37_in_methodDecl793);  
+            char_literal41=(Token)match(input,37,FOLLOW_37_in_methodDecl773);  
             stream_37.add(char_literal41);
 
 
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:115:24: ( argList )?
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:113:24: ( argList )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1797,9 +1797,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt9) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:115:24: argList
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:113:24: argList
                     {
-                    pushFollow(FOLLOW_argList_in_methodDecl795);
+                    pushFollow(FOLLOW_argList_in_methodDecl775);
                     argList42=argList();
 
                     state._fsp--;
@@ -1812,27 +1812,27 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal43=(Token)match(input,38,FOLLOW_38_in_methodDecl798);  
+            char_literal43=(Token)match(input,38,FOLLOW_38_in_methodDecl778);  
             stream_38.add(char_literal43);
 
 
-            char_literal44=(Token)match(input,50,FOLLOW_50_in_methodDecl800);  
+            char_literal44=(Token)match(input,50,FOLLOW_50_in_methodDecl780);  
             stream_50.add(char_literal44);
 
 
-            pushFollow(FOLLOW_methBody_in_methodDecl802);
+            pushFollow(FOLLOW_methBody_in_methodDecl782);
             methBody45=methBody();
 
             state._fsp--;
 
             stream_methBody.add(methBody45.getTree());
 
-            char_literal46=(Token)match(input,51,FOLLOW_51_in_methodDecl804);  
+            char_literal46=(Token)match(input,51,FOLLOW_51_in_methodDecl784);  
             stream_51.add(char_literal46);
 
 
             // AST REWRITE
-            // elements: name, methBody, type, argList
+            // elements: argList, name, methBody, type
             // token labels: name
             // rule labels: retval
             // token list labels: 
@@ -1843,9 +1843,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 116:7: -> ^( METHOD type $name ( argList )? methBody )
+            // 114:7: -> ^( METHOD type $name ( argList )? methBody )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:116:10: ^( METHOD type $name ( argList )? methBody )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:114:10: ^( METHOD type $name ( argList )? methBody )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -1856,7 +1856,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 adaptor.addChild(root_1, stream_name.nextNode());
 
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:116:30: ( argList )?
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:114:30: ( argList )?
                 if ( stream_argList.hasNext() ) {
                     adaptor.addChild(root_1, stream_argList.nextTree());
 
@@ -1904,7 +1904,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "methBody"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:119:1: methBody : 'return' expr ';' -> ^( METH_BODY ^( EXPR expr ) ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:117:1: methBody : 'return' expr ';' -> ^( METH_BODY ^( EXPR expr ) ) ;
     public final FJDParser.methBody_return methBody() throws RecognitionException {
         FJDParser.methBody_return retval = new FJDParser.methBody_return();
         retval.start = input.LT(1);
@@ -1923,21 +1923,21 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_41=new RewriteRuleTokenStream(adaptor,"token 41");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:120:5: ( 'return' expr ';' -> ^( METH_BODY ^( EXPR expr ) ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:120:7: 'return' expr ';'
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:118:5: ( 'return' expr ';' -> ^( METH_BODY ^( EXPR expr ) ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:118:7: 'return' expr ';'
             {
-            string_literal47=(Token)match(input,47,FOLLOW_47_in_methBody843);  
+            string_literal47=(Token)match(input,47,FOLLOW_47_in_methBody823);  
             stream_47.add(string_literal47);
 
 
-            pushFollow(FOLLOW_expr_in_methBody845);
+            pushFollow(FOLLOW_expr_in_methBody825);
             expr48=expr();
 
             state._fsp--;
 
             stream_expr.add(expr48.getTree());
 
-            char_literal49=(Token)match(input,41,FOLLOW_41_in_methBody847);  
+            char_literal49=(Token)match(input,41,FOLLOW_41_in_methBody827);  
             stream_41.add(char_literal49);
 
 
@@ -1952,16 +1952,16 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 121:7: -> ^( METH_BODY ^( EXPR expr ) )
+            // 119:7: -> ^( METH_BODY ^( EXPR expr ) )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:121:10: ^( METH_BODY ^( EXPR expr ) )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:119:10: ^( METH_BODY ^( EXPR expr ) )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
                 (CommonTree)adaptor.create(METH_BODY, "METH_BODY")
                 , root_1);
 
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:121:22: ^( EXPR expr )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:119:22: ^( EXPR expr )
                 {
                 CommonTree root_2 = (CommonTree)adaptor.nil();
                 root_2 = (CommonTree)adaptor.becomeRoot(
@@ -2012,7 +2012,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "exprList"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:124:1: exprList : expr ( ',' expr )* -> ^( EXPR_LIST ( expr )+ ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:122:1: exprList : expr ( ',' expr )* -> ^( EXPR_LIST ( expr )+ ) ;
     public final FJDParser.exprList_return exprList() throws RecognitionException {
         FJDParser.exprList_return retval = new FJDParser.exprList_return();
         retval.start = input.LT(1);
@@ -2030,17 +2030,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_39=new RewriteRuleTokenStream(adaptor,"token 39");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:125:5: ( expr ( ',' expr )* -> ^( EXPR_LIST ( expr )+ ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:125:7: expr ( ',' expr )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:123:5: ( expr ( ',' expr )* -> ^( EXPR_LIST ( expr )+ ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:123:7: expr ( ',' expr )*
             {
-            pushFollow(FOLLOW_expr_in_exprList882);
+            pushFollow(FOLLOW_expr_in_exprList862);
             expr50=expr();
 
             state._fsp--;
 
             stream_expr.add(expr50.getTree());
 
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:125:12: ( ',' expr )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:123:12: ( ',' expr )*
             loop10:
             do {
                 int alt10=2;
@@ -2053,13 +2053,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:125:13: ',' expr
+            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:123:13: ',' expr
             	    {
-            	    char_literal51=(Token)match(input,39,FOLLOW_39_in_exprList885);  
+            	    char_literal51=(Token)match(input,39,FOLLOW_39_in_exprList865);  
             	    stream_39.add(char_literal51);
 
 
-            	    pushFollow(FOLLOW_expr_in_exprList887);
+            	    pushFollow(FOLLOW_expr_in_exprList867);
             	    expr52=expr();
 
             	    state._fsp--;
@@ -2086,9 +2086,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 126:7: -> ^( EXPR_LIST ( expr )+ )
+            // 124:7: -> ^( EXPR_LIST ( expr )+ )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:126:10: ^( EXPR_LIST ( expr )+ )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:124:10: ^( EXPR_LIST ( expr )+ )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -2143,7 +2143,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "expr"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:129:1: expr : ( valueExpr | thisExpr ) ( fieldAccessOrMethCall )* ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:127:1: expr : ( valueExpr | thisExpr ) ( fieldAccessOrMethCall )* ;
     public final FJDParser.expr_return expr() throws RecognitionException {
         FJDParser.expr_return retval = new FJDParser.expr_return();
         retval.start = input.LT(1);
@@ -2160,13 +2160,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:130:5: ( ( valueExpr | thisExpr ) ( fieldAccessOrMethCall )* )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:130:7: ( valueExpr | thisExpr ) ( fieldAccessOrMethCall )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:128:5: ( ( valueExpr | thisExpr ) ( fieldAccessOrMethCall )* )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:128:7: ( valueExpr | thisExpr ) ( fieldAccessOrMethCall )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
 
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:130:7: ( valueExpr | thisExpr )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:128:7: ( valueExpr | thisExpr )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -2185,9 +2185,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt11) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:130:9: valueExpr
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:128:9: valueExpr
                     {
-                    pushFollow(FOLLOW_valueExpr_in_expr923);
+                    pushFollow(FOLLOW_valueExpr_in_expr903);
                     valueExpr53=valueExpr();
 
                     state._fsp--;
@@ -2197,9 +2197,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:130:21: thisExpr
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:128:21: thisExpr
                     {
-                    pushFollow(FOLLOW_thisExpr_in_expr927);
+                    pushFollow(FOLLOW_thisExpr_in_expr907);
                     thisExpr54=thisExpr();
 
                     state._fsp--;
@@ -2212,7 +2212,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:130:32: ( fieldAccessOrMethCall )*
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:128:32: ( fieldAccessOrMethCall )*
             loop12:
             do {
                 int alt12=2;
@@ -2225,9 +2225,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt12) {
             	case 1 :
-            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:130:32: fieldAccessOrMethCall
+            	    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:128:32: fieldAccessOrMethCall
             	    {
-            	    pushFollow(FOLLOW_fieldAccessOrMethCall_in_expr931);
+            	    pushFollow(FOLLOW_fieldAccessOrMethCall_in_expr911);
             	    fieldAccessOrMethCall55=fieldAccessOrMethCall();
 
             	    state._fsp--;
@@ -2274,7 +2274,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "valueExpr"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:133:1: valueExpr : ID -> ^( VALUE_EXPR ID ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:131:1: valueExpr : ID -> ^( VALUE_EXPR ID ) ;
     public final FJDParser.valueExpr_return valueExpr() throws RecognitionException {
         FJDParser.valueExpr_return retval = new FJDParser.valueExpr_return();
         retval.start = input.LT(1);
@@ -2288,10 +2288,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
 
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:134:5: ( ID -> ^( VALUE_EXPR ID ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:134:7: ID
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:132:5: ( ID -> ^( VALUE_EXPR ID ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:132:7: ID
             {
-            ID56=(Token)match(input,ID,FOLLOW_ID_in_valueExpr949);  
+            ID56=(Token)match(input,ID,FOLLOW_ID_in_valueExpr929);  
             stream_ID.add(ID56);
 
 
@@ -2306,9 +2306,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 135:7: -> ^( VALUE_EXPR ID )
+            // 133:7: -> ^( VALUE_EXPR ID )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:135:10: ^( VALUE_EXPR ID )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:133:10: ^( VALUE_EXPR ID )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -2358,7 +2358,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "thisExpr"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:138:1: thisExpr : ( 'this' -> ^( THIS_EXPR ) | newExpr );
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:136:1: thisExpr : ( 'this' -> ^( THIS_EXPR ) | newExpr );
     public final FJDParser.thisExpr_return thisExpr() throws RecognitionException {
         FJDParser.thisExpr_return retval = new FJDParser.thisExpr_return();
         retval.start = input.LT(1);
@@ -2374,7 +2374,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_49=new RewriteRuleTokenStream(adaptor,"token 49");
 
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:139:5: ( 'this' -> ^( THIS_EXPR ) | newExpr )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:137:5: ( 'this' -> ^( THIS_EXPR ) | newExpr )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2393,9 +2393,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt13) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:139:7: 'this'
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:137:7: 'this'
                     {
-                    string_literal57=(Token)match(input,49,FOLLOW_49_in_thisExpr980);  
+                    string_literal57=(Token)match(input,49,FOLLOW_49_in_thisExpr960);  
                     stream_49.add(string_literal57);
 
 
@@ -2410,9 +2410,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 140:7: -> ^( THIS_EXPR )
+                    // 138:7: -> ^( THIS_EXPR )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:140:10: ^( THIS_EXPR )
+                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:138:10: ^( THIS_EXPR )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(
@@ -2430,12 +2430,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:141:7: newExpr
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:139:7: newExpr
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_newExpr_in_thisExpr1000);
+                    pushFollow(FOLLOW_newExpr_in_thisExpr980);
                     newExpr58=newExpr();
 
                     state._fsp--;
@@ -2475,7 +2475,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "newExpr"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:144:1: newExpr : ( 'new' type '(' ( exprList )? ')' -> ^( NEW_EXPR type ( exprList )? ) | castExpr );
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:142:1: newExpr : ( 'new' type '(' ( exprList )? ')' -> ^( NEW_EXPR type ( exprList )? ) | castExpr );
     public final FJDParser.newExpr_return newExpr() throws RecognitionException {
         FJDParser.newExpr_return retval = new FJDParser.newExpr_return();
         retval.start = input.LT(1);
@@ -2502,7 +2502,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         RewriteRuleSubtreeStream stream_exprList=new RewriteRuleSubtreeStream(adaptor,"rule exprList");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:145:5: ( 'new' type '(' ( exprList )? ')' -> ^( NEW_EXPR type ( exprList )? ) | castExpr )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:143:5: ( 'new' type '(' ( exprList )? ')' -> ^( NEW_EXPR type ( exprList )? ) | castExpr )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2521,24 +2521,24 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt15) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:145:7: 'new' type '(' ( exprList )? ')'
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:143:7: 'new' type '(' ( exprList )? ')'
                     {
-                    string_literal59=(Token)match(input,46,FOLLOW_46_in_newExpr1017);  
+                    string_literal59=(Token)match(input,46,FOLLOW_46_in_newExpr997);  
                     stream_46.add(string_literal59);
 
 
-                    pushFollow(FOLLOW_type_in_newExpr1019);
+                    pushFollow(FOLLOW_type_in_newExpr999);
                     type60=type();
 
                     state._fsp--;
 
                     stream_type.add(type60.getTree());
 
-                    char_literal61=(Token)match(input,37,FOLLOW_37_in_newExpr1021);  
+                    char_literal61=(Token)match(input,37,FOLLOW_37_in_newExpr1001);  
                     stream_37.add(char_literal61);
 
 
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:145:22: ( exprList )?
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:143:22: ( exprList )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -2547,9 +2547,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt14) {
                         case 1 :
-                            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:145:22: exprList
+                            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:143:22: exprList
                             {
-                            pushFollow(FOLLOW_exprList_in_newExpr1023);
+                            pushFollow(FOLLOW_exprList_in_newExpr1003);
                             exprList62=exprList();
 
                             state._fsp--;
@@ -2562,12 +2562,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    char_literal63=(Token)match(input,38,FOLLOW_38_in_newExpr1026);  
+                    char_literal63=(Token)match(input,38,FOLLOW_38_in_newExpr1006);  
                     stream_38.add(char_literal63);
 
 
                     // AST REWRITE
-                    // elements: exprList, type
+                    // elements: type, exprList
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2577,9 +2577,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 146:8: -> ^( NEW_EXPR type ( exprList )? )
+                    // 144:8: -> ^( NEW_EXPR type ( exprList )? )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:146:11: ^( NEW_EXPR type ( exprList )? )
+                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:144:11: ^( NEW_EXPR type ( exprList )? )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(
@@ -2588,7 +2588,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                         adaptor.addChild(root_1, stream_type.nextTree());
 
-                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:146:27: ( exprList )?
+                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:144:27: ( exprList )?
                         if ( stream_exprList.hasNext() ) {
                             adaptor.addChild(root_1, stream_exprList.nextTree());
 
@@ -2606,12 +2606,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:147:7: castExpr
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:145:7: castExpr
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_castExpr_in_newExpr1052);
+                    pushFollow(FOLLOW_castExpr_in_newExpr1032);
                     castExpr64=castExpr();
 
                     state._fsp--;
@@ -2651,7 +2651,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "castExpr"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:150:1: castExpr : '(' type ')' expr -> ^( CAST_EXPR type expr ) ;
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:148:1: castExpr : '(' type ')' expr -> ^( CAST_EXPR type expr ) ;
     public final FJDParser.castExpr_return castExpr() throws RecognitionException {
         FJDParser.castExpr_return retval = new FJDParser.castExpr_return();
         retval.start = input.LT(1);
@@ -2673,25 +2673,25 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         RewriteRuleSubtreeStream stream_type=new RewriteRuleSubtreeStream(adaptor,"rule type");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:151:5: ( '(' type ')' expr -> ^( CAST_EXPR type expr ) )
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:151:7: '(' type ')' expr
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:149:5: ( '(' type ')' expr -> ^( CAST_EXPR type expr ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:149:7: '(' type ')' expr
             {
-            char_literal65=(Token)match(input,37,FOLLOW_37_in_castExpr1069);  
+            char_literal65=(Token)match(input,37,FOLLOW_37_in_castExpr1049);  
             stream_37.add(char_literal65);
 
 
-            pushFollow(FOLLOW_type_in_castExpr1071);
+            pushFollow(FOLLOW_type_in_castExpr1051);
             type66=type();
 
             state._fsp--;
 
             stream_type.add(type66.getTree());
 
-            char_literal67=(Token)match(input,38,FOLLOW_38_in_castExpr1073);  
+            char_literal67=(Token)match(input,38,FOLLOW_38_in_castExpr1053);  
             stream_38.add(char_literal67);
 
 
-            pushFollow(FOLLOW_expr_in_castExpr1075);
+            pushFollow(FOLLOW_expr_in_castExpr1055);
             expr68=expr();
 
             state._fsp--;
@@ -2699,7 +2699,7 @@ public TreeAdaptor getTreeAdaptor() {
             stream_expr.add(expr68.getTree());
 
             // AST REWRITE
-            // elements: expr, type
+            // elements: type, expr
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2709,9 +2709,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 152:7: -> ^( CAST_EXPR type expr )
+            // 150:7: -> ^( CAST_EXPR type expr )
             {
-                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:152:10: ^( CAST_EXPR type expr )
+                // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:150:10: ^( CAST_EXPR type expr )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
@@ -2761,7 +2761,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "fieldAccessOrMethCall"
-    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:155:1: fieldAccessOrMethCall : ( '.' ID -> ^( FIELD_ACCESS_EXPR ID ) | '.' ID '(' ( exprList )? ')' -> ^( METH_CALL_EXPR ID ( exprList )? ) );
+    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:153:1: fieldAccessOrMethCall : ( '.' ID -> ^( FIELD_ACCESS_EXPR ID ) | '.' ID '(' ( exprList )? ')' -> ^( METH_CALL_EXPR ID ( exprList )? ) );
     public final FJDParser.fieldAccessOrMethCall_return fieldAccessOrMethCall() throws RecognitionException {
         FJDParser.fieldAccessOrMethCall_return retval = new FJDParser.fieldAccessOrMethCall_return();
         retval.start = input.LT(1);
@@ -2790,7 +2790,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_38=new RewriteRuleTokenStream(adaptor,"token 38");
         RewriteRuleSubtreeStream stream_exprList=new RewriteRuleSubtreeStream(adaptor,"rule exprList");
         try {
-            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:156:5: ( '.' ID -> ^( FIELD_ACCESS_EXPR ID ) | '.' ID '(' ( exprList )? ')' -> ^( METH_CALL_EXPR ID ( exprList )? ) )
+            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:154:5: ( '.' ID -> ^( FIELD_ACCESS_EXPR ID ) | '.' ID '(' ( exprList )? ')' -> ^( METH_CALL_EXPR ID ( exprList )? ) )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2831,13 +2831,13 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:156:7: '.' ID
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:154:7: '.' ID
                     {
-                    char_literal69=(Token)match(input,40,FOLLOW_40_in_fieldAccessOrMethCall1108);  
+                    char_literal69=(Token)match(input,40,FOLLOW_40_in_fieldAccessOrMethCall1088);  
                     stream_40.add(char_literal69);
 
 
-                    ID70=(Token)match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall1110);  
+                    ID70=(Token)match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall1090);  
                     stream_ID.add(ID70);
 
 
@@ -2852,9 +2852,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 156:15: -> ^( FIELD_ACCESS_EXPR ID )
+                    // 154:15: -> ^( FIELD_ACCESS_EXPR ID )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:156:18: ^( FIELD_ACCESS_EXPR ID )
+                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:154:18: ^( FIELD_ACCESS_EXPR ID )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(
@@ -2876,21 +2876,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:157:7: '.' ID '(' ( exprList )? ')'
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:155:7: '.' ID '(' ( exprList )? ')'
                     {
-                    char_literal71=(Token)match(input,40,FOLLOW_40_in_fieldAccessOrMethCall1127);  
+                    char_literal71=(Token)match(input,40,FOLLOW_40_in_fieldAccessOrMethCall1107);  
                     stream_40.add(char_literal71);
 
 
-                    ID72=(Token)match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall1129);  
+                    ID72=(Token)match(input,ID,FOLLOW_ID_in_fieldAccessOrMethCall1109);  
                     stream_ID.add(ID72);
 
 
-                    char_literal73=(Token)match(input,37,FOLLOW_37_in_fieldAccessOrMethCall1131);  
+                    char_literal73=(Token)match(input,37,FOLLOW_37_in_fieldAccessOrMethCall1111);  
                     stream_37.add(char_literal73);
 
 
-                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:157:18: ( exprList )?
+                    // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:155:18: ( exprList )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -2899,9 +2899,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt16) {
                         case 1 :
-                            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:157:18: exprList
+                            // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:155:18: exprList
                             {
-                            pushFollow(FOLLOW_exprList_in_fieldAccessOrMethCall1133);
+                            pushFollow(FOLLOW_exprList_in_fieldAccessOrMethCall1113);
                             exprList74=exprList();
 
                             state._fsp--;
@@ -2914,12 +2914,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    char_literal75=(Token)match(input,38,FOLLOW_38_in_fieldAccessOrMethCall1136);  
+                    char_literal75=(Token)match(input,38,FOLLOW_38_in_fieldAccessOrMethCall1116);  
                     stream_38.add(char_literal75);
 
 
                     // AST REWRITE
-                    // elements: ID, exprList
+                    // elements: exprList, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2929,9 +2929,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 157:32: -> ^( METH_CALL_EXPR ID ( exprList )? )
+                    // 155:32: -> ^( METH_CALL_EXPR ID ( exprList )? )
                     {
-                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:157:35: ^( METH_CALL_EXPR ID ( exprList )? )
+                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:155:35: ^( METH_CALL_EXPR ID ( exprList )? )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(
@@ -2942,7 +2942,7 @@ public TreeAdaptor getTreeAdaptor() {
                         stream_ID.nextNode()
                         );
 
-                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:157:55: ( exprList )?
+                        // C:\\projects\\fjd\\src\\main\\java\\th\\ac\\sut\\fjd\\FJD.g:155:55: ( exprList )?
                         if ( stream_exprList.hasNext() ) {
                             adaptor.addChild(root_1, stream_exprList.nextTree());
 
@@ -2998,75 +2998,75 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_ctorDecl_in_classDecl264 = new BitSet(new long[]{0x0008100000200000L});
     public static final BitSet FOLLOW_methodDecls_in_classDecl266 = new BitSet(new long[]{0x0008000000000000L});
     public static final BitSet FOLLOW_51_in_classDecl276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_fieldDecl_in_fieldDecls341 = new BitSet(new long[]{0x0000100000200002L});
-    public static final BitSet FOLLOW_type_in_fieldDecl374 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_ID_in_fieldDecl376 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_fieldDecl378 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_ctorDecl413 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ctorDecl415 = new BitSet(new long[]{0x0000104000200000L});
-    public static final BitSet FOLLOW_argList_in_ctorDecl417 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ctorDecl420 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_ctorDecl422 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_ctorBody_in_ctorDecl424 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_51_in_ctorDecl426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_arg_in_argList463 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_39_in_argList466 = new BitSet(new long[]{0x0000100000200000L});
-    public static final BitSet FOLLOW_arg_in_argList468 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_type_in_arg502 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_ID_in_arg504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_type537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_type559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_superStmt_in_ctorBody590 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_fieldInits_in_ctorBody598 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_superStmt631 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_superStmt633 = new BitSet(new long[]{0x0000104000200000L});
-    public static final BitSet FOLLOW_argList_in_superStmt635 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_superStmt638 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_superStmt640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_fieldInit_in_fieldInits672 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_49_in_fieldInit705 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_fieldInit707 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_ID_in_fieldInit711 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_fieldInit713 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_ID_in_fieldInit717 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_fieldInit719 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_methodDecl_in_methodDecls754 = new BitSet(new long[]{0x0000100000200002L});
-    public static final BitSet FOLLOW_type_in_methodDecl787 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_ID_in_methodDecl791 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_methodDecl793 = new BitSet(new long[]{0x0000104000200000L});
-    public static final BitSet FOLLOW_argList_in_methodDecl795 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_methodDecl798 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_50_in_methodDecl800 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_methBody_in_methodDecl802 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_51_in_methodDecl804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_methBody843 = new BitSet(new long[]{0x0002402000200000L});
-    public static final BitSet FOLLOW_expr_in_methBody845 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_41_in_methBody847 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_exprList882 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_39_in_exprList885 = new BitSet(new long[]{0x0002402000200000L});
-    public static final BitSet FOLLOW_expr_in_exprList887 = new BitSet(new long[]{0x0000008000000002L});
-    public static final BitSet FOLLOW_valueExpr_in_expr923 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_thisExpr_in_expr927 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_fieldAccessOrMethCall_in_expr931 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_ID_in_valueExpr949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_thisExpr980 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_newExpr_in_thisExpr1000 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_newExpr1017 = new BitSet(new long[]{0x0000100000200000L});
-    public static final BitSet FOLLOW_type_in_newExpr1019 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_newExpr1021 = new BitSet(new long[]{0x0002406000200000L});
-    public static final BitSet FOLLOW_exprList_in_newExpr1023 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_newExpr1026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_castExpr_in_newExpr1052 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_castExpr1069 = new BitSet(new long[]{0x0000100000200000L});
-    public static final BitSet FOLLOW_type_in_castExpr1071 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_castExpr1073 = new BitSet(new long[]{0x0002402000200000L});
-    public static final BitSet FOLLOW_expr_in_castExpr1075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_fieldAccessOrMethCall1108 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall1110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_fieldAccessOrMethCall1127 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall1129 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_fieldAccessOrMethCall1131 = new BitSet(new long[]{0x0002406000200000L});
-    public static final BitSet FOLLOW_exprList_in_fieldAccessOrMethCall1133 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_fieldAccessOrMethCall1136 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_fieldDecl_in_fieldDecls321 = new BitSet(new long[]{0x0000100000200002L});
+    public static final BitSet FOLLOW_type_in_fieldDecl354 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_ID_in_fieldDecl356 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_fieldDecl358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_ctorDecl393 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_ctorDecl395 = new BitSet(new long[]{0x0000104000200000L});
+    public static final BitSet FOLLOW_argList_in_ctorDecl397 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ctorDecl400 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_ctorDecl402 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_ctorBody_in_ctorDecl404 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_ctorDecl406 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_arg_in_argList443 = new BitSet(new long[]{0x0000008000000002L});
+    public static final BitSet FOLLOW_39_in_argList446 = new BitSet(new long[]{0x0000100000200000L});
+    public static final BitSet FOLLOW_arg_in_argList448 = new BitSet(new long[]{0x0000008000000002L});
+    public static final BitSet FOLLOW_type_in_arg482 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_ID_in_arg484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_type517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_type539 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_superStmt_in_ctorBody570 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_fieldInits_in_ctorBody578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_superStmt611 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_superStmt613 = new BitSet(new long[]{0x0000104000200000L});
+    public static final BitSet FOLLOW_argList_in_superStmt615 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_superStmt618 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_superStmt620 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_fieldInit_in_fieldInits652 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_49_in_fieldInit685 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_fieldInit687 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_ID_in_fieldInit691 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_fieldInit693 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_ID_in_fieldInit697 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_fieldInit699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_methodDecl_in_methodDecls734 = new BitSet(new long[]{0x0000100000200002L});
+    public static final BitSet FOLLOW_type_in_methodDecl767 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_ID_in_methodDecl771 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_methodDecl773 = new BitSet(new long[]{0x0000104000200000L});
+    public static final BitSet FOLLOW_argList_in_methodDecl775 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_methodDecl778 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_50_in_methodDecl780 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_methBody_in_methodDecl782 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_51_in_methodDecl784 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_methBody823 = new BitSet(new long[]{0x0002402000200000L});
+    public static final BitSet FOLLOW_expr_in_methBody825 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_41_in_methBody827 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_exprList862 = new BitSet(new long[]{0x0000008000000002L});
+    public static final BitSet FOLLOW_39_in_exprList865 = new BitSet(new long[]{0x0002402000200000L});
+    public static final BitSet FOLLOW_expr_in_exprList867 = new BitSet(new long[]{0x0000008000000002L});
+    public static final BitSet FOLLOW_valueExpr_in_expr903 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_thisExpr_in_expr907 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_fieldAccessOrMethCall_in_expr911 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_ID_in_valueExpr929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_thisExpr960 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_newExpr_in_thisExpr980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_newExpr997 = new BitSet(new long[]{0x0000100000200000L});
+    public static final BitSet FOLLOW_type_in_newExpr999 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_newExpr1001 = new BitSet(new long[]{0x0002406000200000L});
+    public static final BitSet FOLLOW_exprList_in_newExpr1003 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_newExpr1006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_castExpr_in_newExpr1032 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_castExpr1049 = new BitSet(new long[]{0x0000100000200000L});
+    public static final BitSet FOLLOW_type_in_castExpr1051 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_castExpr1053 = new BitSet(new long[]{0x0002402000200000L});
+    public static final BitSet FOLLOW_expr_in_castExpr1055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_fieldAccessOrMethCall1088 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall1090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_fieldAccessOrMethCall1107 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_ID_in_fieldAccessOrMethCall1109 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_37_in_fieldAccessOrMethCall1111 = new BitSet(new long[]{0x0002406000200000L});
+    public static final BitSet FOLLOW_exprList_in_fieldAccessOrMethCall1113 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_fieldAccessOrMethCall1116 = new BitSet(new long[]{0x0000000000000002L});
 
 }

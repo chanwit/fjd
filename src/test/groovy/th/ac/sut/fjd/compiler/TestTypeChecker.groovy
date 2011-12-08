@@ -2,8 +2,8 @@ package th.ac.sut.fjd.compiler
 
 import th.ac.sut.fjd.FJDTestCase
 
-import th.ac.sut.fjd.compiler.ClassTable;
-import th.ac.sut.fjd.compiler.Environment;
+import th.ac.sut.fjd.compiler.ClassTable
+import th.ac.sut.fjd.compiler.Environment
 
 class TestTypeChecker extends FJDTestCase {
 

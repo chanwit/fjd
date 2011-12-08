@@ -11,13 +11,14 @@ configurations {
 
 dependencies {
     def antlrVer = '3.4'
-    
-    grammarCompile "org.antlr:antlr:${antlrVer}"
-    compile        "org.antlr:antlr-runtime:${antlrVer}"
 
-	def gppVersion = '0.2.5'
+    grammarCompile "org.antlr:antlr:${antlrVer}"
+
+    compile        "org.antlr:antlr-runtime:${antlrVer}"
+    compile fileTree(dir: 'lib', includes: ['*.jar'])
+
     groovy group: 'org.codehaus.groovy', name: 'groovy-all',   version: "1.8.4"
-    groovy group: 'asm',       name: 'asm-all',  version: '3.2'
+    groovy fileTree(dir: 'lib', includes: ['*.jar'])
     groovy group: 'org.antlr', name: 'antlr',    version: antlrVer
 
     testCompile group: 'junit',     name: 'junit', version: '4.8.1'
@@ -43,4 +44,4 @@ task generateGrammarSources (description: 'Invokes the antlr3-task from ant to g
     }
 }
 
-compileJava.dependsOn generateGrammarSources 
+compileJava.dependsOn generateGrammarSources

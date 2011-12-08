@@ -1,8 +1,8 @@
 package th.ac.sut.fjd.compiler
 
-import th.ac.sut.fjd.compiler.AbstractTypeChecker;
+import th.ac.sut.fjd.compiler.AbstractClassVisitor;
 
-class TypeChecker extends AbstractTypeChecker {
+class TypeChecker extends AbstractClassVisitor {
 
     String result = ''
 

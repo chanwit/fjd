@@ -2,7 +2,7 @@ package th.ac.sut.fjd.compiler
 
 import th.ac.sut.fjd.ast.*
 
-abstract class AbstractTypeChecker {
+abstract class AbstractClassVisitor {
 
     void visit(ProgramNode program) {
         for(c in program.classes) {
@@ -84,7 +84,10 @@ abstract class AbstractTypeChecker {
         if(e==null) return
         for(c in e.children) {
             switch(c) {
-                case NewExprNode: visit(c as NewExprNode); break
+                case NewExprNode:
+                    visit(c as NewExprNode)
+                    break
+
                 default: throw new Exception("NIY ${c.class}")
             }
         }

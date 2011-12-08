@@ -1,6 +1,8 @@
-package th.ac.sut.fjd.compiler
+package th.ac.sut.fjd.compiler.gradual
 
 import th.ac.sut.fjd.ast.*
+import th.ac.sut.fjd.compiler.ClassTable;
+import th.ac.sut.fjd.compiler.Environment;
 
 class GradualRules {
 

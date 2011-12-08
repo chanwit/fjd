@@ -48,9 +48,7 @@ classDecl
     :   'class' className=ID 'extends' superClass=ID '{'
             fieldDecls ctorDecl methodDecls
         '}'
-    ->  ^(CLASS $className ^(SUPER_CLASS $superClass)
-            fieldDecls ctorDecl methodDecls
-        )
+    ->  ^(CLASS $className ^(SUPER_CLASS $superClass) fieldDecls ctorDecl methodDecls )
     ;
 
 fieldDecls
