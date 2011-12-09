@@ -13,7 +13,7 @@ abstract class AbstractClassVisitor {
 
     void visit(ClassNode c) {
         visit(c.name)
-        if(c.name != "Object") visit(c.superClass)
+        if(c.name != "Object") visit(c.superClass.name)
         for(f in c.fields) {
             visit(f)
         }
@@ -25,7 +25,7 @@ abstract class AbstractClassVisitor {
 
     void visit(FieldNode f) {
         if(f==null) return
-        visit(f.type)
+        visit(f.type.name)
         visit(f.name)
     }
 
@@ -54,7 +54,7 @@ abstract class AbstractClassVisitor {
 
     void visit(ArgNode a) {
         if(a==null) return
-        visit(a.type)
+        visit(a.type.name)
         visit(a.name)
     }
 
