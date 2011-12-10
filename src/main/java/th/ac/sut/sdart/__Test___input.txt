@@ -1,0 +1,10 @@
+A a(B x) => return new A();
+
+class A extends Object {
+  Object _o;
+  A() : super() { }
+  Object get o() => return this._o;
+         set o(Object value) => this._o = value;
+}
+
+a()

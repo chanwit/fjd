@@ -41,6 +41,13 @@ task generateGrammarSources (description: 'Invokes the antlr3-task from ant to g
                 pathelement(path: configurations.grammarCompile.asPath)
             }
         }
+        antlr3( target: 'src/main/java/th/ac/sut/sdart/SDart.g',
+                outputdirectory: 'src/main/java/th/ac/sut/sdart'){
+            classpath {
+                pathelement(path: configurations.grammarCompile.asPath)
+            }
+        }
+
     }
 }
 

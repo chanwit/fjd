@@ -15,8 +15,8 @@ tokens {
   CTOR;
   CTOR_BODY;
   SUPER_STMT;
-  FIELD_INIT;
-  FIELD_INIT_LIST;
+  FIELD_INIT_STMT;
+  FIELD_INIT_STMT_LIST;
   MEMBERS;
   FUNCTION;
   TYPE;
@@ -33,6 +33,7 @@ tokens {
   CAST_EXPR;
   FIELD_ACCESS_EXPR;
   METH_CALL_EXPR;
+  FUNC_CALL_EXPR;
   
   GETTER;
   SETTER;
@@ -46,10 +47,15 @@ tokens {
 @lexer::header  { package th.ac.sut.sdart; }
 
 program
-    : classDecl+
+    : functionOrClassDecl+
       expr?
-      -> ^(PROGRAM classDecl+ ^(EXPR expr?))
+      -> ^(PROGRAM functionOrClassDecl+ ^(EXPR expr?))
     ;
+
+functionOrClassDecl
+	: functionDecl 
+	| classDecl
+	;
 
 classDecl
     : 'class' className=ID 'extends' superClass=ID '{'
@@ -71,7 +77,7 @@ fieldDecl
     ;
 
 ctorDecl
-    : name=ID '(' argList? ')' '{' ctorBody '}'
+    : name=ID '(' argList? ')' ctorBody
       -> ^(CTOR $name argList? ctorBody)
     ;
 
@@ -86,29 +92,30 @@ arg
     ;
 
 type
-    : ID
+    : 'var'
+      -> ^(TYPE DYNAMIC)
+    | ID
       -> ^(TYPE ID)
     ;
 
 ctorBody
-    : superStmt
-      fieldInits
-      -> ^(CTOR_BODY superStmt fieldInits)
+    : ':' superStmt '{' fieldInitStmts '}'
+      -> ^(CTOR_BODY superStmt fieldInitStmts)
     ;
 
 superStmt
-    : 'super' '(' argList? ')' ';'
+    : 'super' '(' argList? ')'
       -> ^(SUPER_STMT argList?)
     ;
 
-fieldInits
-    : fieldInit*
-      -> ^(FIELD_INIT_LIST fieldInit*)
+fieldInitStmts
+    : fieldInitStmt*
+      -> ^(FIELD_INIT_STMT_LIST fieldInitStmt*)
     ;
 
-fieldInit
+fieldInitStmt
     : 'this' '.' field=ID '=' value=ID ';'
-      -> ^(FIELD_INIT $field $value)
+      -> ^(FIELD_INIT_STMT $field $value)
     ;
     
 memberDecls
@@ -168,13 +175,20 @@ exprList
     ;
 
 expr
-    : ( valueExpr | thisExpr ) fieldAccessOrMethCall*
+    : valueExpr fieldAccessOrFuncCall*
     ;
 
 valueExpr
     : ID
       -> ^(VALUE_EXPR ID)
+    | funcCallExpr
     ;
+
+funcCallExpr
+	: ID '(' exprList? ')'
+	  -> ^(FUNC_CALL_EXPR ID exprList? )
+	| thisExpr
+	;
 
 thisExpr
     : 'this'
@@ -193,7 +207,7 @@ castExpr
       -> ^(CAST_EXPR type expr)
     ;
 
-fieldAccessOrMethCall
+fieldAccessOrFuncCall
     : '.' ID                   -> ^(FIELD_ACCESS_EXPR ID)
     | '.' ID '(' exprList? ')' -> ^(METH_CALL_EXPR ID exprList?)
     ;
