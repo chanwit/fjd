@@ -9,3 +9,6 @@ out/
 .groovy/
 src/main/java/th/ac/sut/sdart/__Test__.java
 src/main/java/th/ac/sut/sdart/classes/
+src/main/java/th/ac/sut/sdart/SDart.tokens
+src/main/java/th/ac/sut/sdart/SDartLexer.java
+src/main/java/th/ac/sut/sdart/SDartParser.java
