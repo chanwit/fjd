@@ -1,10 +1,8 @@
-A a(B x) => return new A();
-
-class A extends Object {
-  Object _o;
-  A() : super() { }
-  Object get o() => return this._o;
-         set o(Object value) => this._o = value;
+class C extends Object {
+  Object _v;
+  C(): super() { this._v = new Object(); }
+  Object get v() => return this._v;
+  void   set v(Object value) => this._v = value;
 }
 
-a()
+new C().v().a().a

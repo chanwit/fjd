@@ -6,3 +6,6 @@ output/
 bin/
 .settings/
 out/
+.groovy/
+src/main/java/th/ac/sut/sdart/__Test__.java
+src/main/java/th/ac/sut/sdart/classes/

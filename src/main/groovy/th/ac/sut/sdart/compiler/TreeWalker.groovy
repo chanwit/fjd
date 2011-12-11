@@ -31,8 +31,8 @@ class TreeWalker {
             case FIELDS:      return visitFields(node)
             case FIELD:       return visitField(node)
 
-            case ARG: 		  return visitArg(node)
             case ARGS: 		  return visitArgs(node)
+            case ARG: 		  return visitArg(node)
 
             case CTOR: 		  return visitCtor(node)
             case CTOR_BODY:   return visitCtorBody(node)
@@ -57,27 +57,27 @@ class TreeWalker {
             case ASSIGN_STMT: return visitAssignStmt(node)
 
             case EXPR: 		  return visitExpr(node)
+            case NEW_EXPR:    return visitNewExpr(node)
+            case VALUE_EXPR:  return visitValueExpr(node)
             case THIS_EXPR:   return visitThisExpr(node)
             case CAST_EXPR:   return visitCastExpr(node)
+            case FIELD_ACCESS_EXPR:
+                              return visitFieldAccessExpr(node)
             case METH_CALL_EXPR:
                               return visitMethodCallExpr(node)
             case FUNC_CALL_EXPR:
                               return visitFunctionCallExpr(node)
-            case NEW_EXPR:    return visitNewExpr(node)
-            case FIELD_ACCESS_EXPR:
-                              return visitFieldAccessExpr(node)
-            case VALUE_EXPR:  return visitValueExpr(node)
 
             default:
                 throw new Exception("NIY ${node.text}")
         }
     }
 
-    //program
-    //    : functionOrClassDecl+
-    //      expr?
-    //      -> ^(PROGRAM functionOrClassDecl+ ^(EXPR expr?))
-    //    ;
+    //  program
+    //		: functionOrClassDecl+
+    //        expr?
+    //        -> ^(PROGRAM functionOrClassDecl+ ^(EXPR expr?))
+    //      ;
     ProgramNode visitProgram(Tree node) {
         assert node.text == 'PROGRAM'
         def ast = new ProgramNode()
@@ -95,9 +95,9 @@ class TreeWalker {
     }
 
     //	functionDecl
-    //	: returnType? name=ID '(' argList? ')' '=>' funcBody
-    //	  -> ^(FUNCTION returnType? $name argList? funcBody)
-    //	;
+    //		: returnType? name=ID '(' argList? ')' '=>' funcBody
+    //	      -> ^(FUNCTION returnType? $name argList? funcBody)
+    //	    ;
     FunctionNode visitFunction(Tree node) {
         assert node.text == 'FUNCTION'
         def ast = new FunctionNode()
@@ -162,6 +162,23 @@ class TreeWalker {
 
     FieldNode visitField(Tree node) {
         new FieldNode(
+            type: visitType(node.getChild(0)),
+            name: visitID(node.getChild(1))
+        )
+    }
+
+    List<ArgNode> visitArgs(Tree node) {
+        List<ArgNode> result = []
+        if(node.childCount==0) return result
+
+        for(i in 0 ..< node.childCount) {
+            result << visitArg(node.getChild(i))
+        }
+        return result
+    }
+
+    ArgNode visitArg(Tree node) {
+        new ArgNode(
             type: visitType(node.getChild(0)),
             name: visitID(node.getChild(1))
         )

@@ -147,7 +147,7 @@ class TreeWalker {
     ConstructorBodyNode visitCtorBody(Tree node) {
         // -> ^(CTOR_BODY superStmt fieldInits)
         new ConstructorBodyNode(
-            superStmt: visitSuperStmt(node.getChild(0)),
+            superStmt:  visitSuperStmt (node.getChild(0)),
             fieldInits: visitFieldInits(node.getChild(1))
         )
     }

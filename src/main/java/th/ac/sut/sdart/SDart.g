@@ -21,8 +21,8 @@ tokens {
   FUNCTION;
   TYPE;
   DYNAMIC;
-  ARGS;
-  ARG;
+  PARAMS;
+  PARAM;
   FUNC_BODY;
 
   EXPR_LIST;
@@ -41,6 +41,8 @@ tokens {
   STMT;
   RETURN_STMT;
   ASSIGN_STMT;
+  
+  ARGS;
 }
 
 @parser::header { package th.ac.sut.sdart; }
@@ -77,18 +79,18 @@ fieldDecl
     ;
 
 ctorDecl
-    : name=ID '(' argList? ')' ctorBody
-      -> ^(CTOR $name argList? ctorBody)
+    : name=ID '(' paramList? ')' ctorBody
+      -> ^(CTOR $name paramList? ctorBody)
     ;
 
-argList
-    : arg (',' arg)*
-      -> ^(ARGS arg+)
+paramList
+    : param (',' param)*
+      -> ^(PARAMS param+)
     ;
 
-arg
+param
     : type? ID
-      -> ^(ARG type? ID)
+      -> ^(PARAM type? ID)
     ;
 
 type
@@ -104,8 +106,8 @@ ctorBody
     ;
 
 superStmt
-    : 'super' '(' argList? ')'
-      -> ^(SUPER_STMT argList?)
+    : 'super' '(' paramList? ')'
+      -> ^(SUPER_STMT paramList?)
     ;
 
 fieldInitStmts
@@ -135,8 +137,8 @@ returnType
     ;
 
 functionDecl
-    : returnType? name=ID '(' argList? ')' '=>' funcBody
-      -> ^(FUNCTION returnType? $name argList? funcBody)
+    : returnType? name=ID '(' paramList? ')' '=>' funcBody
+      -> ^(FUNCTION returnType? $name paramList? funcBody)
     ;
 
 funcBody
@@ -165,8 +167,8 @@ getterDecl
 	;
 	
 setterDecl
-	: 'void'? 'set' name=ID '(' arg ')' '=>' funcBody
-	  -> ^(SETTER 'void'? $name arg funcBody)
+	: 'void'? 'set' name=ID '(' param ')' '=>' funcBody
+	  -> ^(SETTER 'void'? $name param funcBody)
 	;
 
 exprList
@@ -175,43 +177,52 @@ exprList
     ;
 
 expr
-    : valueExpr fieldAccessOrFuncCall*
-      -> ^(EXPR valueExpr fieldAccessOrFuncCall*)
+	: primary selector*
+	  -> ^(EXPR primary selector*)
+	;
+
+primary
+	: newExpr
+	| castExpr
+	| thisExpr
+	| valueExpr
+	| funcCallExpr
+	;
+
+newExpr
+	: 'new' type '(' exprList? ')'
+      -> ^(NEW_EXPR type exprList?)    
+    ;
+    
+castExpr
+	: '(' type ')' expr
+      -> ^(CAST_EXPR type expr)
     ;
 
 valueExpr
     : ID
       -> ^(VALUE_EXPR ID)
-    | funcCallExpr
+    ;
+    
+thisExpr
+    : 'this'
+      -> ^(THIS_EXPR 'this')
     ;
 
 funcCallExpr
-	: ID '(' exprList? ')'
-	  -> ^(FUNC_CALL_EXPR ID exprList? )
-	| thisExpr
+	: ID arguments 
+	  -> ^(FUNC_CALL_EXPR ID arguments )    
 	;
 
-thisExpr
-    : 'this'
-      -> ^(THIS_EXPR)
-    | newExpr
+selector
+    :  ('.' ID '(' )=> '.' ID arguments -> ^(METH_CALL_EXPR ID arguments)
+    |                  '.' ID           -> ^(FIELD_ACCESS_EXPR ID)
     ;
 
-newExpr
-    : 'new' type '(' exprList? ')'
-       -> ^(NEW_EXPR type exprList?)
-    | castExpr
-    ;
-
-castExpr
-    : '(' type ')' expr
-      -> ^(CAST_EXPR type expr)
-    ;
-
-fieldAccessOrFuncCall
-    : '.' ID                   -> ^(FIELD_ACCESS_EXPR ID)
-    | '.' ID '(' exprList? ')' -> ^(METH_CALL_EXPR ID exprList?)
-    ;
+arguments
+	: '(' exprList? ')'
+	  -> ^(ARGS exprList?)
+	;
 
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
