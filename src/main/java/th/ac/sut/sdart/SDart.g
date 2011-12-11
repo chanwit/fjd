@@ -49,7 +49,7 @@ tokens {
 program
     : functionOrClassDecl+
       expr?
-      -> ^(PROGRAM functionOrClassDecl+ ^(EXPR expr?))
+      -> ^(PROGRAM functionOrClassDecl+ expr?)
     ;
 
 functionOrClassDecl
@@ -114,8 +114,8 @@ fieldInitStmts
     ;
 
 fieldInitStmt
-    : 'this' '.' field=ID '=' value=ID ';'
-      -> ^(FIELD_INIT_STMT $field $value)
+    : 'this' '.' ID '=' expr ';'
+      -> ^(FIELD_INIT_STMT ID expr)
     ;
     
 memberDecls
@@ -130,8 +130,8 @@ memberDecl
 	;	
 
 returnType
-	:	'void'
-	|	type
+	: 'void'
+	| type
     ;
 
 functionDecl
@@ -176,6 +176,7 @@ exprList
 
 expr
     : valueExpr fieldAccessOrFuncCall*
+      -> ^(EXPR valueExpr fieldAccessOrFuncCall*)
     ;
 
 valueExpr
